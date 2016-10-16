@@ -9,3 +9,5 @@ EditorBuildSettings:
     path: Assets/test.unity
   - enabled: 1
     path: Assets/next.unity
+  - enabled: 1
+    path: Assets/settings.unity
