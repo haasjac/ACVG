@@ -8,7 +8,7 @@ public class settings : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        if (SettingVars.accessibility) {
+        if (accessibilityMode.accessibility) {
             StartCoroutine(fakeVoiceOver());
         }
 	}

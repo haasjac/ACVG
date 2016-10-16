@@ -16,7 +16,7 @@ public class menu : MonoBehaviour {
     private List<string> scenes;
 
     void Start () {
-        if (SettingVars.accessibility) {
+        if (accessibilityMode.accessibility) {
             scenes = new List<string>();
             scenes.Add("next");
             scenes.Add("settings");
