@@ -2,56 +2,89 @@
 using UnityEngine.UI;
 using System.Collections;
 
+public enum gesture {NONE, DOUBLE, LEFT, RIGHT, UP, DOWN};
+
 public class gestures : MonoBehaviour {
 
     public Text txt;
     bool possibleSwipe;
-    bool possibleHorizontal;
-    bool possibleVertical;
     Vector2 startPos;
-    float startTime;
+    float minDist = 200;
+    string g = "";
+    bool updatetext = false;
+    gesture dir = gesture.NONE;
+    public gesture touch;
 
-	// Use this for initialization
-	void Start () {
-	
+    // Use this for initialization
+    void Start () {
+        txt.text = "";
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        //print(Input.touchCount);
-
         if (Input.touchCount > 0) {
             Touch t = Input.GetTouch(0);
-            string swipe = "no swipe";
+            
 
             switch (t.phase) {
                 case TouchPhase.Began:
-                    possibleSwipe = true;
-                    possibleVertical = true;
-                    possibleHorizontal = true;
+                    possibleSwipe = false;
                     startPos = t.position;
-                    startTime = Time.time;
+                    //dir = "";
                     break;
                 case TouchPhase.Stationary:
                     possibleSwipe = false;
                     break;
                 case TouchPhase.Moved:
+                    //string tempdir = "hmm";
+                    //if (Vector2.Distance(t.position, startPos) > minDist) {
+                        if (Mathf.Abs(t.position.x - startPos.x) > Mathf.Abs(t.position.y - startPos.y)) {
+                            if (t.position.x - startPos.x > 0) {
+                                dir = gesture.RIGHT;
+                            } else {
+                                dir = gesture.LEFT;
+                            }
+                        } else {
+                            if (t.position.y - startPos.y > 0) {
+                                dir = gesture.UP;
+                            } else {
+                                dir = gesture.DOWN;
+                            }
+                        }
+                        //if (dir != "") {
+                            //if (dir != tempdir) {
+                                //possibleSwipe = false;
+                            //}
+                        //} else {
+                            possibleSwipe = true;
+                            //dir = tempdir;
+                        //}
+                    //}
                     break;
                 case TouchPhase.Ended:
+                    updatetext = true;
                     if (possibleSwipe) {
-                        if ((Time.time - startTime < 1)) {
-                            swipe = "SWIPE\ntime: " + (Time.time - startTime);
-                        }
-                        swipe = "possible swipe\ntime: " + (Time.time - startTime);
+                        g = dir.ToString();
+                        touch = dir;
+                    } else if (t.tapCount > 1) {
+                        g = "double tap " + t.tapCount;
+                        touch = gesture.DOUBLE;
+                    } else {
+                        g = "no gesture";
+                        touch = gesture.NONE;
                     }
                     break;
             }
-            
-            txt.text = t.phase + "\n" + t.pressure + "\n" + t.tapCount + "\n" + swipe;
         } else {
-            //txt.text = "no touching";
+            g = "no gesture";
+            touch = gesture.NONE;
         }
 
-	}
+        if (updatetext) {
+            //txt.text = g;
+            updatetext = false;
+        }
+
+    }
 }
