@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class accessibilityMode : MonoBehaviour {
 
     public static bool accessibility = true;
+    public static bool accessibilityCheck = false;
     public Button settingsButton;
     public Text settingsButtonText;
 
@@ -13,11 +14,14 @@ public class accessibilityMode : MonoBehaviour {
         if (accessibility) {
             accessibility = false; 
 
-            settingsButton.image.color = Color.red;
+            settingsButton.interactable = true;
         } else {
-            accessibility = true; 
+            if (!accessibilityCheck) {
+                accessibility = true; 
 
-            settingsButton.image.color = Color.green;
+                settingsButton.interactable = false;
+                settingsButtonText.text = "Accessibility Mode On";
+            }
         }
     }
 }

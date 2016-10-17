@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class menu : MonoBehaviour {
 
-    private bool accessibility;
-
     public List<Button> buttons;
     public AudioSource audioSource;
     public List<AudioClip> audioClips;
@@ -53,13 +51,13 @@ public class menu : MonoBehaviour {
     }
 
     void Update () {
-        //if (accessibility) {
+        if (accessibilityMode.accessibility) {
             //if (Input.touchCount == 1) {
                 //if (Input.GetTouch(0).phase == TouchPhase.Ended) {
                 if (Input.GetMouseButtonDown(0)) {
                     SceneManager.LoadScene(nextScene); 
                 } 
             //}
-        //}
+        }
     }
 }
