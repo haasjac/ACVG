@@ -49,6 +49,7 @@ public class gameController : MonoBehaviour {
         scoreText.text = "";
         canRestart = true;
         EasyTTSUtil.Initialize(EasyTTSUtil.UnitedStates);
+        EasyTTSUtil.SpeechAdd("double tap to start");
     }
 	
 	// Update is called once per frame
@@ -99,8 +100,6 @@ public class gameController : MonoBehaviour {
         
         // give commands until game ends
         while (!endGame) {
-
-            EasyTTSUtil.SpeechAdd("hello");
 
             // pick a random command
             int r = Random.Range(0, 5);
@@ -159,6 +158,7 @@ public class gameController : MonoBehaviour {
 
         // after a delay allow the game to restart
         yield return new WaitForSeconds(waitTime);
+        EasyTTSUtil.SpeechAdd("Score: " + score.ToString() + "double tap to restart");
         canRestart = true;
         startText.text = "double tap to restart";
     }
