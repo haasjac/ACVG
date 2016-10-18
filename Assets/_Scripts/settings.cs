@@ -36,7 +36,7 @@ public class settings : MonoBehaviour {
         cb.disabledColor = Color.green;
         accessibilityModeButton.colors = cb;
 
-        if (accessibilityMode.accessibility) {
+        if (global.S.accessibility) {
             next = state.buttonOn;
 
             accModeButtonText.text = "Accessibility Mode On";
@@ -62,7 +62,7 @@ public class settings : MonoBehaviour {
                         backButton.interactable = true;
                     }
 
-                    if (accessibilityMode.accessibility) {
+                    if (global.S.accessibility) {
                         next = state.buttonOn;
                     }
 
@@ -121,7 +121,7 @@ public class settings : MonoBehaviour {
         //if (Input.touchCount == 1) {
             //if (Input.GetTouch(0).phase == TouchPhase.Ended) { 
             if (Input.GetMouseButtonDown(0)) {
-                if (accessibilityMode.accessibility) {
+                if (global.S.accessibility) {
                     switch (next) {
                         case state.buttonOff:
                             break;
@@ -132,7 +132,7 @@ public class settings : MonoBehaviour {
                             break;
                         case state.buttonConfirmOff:
                             accessibilityMode.accessibilityCheck = true;
-                            accessibilityMode.accessibility = false;
+                            global.S.accessibility = false;
                             accessibilityModeButton.interactable = true;
                             accModeButtonText.text = "Accessibility Mode Off";
 

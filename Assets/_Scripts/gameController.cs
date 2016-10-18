@@ -34,7 +34,6 @@ public class gameController : MonoBehaviour {
     // private variables
     gesture command = gesture.DOUBLE;
     myInput input;
-    int score = 0;
     bool checking_command = false;
     bool perfect = false;
     bool endGame = false;
@@ -44,7 +43,7 @@ public class gameController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         input = GetComponent<myInput>();
-        score = 0;
+        global.S.currentScore = 0;
         startText.text = "double tap to start";
         scoreText.text = "";
         canRestart = true;
@@ -67,10 +66,10 @@ public class gameController : MonoBehaviour {
             if (input.touch == command) {
                 if (perfect) {
                     audio.rating.PlayOneShot(audio.perfect);
-                    score += perfectScore;
+                    global.S.currentScore += perfectScore;
                 } else {
                     audio.rating.PlayOneShot(audio.good);
-                    score += goodScore;
+                    global.S.currentScore += goodScore;
                 }
             } else {
                 audio.rating.PlayOneShot(audio.bad);
@@ -87,7 +86,7 @@ public class gameController : MonoBehaviour {
         endGame = false;
         canRestart = false;
         checking_command = false;
-        score = 0;
+        global.S.currentScore = 0;
         scoreText.text = "";
         startText.text = "";
         Time.timeScale = 1 - increaseAmount;
@@ -154,11 +153,12 @@ public class gameController : MonoBehaviour {
 
         // display score
         startText.text = "";
-        scoreText.text = "Score: " + score.ToString();
+        scoreText.text = "Score: " + global.S.currentScore.ToString();
 
         // after a delay allow the game to restart
         yield return new WaitForSeconds(waitTime);
-        EasyTTSUtil.SpeechAdd("Score: " + score.ToString() + "double tap to restart");
+        EasyTTSUtil.SpeechAdd("Score: " + global.S.currentScore.ToString());
+        EasyTTSUtil.SpeechAdd("double tap to restart");
         canRestart = true;
         startText.text = "double tap to restart";
     }

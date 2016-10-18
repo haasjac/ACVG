@@ -14,7 +14,7 @@ public class menu : MonoBehaviour {
     private List<string> scenes;
 
     void Start () {
-        if (accessibilityMode.accessibility) {
+        if (global.S.accessibility) {
             scenes = new List<string>();
             scenes.Add("next");
             scenes.Add("settings");
@@ -51,7 +51,7 @@ public class menu : MonoBehaviour {
     }
 
     void Update () {
-        if (accessibilityMode.accessibility) {
+        if (global.S.accessibility) {
             //if (Input.touchCount == 1) {
                 //if (Input.GetTouch(0).phase == TouchPhase.Ended) {
                 if (Input.GetMouseButtonDown(0)) {

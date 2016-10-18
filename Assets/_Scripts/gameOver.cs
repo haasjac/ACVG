@@ -15,7 +15,7 @@ public class gameOver : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        if (accessibilityMode.accessibility) {
+        if (global.S.accessibility) {
             scenes = new List<string>();
             scenes.Add("next");
             scenes.Add("test");
@@ -54,7 +54,7 @@ public class gameOver : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if (accessibilityMode.accessibility) {
+	    if (global.S.accessibility) {
             //if (Input.touchCount == 1) {
                 //if (Input.GetTouch(0).phase == TouchPhase.Ended) {
                 if (Input.GetMouseButtonDown(0)) {
