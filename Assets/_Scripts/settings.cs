@@ -52,6 +52,9 @@ public class settings : MonoBehaviour {
 
     private IEnumerator fakeVoiceOver() {
         while (true) {
+            if (!global.S.accessibility) {
+                next = state.buttonOff; 
+            }
             switch (next) {
                 case state.buttonOff:
                     if (accessibilityMode.accessibilityCheck) {
