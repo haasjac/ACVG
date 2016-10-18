@@ -17,6 +17,16 @@ public class gameOver : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        if (global.S.accessibility) {
+            scenes = new List<string>();
+            scenes.Add("next");
+            scenes.Add("test");
+            scenes.Add("test");
+
+            for (int i = 0; i < buttons.Count; ++i) {
+                buttons[i].interactable = false;
+            }
+        }
         if (global.S.checkHighScore()) {
             audioSource.PlayOneShot(newHighScore);
         }
@@ -34,15 +44,8 @@ public class gameOver : MonoBehaviour {
             yield return new WaitForSeconds(newHighScore.length + 0.2f);
 
             EasyTTSUtil.SpeechAdd(scoreText.text);
-            scenes = new List<string>();
-            scenes.Add("next");
-            scenes.Add("test");
-            scenes.Add("test");
-
-            for (int i = 0; i < buttons.Count; ++i) {
-                buttons[i].interactable = false;
-            }
-            yield return new WaitForSeconds(3);
+            
+            yield return new WaitForSeconds(5);
             StartCoroutine(fakeVoiceOver());
         }
         yield return null;
