@@ -64,6 +64,7 @@ public class settings : MonoBehaviour {
 
                     if (global.S.accessibility) {
                         next = state.buttonOn;
+                        backButton.interactable = false;
                     }
 
                     yield return new WaitForSeconds(2); 
