@@ -48,8 +48,10 @@ public class gameController : MonoBehaviour {
         startText.text = "double tap to start";
         scoreText.text = "";
         canRestart = true;
-        EasyTTSUtil.Initialize(EasyTTSUtil.UnitedStates);
-        EasyTTSUtil.SpeechAdd("double tap to start");
+        if (global.S.accessibility) {
+            EasyTTSUtil.Initialize(EasyTTSUtil.UnitedStates);
+            EasyTTSUtil.SpeechAdd("double tap to start");
+        }
     }
 	
 	// Update is called once per frame
@@ -151,6 +153,8 @@ public class gameController : MonoBehaviour {
         // play game over sound and stop music
         audio.rating.PlayOneShot(audio.gameOver);
         audio.music.Stop();
+
+        yield return new WaitForSeconds(audio.gameOver.length + 0.5f);
 
         SceneManager.LoadScene("gameover");
 
