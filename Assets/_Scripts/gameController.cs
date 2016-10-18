@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class myAudio {
@@ -55,7 +56,7 @@ public class gameController : MonoBehaviour {
 	void Update () {
 
         // start/restart game with double tap
-        if (canRestart && input.touch == gesture.DOUBLE) {
+        if (canRestart && (input.touch == gesture.DOUBLE | Input.GetMouseButtonDown(0))) {
             canRestart = false;
             StartCoroutine(setCommand());
         }
@@ -151,6 +152,9 @@ public class gameController : MonoBehaviour {
         audio.rating.PlayOneShot(audio.gameOver);
         audio.music.Stop();
 
+        SceneManager.LoadScene("gameover");
+
+        /*
         // display score
         startText.text = "";
         scoreText.text = "Score: " + global.S.currentScore.ToString();
@@ -160,7 +164,7 @@ public class gameController : MonoBehaviour {
         EasyTTSUtil.SpeechAdd("Score: " + global.S.currentScore.ToString());
         EasyTTSUtil.SpeechAdd("double tap to restart");
         canRestart = true;
-        startText.text = "double tap to restart";
+        startText.text = "double tap to restart";*/
     }
 
     // increase the games speed every few seconds
