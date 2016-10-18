@@ -31,6 +31,12 @@ public class gameController : MonoBehaviour {
     public float turnTime = 1.5f;
     public float waitTime = 1f;
     public float increaseAmount = 0.05f;
+    public Sprite arrowUp;
+    public Sprite arrowDown;
+    public Sprite arrowLeft;
+    public Sprite arrowRight;
+    public Sprite doubleTap;
+    public Image image;
 
     // private variables
     gesture command = gesture.DOUBLE;
@@ -40,6 +46,7 @@ public class gameController : MonoBehaviour {
     bool endGame = false;
     bool canRestart = false;
     AudioClip chosenCommand;
+    Sprite chosenSprite;
 
     // Use this for initialization
     void Start () {
@@ -109,26 +116,32 @@ public class gameController : MonoBehaviour {
                 case 0:
                     command = gesture.DOUBLE;
                     chosenCommand = audio.doubleTap;
+                    chosenSprite = doubleTap;
                     break;
                 case 1:
                     command = gesture.DOWN;
                     chosenCommand = audio.down;
+                    chosenSprite = arrowDown;
                     break;
                 case 2:
                     command = gesture.LEFT;
                     chosenCommand = audio.left;
+                    chosenSprite = arrowLeft;
                     break;
                 case 3:
                     command = gesture.RIGHT;
                     chosenCommand = audio.right;
+                    chosenSprite = arrowRight;
                     break;
                 case 4:
                     command = gesture.UP;
                     chosenCommand = audio.up;
+                    chosenSprite = arrowUp;
                     break;
                 default:
                     command = gesture.UP;
                     chosenCommand = audio.up;
+                    chosenSprite = arrowUp;
                     break;
             }
 
@@ -137,6 +150,7 @@ public class gameController : MonoBehaviour {
             // 0.4 is average audio clip length. wait to try to sync audio with visual
             yield return new WaitForSeconds(0.4f);
             scoreText.text = command.ToString();
+            image.sprite = chosenSprite;
             checking_command = true;
             perfect = true;
             yield return new WaitForSeconds(0.8f * turnTime);
@@ -147,6 +161,7 @@ public class gameController : MonoBehaviour {
                 endGame = true;
             }
             scoreText.text = "";
+            image.sprite = null;
             yield return new WaitForSeconds(waitTime);
         }
 
