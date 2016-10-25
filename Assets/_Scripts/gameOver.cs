@@ -32,22 +32,24 @@ public class gameOver : MonoBehaviour {
         }
         scoreText.text = "Your Score: " + global.S.currentScore + "\nHigh Score: " + global.S.highScore;
 
-        StartCoroutine(scoreAudio());		
-	}
-
-    IEnumerator scoreAudio() {
         if (global.S.checkHighScore()) {
             audioSource.PlayOneShot(newHighScore);
         }
 
         if (global.S.accessibility) {
+            StartCoroutine(scoreAudio());
+        }		
+	}
+
+    IEnumerator scoreAudio() {
+        
+        if (global.S.checkHighScore())
             yield return new WaitForSeconds(newHighScore.length + 0.2f);
 
-            EasyTTSUtil.SpeechAdd(scoreText.text);
+        EasyTTSUtil.SpeechAdd(scoreText.text);
             
-            yield return new WaitForSeconds(5);
-            StartCoroutine(fakeVoiceOver());
-        }
+        yield return new WaitForSeconds(5);
+        StartCoroutine(fakeVoiceOver());
         yield return null;
     }
 

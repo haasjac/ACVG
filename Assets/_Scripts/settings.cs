@@ -137,6 +137,7 @@ public class settings : MonoBehaviour {
                         case state.buttonConfirmOff:
                             accessibilityMode.accessibilityCheck = true;
                             global.S.accessibility = false;
+                            global.S.save();
                             accessibilityModeButton.interactable = true;
                             accModeButtonText.text = "Accessibility Mode Off";
 

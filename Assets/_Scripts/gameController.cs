@@ -65,7 +65,7 @@ public class gameController : MonoBehaviour {
 	void Update () {
 
         // start/restart game with double tap
-        if (canRestart && (input.touch == gesture.DOUBLE | Input.GetMouseButtonDown(0))) {
+        if (canRestart && (input.touch == gesture.DOUBLE | Input.GetKeyDown(KeyCode.Space))) {
             canRestart = false;
             StartCoroutine(setCommand());
         }
