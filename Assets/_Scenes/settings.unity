@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44692492, g: 0.4967869, b: 0.57508546, a: 1}
+  m_IndirectSpecularColor: {r: 0.008180953, g: 0.00000021632167, b: 0, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -103,7 +103,7 @@ GameObject:
   - 114: {fileID: 472617009}
   - 114: {fileID: 472617008}
   m_Layer: 5
-  m_Name: 
+  m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -237,7 +237,7 @@ GameObject:
   - 114: {fileID: 690201760}
   - 114: {fileID: 690201764}
   m_Layer: 5
-  m_Name: 
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -350,7 +350,7 @@ GameObject:
   - 4: {fileID: 738662196}
   - 108: {fileID: 738662195}
   m_Layer: 0
-  m_Name: 
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -413,7 +413,7 @@ GameObject:
   - 4: {fileID: 1000355506}
   - 82: {fileID: 1000355505}
   m_Layer: 0
-  m_Name: 
+  m_Name: AudioSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -517,7 +517,7 @@ GameObject:
   - 222: {fileID: 1200771659}
   - 114: {fileID: 1200771658}
   m_Layer: 5
-  m_Name: 
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -587,7 +587,7 @@ GameObject:
   - 114: {fileID: 1399481226}
   - 114: {fileID: 1399481229}
   m_Layer: 5
-  m_Name: 
+  m_Name: Accessibility
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -721,7 +721,7 @@ GameObject:
   - 222: {fileID: 1708717650}
   - 114: {fileID: 1708717649}
   m_Layer: 5
-  m_Name: 
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -797,7 +797,7 @@ GameObject:
   - 124: {fileID: 1714055326}
   - 81: {fileID: 1714055325}
   m_Layer: 0
-  m_Name: 
+  m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -883,7 +883,7 @@ GameObject:
   - 222: {fileID: 1761632455}
   - 114: {fileID: 1761632454}
   m_Layer: 5
-  m_Name: 
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -957,7 +957,7 @@ GameObject:
   - 114: {fileID: 2041632700}
   - 114: {fileID: 2041632699}
   m_Layer: 0
-  m_Name: 
+  m_Name: Event System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
