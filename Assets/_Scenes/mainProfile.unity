@@ -446,11 +446,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011915211334, guid: 30c52178f6393c844a85e0d4b407f68f,
-        type: 2}
-      propertyPath: m_Text
-      value: My Profile Page
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 30c52178f6393c844a85e0d4b407f68f, type: 2}
   m_IsPrefabParent: 0
