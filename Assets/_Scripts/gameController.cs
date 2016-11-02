@@ -25,7 +25,7 @@ public class gameController : MonoBehaviour {
     // public variables
     public int perfectScore = 3;
     public int goodScore = 1;
-    public Text scoreText; 
+    public Text scoreText;
     public Text startText;
     public new myAudio audio;
     public float turnTime = 1.5f;
@@ -44,34 +44,23 @@ public class gameController : MonoBehaviour {
     bool checking_command = false;
     bool perfect = false;
     bool endGame = false;
-    bool canRestart = false;
     AudioClip chosenCommand;
     Sprite chosenSprite;
 
     // Use this for initialization
-    void Start () {
+    void Start() {
         input = GetComponent<myInput>();
         global.S.currentScore = 0;
-        startText.text = "double tap to start";
+        startText.text = "";
         scoreText.text = "";
-        canRestart = true;
-        if (global.S.accessibility) {
-            EasyTTSUtil.Initialize(EasyTTSUtil.UnitedStates);
-            EasyTTSUtil.SpeechAdd("double tap to start");
-        }
+        StartCoroutine(countdown());
     }
-	
-	// Update is called once per frame
-	void Update () {
 
-        // start/restart game with double tap
-        if (canRestart && (input.touch == gesture.DOUBLE | Input.GetKeyDown(KeyCode.Space))) {
-            canRestart = false;
-            StartCoroutine(setCommand());
-        }
+    // Update is called once per frame
+    void Update() {
 
         // check for input
-	    if (checking_command && input.touch != gesture.NONE) {
+        if (checking_command && input.touch != gesture.NONE) {
             checking_command = false;
             if (input.touch == command) {
                 if (perfect) {
@@ -86,7 +75,20 @@ public class gameController : MonoBehaviour {
                 endGame = true;
             }
         }
-	}
+    }
+
+    IEnumerator countdown() {
+        int time = 3;
+        while (time > 0) {
+            if (global.S.accessibility) {
+                EasyTTSUtil.SpeechAdd(time.ToString());
+            }
+            scoreText.text = time.ToString();
+            yield return new WaitForSeconds(1);
+            time--;
+        }
+        StartCoroutine(setCommand());
+    }
 
 
     // coroutine for setting commands
@@ -94,7 +96,7 @@ public class gameController : MonoBehaviour {
 
         // set up conditions for game to start
         endGame = false;
-        canRestart = false;
+        //canRestart = false;
         checking_command = false;
         global.S.currentScore = 0;
         scoreText.text = "";
@@ -148,7 +150,7 @@ public class gameController : MonoBehaviour {
             // play the audio for the command
             audio.command.PlayOneShot(chosenCommand);
             // 0.4 is average audio clip length. wait to try to sync audio with visual
-            yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSecondsRealtime(0.4f);
             scoreText.text = command.ToString();
             image.sprite = chosenSprite;
             checking_command = true;
@@ -158,6 +160,7 @@ public class gameController : MonoBehaviour {
             yield return new WaitForSeconds(0.2f * turnTime);
             if (checking_command) {
                 checking_command = false;
+                audio.rating.PlayOneShot(audio.bad);
                 endGame = true;
             }
             scoreText.text = "";
@@ -191,7 +194,7 @@ public class gameController : MonoBehaviour {
         while (!endGame) {
             //print("speed up " + Time.time);
             Time.timeScale += increaseAmount;
-            audio.music.pitch += increaseAmount;
+            audio.music.pitch += increaseAmount / 2;
             yield return new WaitForSecondsRealtime(4 * turnTime);
         }
     }
