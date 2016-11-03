@@ -744,6 +744,16 @@ Prefab:
       propertyPath: m_Text
       value: Login Page
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011694208334, guid: 30c52178f6393c844a85e0d4b407f68f,
+        type: 2}
+      propertyPath: m_Text
+      value: Back to Main Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011694208334, guid: 30c52178f6393c844a85e0d4b407f68f,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 30c52178f6393c844a85e0d4b407f68f, type: 2}
   m_IsPrefabParent: 0

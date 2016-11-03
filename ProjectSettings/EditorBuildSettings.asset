@@ -10,11 +10,11 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/_Scenes/next.unity
   - enabled: 1
+    path: Assets/_Scenes/mainMenu.unity
+  - enabled: 1
     path: Assets/_Scenes/settings.unity
   - enabled: 1
     path: Assets/_Scenes/gameover.unity
-  - enabled: 1
-    path: Assets/_Scenes/mainMenu.unity
   - enabled: 1
     path: Assets/_Scenes/mainProfile.unity
   - enabled: 1
