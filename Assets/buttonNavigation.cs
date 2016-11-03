@@ -14,6 +14,10 @@ public class buttonNavigation : MonoBehaviour {
 	
 	}
 
+    public void gotoLevel(string level) {
+        SceneManager.LoadScene(level);
+    }
+
   public void touchPlayGameButton() {
     SceneManager.LoadScene("mainGamesList");
   }
