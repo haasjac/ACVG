@@ -144,7 +144,7 @@ public class settings : MonoBehaviour {
                             next = state.buttonOff;
                             break;
                         case state.backToGameMenu:
-                            SceneManager.LoadScene("test");
+                            SceneManager.LoadScene("game_menu");
                             break;
                         default:
                             break;
