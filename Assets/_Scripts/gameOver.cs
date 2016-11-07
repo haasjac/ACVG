@@ -19,9 +19,9 @@ public class gameOver : MonoBehaviour {
 	void Start () {
         if (global.S.accessibility) {
             scenes = new List<string>();
-            scenes.Add("next");
-            scenes.Add("test");
-            scenes.Add("test");
+            scenes.Add("si_game");
+            scenes.Add("game_menu");
+            scenes.Add("mainMenu");
 
             for (int i = 0; i < buttons.Count; ++i) {
                 buttons[i].interactable = false;

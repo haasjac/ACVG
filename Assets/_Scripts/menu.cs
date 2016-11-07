@@ -16,9 +16,9 @@ public class menu : MonoBehaviour {
     void Start () {
         if (global.S.accessibility) {
             scenes = new List<string>();
-            scenes.Add("next");
+            scenes.Add("si_game");
             scenes.Add("settings");
-            scenes.Add("next");
+            scenes.Add("mainMenu");
 
             for (int i = 0; i < buttons.Count; ++i) {
                 buttons[i].interactable = false; 
