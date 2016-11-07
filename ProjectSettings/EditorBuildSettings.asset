@@ -27,3 +27,7 @@ EditorBuildSettings:
     path: Assets/_Scenes/game_menu.unity
   - enabled: 1
     path: Assets/_Scenes/si_game.unity
+  - enabled: 1
+    path: Assets/_Scenes/crGame.unity
+  - enabled: 1
+    path: Assets/_Scenes/crMenu.unity

@@ -396,6 +396,7 @@ GameObject:
   - 114: {fileID: 1398238027}
   - 114: {fileID: 1398238026}
   - 114: {fileID: 1398238030}
+  - 114: {fileID: 1398238031}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -489,6 +490,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a5eab9995e5544aa85487f59575d35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chicken: {fileID: 0}
+  obstacles: []
+  levelString: 
+  difficulty: 
+  levelTitle: 
+  input: {fileID: 0}
+--- !u!114 &1398238031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1398238025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4f753fe5f8b2444cabad22e2f706a70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  touch: 0
 --- !u!1 &1827388253
 GameObject:
   m_ObjectHideFlags: 0
