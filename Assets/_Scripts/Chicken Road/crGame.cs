@@ -5,25 +5,25 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
 public class crGame : MonoBehaviour {
+    public GameObject playerVehicle;
     public GameObject chicken;
-    public GameObject roadLine;
     public GameObject farPoint;
     public GameObject nearPoint;
     public GameObject behindPoint;
     public GameObject modeUI;
     public GameObject scoreUI;
     public GameObject usernameUI;
-    public myInput input;
-    public string levelTitle;
-	public string difficulty;
-    public string levelString;
 
+    myInput input;
+    string difficulty;
+    string levelObstacles;
     int score = 0;
     int mistakes = 0;
     int position = 0;
     List<GameObject> obstacles;
 	List<gesture> commandList;
     GameObject displayedObstacle;
+    Vector3 startingPosition = new Vector3(0, 1, -3);
     bool checkForCommand;
     bool showTutorial;
     float reactionTime;
@@ -34,33 +34,33 @@ public class crGame : MonoBehaviour {
         input = GetComponent<myInput>();
         obstacles = new List<GameObject>();
         commandList = new List<gesture>();
-        
+        playerVehicle = Instantiate(playerVehicle, startingPosition, transform.rotation) as GameObject;
+
         // temp
-        PlayerPrefs.SetString("crLevelString", "CCC");
+        showTutorial = false;
 
         if (PlayerPrefs.HasKey("loggedInUser")) {
             usernameUI.GetComponent<Text>().text = PlayerPrefs.GetString("loggedInUser");
-        }
-
-        if (PlayerPrefs.HasKey("levelTitle")) {
-            levelTitle = PlayerPrefs.GetString("levelTitle");
-            modeUI.GetComponent<Text>().text = levelTitle;
         }
 
         if (PlayerPrefs.HasKey("difficulty")) {
             difficulty = PlayerPrefs.GetString("difficulty");
         }
 
-		if (PlayerPrefs.HasKey("crLevelString")) {
-			levelString = PlayerPrefs.GetString("crLevelString");
+        if (PlayerPrefs.HasKey("levelTitle")) {
+            modeUI.GetComponent<Text>().text = PlayerPrefs.GetString("levelTitle");
+        }
 
-			if (levelString.Length == 0) {
+		if (PlayerPrefs.HasKey("levelObstacles")) {
+			levelObstacles = PlayerPrefs.GetString("levelObstacles");
+
+			if (levelObstacles.Length == 0) {
                 // ERROR: no value given
-                Debug.LogError("Empty Level String");
+                Debug.LogError("Empty Level Obstacles");
 			}
 
             // build obstacle list
-			foreach (char c in levelString) {
+			foreach (char c in levelObstacles) {
                 switch (c) {
                     case 'C':
                         obstacles.Add(chicken);
@@ -94,7 +94,7 @@ public class crGame : MonoBehaviour {
 		}
 		else {
             // should abort...
-            Debug.LogError("crLevelString not set");
+            Debug.LogError("levelObstacles not set");
 			SceneManager.LoadScene("crMenu");
 		}
 
@@ -103,14 +103,13 @@ public class crGame : MonoBehaviour {
 	IEnumerator StartGame() {
         // play tutorial based on level/difficulty of introducing obstacle
         // wait until tutorial for new obstacle finishes
+        if (showTutorial) {
+            Debug.Log("Tutorial...");
 
-        Debug.Log("Tutorial...");
-
-		yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(2f);
+        }
 
         // play background audio for incoming obstacles
-        // show them in the distance
-
         Debug.Log("Playing noise of all obstacles...");
 
 		// wait for background to finish (add time for delay until car starts)
@@ -131,27 +130,49 @@ public class crGame : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		// wait for command and input, otherwise do nothing
-		if (checkForCommand && input.touch != gesture.NONE) {
-			checkForCommand = false;
+        if (input.touch != gesture.NONE) {
+            switch(input.touch) {
+                case gesture.UP:
+                    playerVehicle.GetComponent<playerVehicle>().SpeedUp();
+                    break;
+                case gesture.DOWN:
+                    playerVehicle.GetComponent<playerVehicle>().SlowDown();
+                    break;
+                case gesture.LEFT:
+                    playerVehicle.GetComponent<playerVehicle>().Swerve("left");
+                    break;
+                case gesture.RIGHT:
+                    playerVehicle.GetComponent<playerVehicle>().Swerve("right");
+                    break;
+                case gesture.DOUBLE:
+                    playerVehicle.GetComponent<playerVehicle>().Honk();
+                    break;
+                default:
+                    break;
+            }
 
-			if (commandList.Contains(input.touch)) {
-				// successful input
-				score += (20 / commandList.Count);
-                scoreUI.GetComponent<Text>().text = "Score: " + score;
+            // wait for command and input, otherwise do nothing
+            if (checkForCommand) {
+                checkForCommand = false;
 
-                // play good audio
-                Debug.Log("Correct Input");
-			}
-			else {
-                // mistake made, hit obstacle
-                // play bad audio
-                mistakes++;
-                Debug.Log("Incorrect Input");
-			}
+                if (commandList.Contains(input.touch)) {
+                    // successful input
+                    score += (20 / commandList.Count);
+                    scoreUI.GetComponent<Text>().text = "Score: " + score;
 
-            Destroy(displayedObstacle);
-		}
+                    // play good audio
+                    Debug.Log("Correct Input");
+                }
+                else {
+                    // mistake made, hit obstacle
+                    // play bad audio
+                    mistakes++;
+                    Debug.Log("Incorrect Input");
+                }
+
+                Destroy(displayedObstacle);
+            }
+        }
     }
 
 	IEnumerator SetObstacle() {

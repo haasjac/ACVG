@@ -33,3 +33,5 @@ EditorBuildSettings:
     path: Assets/_Scenes/Chicken/crMenu.unity
   - enabled: 1
     path: Assets/_Scenes/Chicken/crGameover.unity
+  - enabled: 1
+    path: Assets/_Scenes/Chicken/crLevelSelect.unity

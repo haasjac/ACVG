@@ -230,48 +230,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 120168367}
---- !u!1001 &528706512
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4000012826518922, guid: 975cf32ec180e1142801d68f0b4a3d82, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012826518922, guid: 975cf32ec180e1142801d68f0b4a3d82, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012826518922, guid: 975cf32ec180e1142801d68f0b4a3d82, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012826518922, guid: 975cf32ec180e1142801d68f0b4a3d82, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012826518922, guid: 975cf32ec180e1142801d68f0b4a3d82, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012826518922, guid: 975cf32ec180e1142801d68f0b4a3d82, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012826518922, guid: 975cf32ec180e1142801d68f0b4a3d82, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012826518922, guid: 975cf32ec180e1142801d68f0b4a3d82, type: 2}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 975cf32ec180e1142801d68f0b4a3d82, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &632896375
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,7 +310,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 632896375}
-  m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
+  m_LocalRotation: {x: 0.17364816, y: -0, z: -0, w: 0.9848078}
   m_LocalPosition: {x: 0, y: 11.36, z: -24.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
@@ -664,18 +622,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a5eab9995e5544aa85487f59575d35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerVehicle: {fileID: 1000014101842394, guid: 975cf32ec180e1142801d68f0b4a3d82,
+    type: 2}
   chicken: {fileID: 1000013629663794, guid: 298bff416148062449a206829f516ca1, type: 2}
-  roadLine: {fileID: 0}
   farPoint: {fileID: 889864100}
   nearPoint: {fileID: 1597169469}
   behindPoint: {fileID: 0}
   modeUI: {fileID: 1917519842}
   scoreUI: {fileID: 120168367}
   usernameUI: {fileID: 1827388253}
-  input: {fileID: 0}
-  levelTitle: 
-  difficulty: easy
-  levelString: 
 --- !u!114 &1398238031
 MonoBehaviour:
   m_ObjectHideFlags: 0
