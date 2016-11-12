@@ -7,7 +7,8 @@ public class buttonNavigation : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        loginAlert.SetActive(false);
+        if (loginAlert)
+            loginAlert.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -24,6 +25,8 @@ public class buttonNavigation : MonoBehaviour {
     }
 
     public void touchProfileButton() {
+        SceneManager.LoadScene("FBTest");
+        /*
         // check logged in user (-1 == not logged in)
         if (PlayerPrefs.HasKey("loggedInUser")) {
             if (PlayerPrefs.GetInt("loggedInUser") != -1) {
@@ -40,6 +43,7 @@ public class buttonNavigation : MonoBehaviour {
             PlayerPrefs.SetInt("loggedInUser", -1);
             loginAlert.SetActive(true);
         }
+        */
     }
 
     public void touchSettingsButon() {
