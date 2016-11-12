@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using Facebook.Unity;
+using SimpleJSON;
 
 public class FBscript : MonoBehaviour {
 
@@ -10,6 +11,34 @@ public class FBscript : MonoBehaviour {
     public GameObject DialogLoggedOut;
     public GameObject DialogUsername;
     public GameObject DialogProfilePic;
+
+    [System.Serializable]
+    public class json {
+        public string test = "t";
+        public string difficulty = "nope";
+    }
+
+    public string url = "http://acvg-uno-flask-env.xnuwix2zea.us-west-2.elasticbeanstalk.com";
+
+    IEnumerator apiCall() {
+        //string userID = AccessToken.CurrentAccessToken.UserId;
+        WWWForm form = new WWWForm();
+        //form.AddField("id",userID);
+        url += "/levels";
+        WWW www = new WWW(url);
+        yield return www;
+        if (www.error == null) {
+            var j = JSON.Parse(www.text);
+            Debug.Log("WWW Ok!: " + www.text);
+            print("json: " + j["1"]["difficulty"]);
+        } else {
+            Debug.Log("WWW Error: " + www.error);
+        }
+    }
+
+    public void testAPI() {
+        StartCoroutine(apiCall());
+    }
 
     void Awake() {
         if (FB.IsLoggedIn) {
@@ -57,6 +86,7 @@ public class FBscript : MonoBehaviour {
         } else {
             if (FB.IsLoggedIn) {
                 Debug.Log("FB is logged in");
+                print("userID: " + AccessToken.CurrentAccessToken.UserId);
             } else {
                 Debug.Log("FB is not logged in");
             }
