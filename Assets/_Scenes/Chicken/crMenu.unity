@@ -823,7 +823,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: View Leaderboards
+  m_Text: How To Play
 --- !u!222 &1599830135
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1018,7 +1018,7 @@ GameObject:
   - 114: {fileID: 1987916023}
   - 114: {fileID: 1987916022}
   m_Layer: 5
-  m_Name: View Leaderboards Button
+  m_Name: How To Play Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1083,7 +1083,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1508159411}
-        m_MethodName: touchViewLeaderboardsButton
+        m_MethodName: touchHowToPlayButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

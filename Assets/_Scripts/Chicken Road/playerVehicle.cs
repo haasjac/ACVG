@@ -2,12 +2,16 @@
 using System.Collections;
 
 public class playerVehicle : MonoBehaviour {
-    bool isMoving;
+	public AudioClip swerve;
+	public AudioClip speedUp;
+	public AudioClip tireSqueal;
+	public AudioClip honk;
+	public AudioClip engine;
 
     bool speedingUp;
     bool slowingDown;
     bool swervingLeft;
-    bool swervingRight;
+	bool swervingRight;
 
     Vector3 startingPosition;
     float duration = 1f;
@@ -31,31 +35,31 @@ public class playerVehicle : MonoBehaviour {
         }
 	}
 
-    public void StartEngine() {
+    public AudioClip StartEngine() {
         Debug.Log("Starting Engine");
-        isMoving = true;
+
+		return engine;
     }
 
-    public void StopEngine() {
-        Debug.Log("Stopping Engine");
-        isMoving = false;
-    }
-
-    public void SpeedUp() {
+	public AudioClip SpeedUp() {
         Debug.Log("Speeding Up");
         speedingUp = true;
         transform.position = startingPosition + new Vector3(0, 0, 5);
         actionTime = Time.time;
+
+		return speedUp;
     }
 
-    public void SlowDown() {
+	public AudioClip SlowDown() {
         Debug.Log("Slowing Down");
         slowingDown = true;
         transform.position = startingPosition + new Vector3(0, 0, -5);
         actionTime = Time.time;
+
+		return tireSqueal;
     }
 
-    public void Swerve(string direction) {
+	public AudioClip Swerve(string direction) {
         Debug.Log("Swerving " + direction);
 
         if (direction == "left") {
@@ -68,9 +72,12 @@ public class playerVehicle : MonoBehaviour {
             transform.position = startingPosition + new Vector3(5, 0, 0);
             actionTime = Time.time;
         }
+
+		return swerve;
     }
 
-    public void Honk() {
+	public AudioClip Honk() {
         Debug.Log("Honk");
+		return honk;
     }
 }

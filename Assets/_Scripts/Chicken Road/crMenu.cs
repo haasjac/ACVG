@@ -16,11 +16,11 @@ public class crMenu : MonoBehaviour {
 	}
 
     public void touchPlayGameButton() {
-        SceneManager.LoadScene("crGame");
+        SceneManager.LoadScene("crLevelSelect");
     }
 
-    public void touchViewLeaderboardsButton() {
-        // SceneManager.LoadScene("...");
+    public void touchHowToPlayButton() {
+        SceneManager.LoadScene("crHowToPlay");
     }
 
     public void touchExitButton() {

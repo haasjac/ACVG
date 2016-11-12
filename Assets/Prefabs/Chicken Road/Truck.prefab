@@ -1510,3 +1510,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e30e2ce7516aa8e46ac316b791d7b7dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swerve: {fileID: 8300000, guid: 34065d558561345978605359597f2806, type: 3}
+  speedUp: {fileID: 8300000, guid: 8da5075f7264448f688cda548b5dcfde, type: 3}
+  tireSqueal: {fileID: 8300000, guid: 1ca304ae05aab4d4c91e8f0b04ab6310, type: 3}
+  honk: {fileID: 8300000, guid: d7486b933a5fa4a75b48d5ceb180aa42, type: 3}
+  engine: {fileID: 8300000, guid: 46d9e9f7cb7df4a6cb8eb47ea6e4006a, type: 3}
