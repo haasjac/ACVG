@@ -3,10 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using Facebook.Unity;
-<<<<<<< Updated upstream
 using SimpleJSON;
-=======
->>>>>>> Stashed changes
 
 public class FBscript : MonoBehaviour {
 
@@ -15,7 +12,6 @@ public class FBscript : MonoBehaviour {
     public GameObject DialogUsername;
     public GameObject DialogProfilePic;
 
-<<<<<<< Updated upstream
     [System.Serializable]
     public class json {
         public string test = "t";
@@ -44,8 +40,6 @@ public class FBscript : MonoBehaviour {
         StartCoroutine(apiCall());
     }
 
-=======
->>>>>>> Stashed changes
     void Awake() {
         if (FB.IsLoggedIn) {
             SetInit();
@@ -92,10 +86,7 @@ public class FBscript : MonoBehaviour {
         } else {
             if (FB.IsLoggedIn) {
                 Debug.Log("FB is logged in");
-<<<<<<< Updated upstream
                 print("userID: " + AccessToken.CurrentAccessToken.UserId);
-=======
->>>>>>> Stashed changes
             } else {
                 Debug.Log("FB is not logged in");
             }
