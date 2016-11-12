@@ -90,7 +90,7 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &432784880
+--- !u!1001 &285589509
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -190,11 +190,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 30c52178f6393c844a85e0d4b407f68f, type: 2}
   m_IsPrefabParent: 0
---- !u!224 &432784881 stripped
+--- !u!224 &568451801 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224000012659693438, guid: 30c52178f6393c844a85e0d4b407f68f,
     type: 2}
-  m_PrefabInternal: {fileID: 432784880}
+  m_PrefabInternal: {fileID: 285589509}
 --- !u!1 &765897894
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,7 +280,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 432784881}
+  - {fileID: 568451801}
   - {fileID: 2123222844}
   m_Father: {fileID: 0}
   m_RootOrder: 1
