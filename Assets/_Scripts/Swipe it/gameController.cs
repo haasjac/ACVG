@@ -14,6 +14,7 @@ public class myAudio {
     public AudioClip left;
     public AudioClip down;
     public AudioClip doubleTap;
+    public AudioClip passIt;
     public AudioClip perfect;
     public AudioClip good;
     public AudioClip bad;
@@ -36,6 +37,7 @@ public class gameController : MonoBehaviour {
     public Sprite arrowLeft;
     public Sprite arrowRight;
     public Sprite doubleTap;
+    public Sprite passIt;
     public Image image;
 
     // private variables
@@ -50,7 +52,7 @@ public class gameController : MonoBehaviour {
     // Use this for initialization
     void Start() {
         input = GetComponent<myInput>();
-        global.S.currentScore = 0;
+        swipeIt.S.currentScore = 0;
         startText.text = "";
         scoreText.text = "";
         StartCoroutine(countdown());
@@ -59,20 +61,30 @@ public class gameController : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
+        // pass it
+        if (checking_command && command == gesture.NONE) {
+            checking_command = false;
+        }
+
         // check for input
         if (checking_command && input.touch != gesture.NONE) {
             checking_command = false;
             if (input.touch == command) {
                 if (perfect) {
                     audio.rating.PlayOneShot(audio.perfect);
-                    global.S.currentScore += perfectScore;
+                    swipeIt.S.currentScore += perfectScore;
+                    Handheld.Vibrate();
                 } else {
                     audio.rating.PlayOneShot(audio.good);
-                    global.S.currentScore += goodScore;
+                    swipeIt.S.currentScore += goodScore;
+                    Handheld.Vibrate();
                 }
             } else {
                 audio.rating.PlayOneShot(audio.bad);
-                endGame = true;
+                if (swipeIt.S.mode != swipeIt.gameMode.tutorial)
+                    endGame = true;
+                Handheld.Vibrate();
+                Handheld.Vibrate();
             }
         }
     }
@@ -96,9 +108,10 @@ public class gameController : MonoBehaviour {
 
         // set up conditions for game to start
         endGame = false;
-        //canRestart = false;
+        float r = -0.5f;
+        int chance = 0;
         checking_command = false;
-        global.S.currentScore = 0;
+        swipeIt.S.currentScore = 0;
         scoreText.text = "";
         startText.text = "";
         Time.timeScale = 1 - increaseAmount;
@@ -112,9 +125,33 @@ public class gameController : MonoBehaviour {
         // give commands until game ends
         while (!endGame) {
 
-            // pick a random command
-            int r = Random.Range(0, 5);
-            switch (r) {
+            switch (swipeIt.S.mode) {
+                case swipeIt.gameMode.single:
+                    // pick a random command except pass it
+                    r = Random.Range(0, 5);
+                    break;
+                case swipeIt.gameMode.multi:
+                    // pick a random command including pass it
+                    r = Random.Range(0, 5);
+                    if (chance >= 5) {
+                        r = 5;
+                        chance = 0;
+                    } else {
+                        chance += Random.Range(1, 6);
+                    }
+                    break;
+                case swipeIt.gameMode.tutorial:
+                    r += 0.5f;
+                    if (r > 4f)
+                        endGame = true;
+                    break;
+                default:
+                    // pick a random command except pass it
+                    r = Random.Range(0, 5);
+                    break;
+            }
+            
+            switch (Mathf.FloorToInt(r)) {
                 case 0:
                     command = gesture.DOUBLE;
                     chosenCommand = audio.doubleTap;
@@ -140,9 +177,14 @@ public class gameController : MonoBehaviour {
                     chosenCommand = audio.up;
                     chosenSprite = arrowUp;
                     break;
+                case 5:
+                    command = gesture.NONE;
+                    chosenCommand = audio.passIt;
+                    chosenSprite = passIt;
+                    break;
                 default:
                     command = gesture.UP;
-                    chosenCommand = audio.up;
+                    chosenCommand = audio.perfect;
                     chosenSprite = arrowUp;
                     break;
             }
@@ -151,7 +193,11 @@ public class gameController : MonoBehaviour {
             audio.command.PlayOneShot(chosenCommand);
             // 0.4 is average audio clip length. wait to try to sync audio with visual
             yield return new WaitForSecondsRealtime(0.4f);
-            scoreText.text = command.ToString();
+            if (command == gesture.NONE) {
+                scoreText.text = "PASS IT";
+            } else {
+                scoreText.text = command.ToString();
+            }
             image.sprite = chosenSprite;
             checking_command = true;
             perfect = true;
@@ -161,7 +207,10 @@ public class gameController : MonoBehaviour {
             if (checking_command) {
                 checking_command = false;
                 audio.rating.PlayOneShot(audio.bad);
-                endGame = true;
+                if (swipeIt.S.mode != swipeIt.gameMode.tutorial)
+                    endGame = true;
+                Handheld.Vibrate();
+                Handheld.Vibrate();
             }
             scoreText.text = "";
             image.sprite = null;
@@ -174,19 +223,10 @@ public class gameController : MonoBehaviour {
 
         yield return new WaitForSeconds(audio.gameOver.length + 0.5f);
 
+        if (swipeIt.S.mode == swipeIt.gameMode.tutorial)
+            swipeIt.S.mode = swipeIt.gameMode.single;
+
         SceneManager.LoadScene("gameover");
-
-        /*
-        // display score
-        startText.text = "";
-        scoreText.text = "Score: " + global.S.currentScore.ToString();
-
-        // after a delay allow the game to restart
-        yield return new WaitForSeconds(waitTime);
-        EasyTTSUtil.SpeechAdd("Score: " + global.S.currentScore.ToString());
-        EasyTTSUtil.SpeechAdd("double tap to restart");
-        canRestart = true;
-        startText.text = "double tap to restart";*/
     }
 
     // increase the games speed every few seconds

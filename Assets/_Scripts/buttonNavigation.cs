@@ -7,7 +7,8 @@ public class buttonNavigation : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        loginAlert.SetActive(false);
+        if (loginAlert)
+            loginAlert.SetActive(false);
 	}
 	
 	// Update is called once per frame

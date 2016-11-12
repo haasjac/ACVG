@@ -187,7 +187,7 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 76825318}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -634,6 +634,7 @@ MonoBehaviour:
     left: {fileID: 8300000, guid: bf220bb9d46a2214faf0e6b7baee3348, type: 3}
     down: {fileID: 8300000, guid: 333a4fa7107ca094d893702e0781522a, type: 3}
     doubleTap: {fileID: 8300000, guid: 5d6957d3306440a4ea11bddcc8ec9ca5, type: 3}
+    passIt: {fileID: 8300000, guid: 44a3aa5bd16ba2f489b7531ca34bf6da, type: 3}
     perfect: {fileID: 8300000, guid: 585c72f74bc34a74db6ceb3772fd3597, type: 3}
     good: {fileID: 8300000, guid: 5c2ead1f21db009469c54aee6f9f1d02, type: 3}
     bad: {fileID: 8300000, guid: 87fb7de91e482b149a6986fccf253e2c, type: 3}
@@ -646,6 +647,7 @@ MonoBehaviour:
   arrowLeft: {fileID: 21300000, guid: 02fa4cccefc814186a8583224f7026a2, type: 3}
   arrowRight: {fileID: 21300000, guid: abd840a4152a94c3fb7d80602a6527a5, type: 3}
   doubleTap: {fileID: 21300000, guid: 92d12289f40144248b8d6c453f58f4f1, type: 3}
+  passIt: {fileID: 21300000, guid: 82ef5610d6155e44f823a8be2adbc14f, type: 3}
   image: {fileID: 1460727852}
 --- !u!1 &1460727850
 GameObject:
@@ -670,7 +672,7 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1460727850}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

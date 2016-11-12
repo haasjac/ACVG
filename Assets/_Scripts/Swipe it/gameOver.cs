@@ -27,14 +27,10 @@ public class gameOver : MonoBehaviour {
                 buttons[i].interactable = false;
             }
         }
-        if (global.S.checkHighScore()) {
+        if (swipeIt.S.checkHighScore()) {
             audioSource.PlayOneShot(newHighScore);
         }
-        scoreText.text = "Your Score: " + global.S.currentScore + "\nHigh Score: " + global.S.highScore;
-
-        if (global.S.checkHighScore()) {
-            audioSource.PlayOneShot(newHighScore);
-        }
+        scoreText.text = "Your Score: " + global.S.currentScore + "\nHigh Score: " + swipeIt.S.highScore;
 
         if (global.S.accessibility) {
             StartCoroutine(scoreAudio());
@@ -48,7 +44,7 @@ public class gameOver : MonoBehaviour {
 
         EasyTTSUtil.SpeechAdd(scoreText.text);
             
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         StartCoroutine(fakeVoiceOver());
         yield return null;
     }
