@@ -38,8 +38,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Swipe it/gameover.unity
   - enabled: 1
-    path: Assets/_Scenes/Swipe it/settings.unity
-  - enabled: 1
     path: Assets/_Scenes/Swipe it/si_game.unity
   - enabled: 1
     path: Assets/_Scenes/Swipe it/si_tutorial.unity
