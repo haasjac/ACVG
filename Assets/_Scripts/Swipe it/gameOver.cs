@@ -30,7 +30,7 @@ public class gameOver : MonoBehaviour {
         if (swipeIt.S.checkHighScore()) {
             audioSource.PlayOneShot(newHighScore);
         }
-        scoreText.text = "Your Score: " + global.S.currentScore + "\nHigh Score: " + swipeIt.S.highScore;
+        scoreText.text = "Your Score: " + swipeIt.S.currentScore + "\nHigh Score: " + swipeIt.S.highScore;
 
         if (global.S.accessibility) {
             StartCoroutine(scoreAudio());

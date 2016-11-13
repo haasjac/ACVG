@@ -25,7 +25,7 @@ public class buttonNavigation : MonoBehaviour {
     }
 
     public void touchProfileButton() {
-        SceneManager.LoadScene("FBTest");
+        SceneManager.LoadScene("FB_test");
         /*
         // check logged in user (-1 == not logged in)
         if (PlayerPrefs.HasKey("loggedInUser")) {

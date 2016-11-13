@@ -11,28 +11,18 @@ public class FBscript : MonoBehaviour {
     public GameObject DialogLoggedOut;
     public GameObject DialogUsername;
     public GameObject DialogProfilePic;
-
-    [System.Serializable]
-    public class json {
-        public string test = "t";
-        public string difficulty = "nope";
-    }
-
-    public string url = "http://acvg-uno-flask-env.xnuwix2zea.us-west-2.elasticbeanstalk.com";
+    public Text logText;
+    public Text apiText;
 
     IEnumerator apiCall() {
-        //string userID = AccessToken.CurrentAccessToken.UserId;
-        WWWForm form = new WWWForm();
-        //form.AddField("id",userID);
-        url += "/levels";
+        string url = "http://acvg-uno-flask-env.xnuwix2zea.us-west-2.elasticbeanstalk.com/levels";
         WWW www = new WWW(url);
         yield return www;
         if (www.error == null) {
             var j = JSON.Parse(www.text);
-            Debug.Log("WWW Ok!: " + www.text);
-            print("json: " + j["1"]["difficulty"]);
+            apiText.text = j.ToString();
         } else {
-            Debug.Log("WWW Error: " + www.error);
+            apiText.text = www.error;
         }
     }
 
@@ -41,7 +31,7 @@ public class FBscript : MonoBehaviour {
     }
 
     void Awake() {
-        if (FB.IsLoggedIn) {
+        if (FB.IsInitialized) {
             SetInit();
         } else {
             FB.Init(SetInit, OnHideUnity);
@@ -53,8 +43,10 @@ public class FBscript : MonoBehaviour {
 
         if (FB.IsLoggedIn) {
             Debug.Log("FB is logged in");
+            logText.text = "Log Out";
         } else {
             Debug.Log("FB is not logged in");
+            logText.text = "Log In";
         }
 
         DealWithFBMenus(FB.IsLoggedIn);
@@ -71,12 +63,25 @@ public class FBscript : MonoBehaviour {
 
     }
 
-    public void FBlogin() {
+    public void toggleLog() {
+        if (FB.IsLoggedIn) {
+            FBlogout();
+        } else {
+            FBlogin();
+        }
+    }
+
+    void FBlogin() {
 
         List<string> permissions = new List<string>();
         permissions.Add("public_profile");
 
         FB.LogInWithReadPermissions(permissions, AuthCallBack);
+    }
+
+    void FBlogout() {
+        FB.LogOut();
+        logText.text = "Log In";
     }
 
     void AuthCallBack(IResult result) {
@@ -87,6 +92,7 @@ public class FBscript : MonoBehaviour {
             if (FB.IsLoggedIn) {
                 Debug.Log("FB is logged in");
                 print("userID: " + AccessToken.CurrentAccessToken.UserId);
+                logText.text = "Log Out";
             } else {
                 Debug.Log("FB is not logged in");
             }

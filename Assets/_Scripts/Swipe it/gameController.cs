@@ -28,7 +28,7 @@ public class gameController : MonoBehaviour {
     public int goodScore = 1;
     public Text scoreText;
     public Text startText;
-    public new myAudio audio;
+    public myAudio audio;
     public float turnTime = 1.5f;
     public float waitTime = 1f;
     public float increaseAmount = 0.05f;

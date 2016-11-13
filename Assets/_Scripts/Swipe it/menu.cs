@@ -14,6 +14,7 @@ public class menu : MonoBehaviour {
     private List<string> scenes;
 
     void Start () {
+        global.S.accessibility = false;
         if (global.S.accessibility) {
             scenes = new List<string>();
             scenes.Add("si_game");
