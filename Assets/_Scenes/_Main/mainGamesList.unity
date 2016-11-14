@@ -565,11 +565,6 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224000012659693438, guid: 30c52178f6393c844a85e0d4b407f68f,
     type: 2}
   m_PrefabInternal: {fileID: 689830538}
---- !u!224 &689830540 stripped
-RectTransform:
-  m_PrefabParentObject: {fileID: 224000012596093450, guid: 30c52178f6393c844a85e0d4b407f68f,
-    type: 2}
-  m_PrefabInternal: {fileID: 689830538}
 --- !u!224 &689830541 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224000010077948940, guid: 30c52178f6393c844a85e0d4b407f68f,
@@ -691,18 +686,16 @@ MonoBehaviour:
   sceneComponents:
   - {fileID: 689830542}
   - {fileID: 689830541}
-  - {fileID: 689830540}
   - {fileID: 1514094306}
   - {fileID: 239804808}
   - {fileID: 304733385}
   - {fileID: 562005345}
   waitTimes:
-  - 2
-  - 2
-  - 2
-  - 2
+  - 3
+  - 3
+  - 3
   - 6
-  - 2
+  - 3
   - 6
 --- !u!1 &1180184878
 GameObject:

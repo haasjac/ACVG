@@ -103,7 +103,7 @@ GameObject:
   - 114: {fileID: 66965297}
   - 114: {fileID: 66965296}
   m_Layer: 5
-  m_Name: Name
+  m_Name: App Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -139,6 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41b0881bea009a64483666ac114f79b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loginAlert: {fileID: 0}
 --- !u!114 &66965297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,7 +306,7 @@ GameObject:
   - 222: {fileID: 134236317}
   - 114: {fileID: 134236316}
   m_Layer: 5
-  m_Name: Description
+  m_Name: India Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -562,6 +563,16 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224000012659693438, guid: 30c52178f6393c844a85e0d4b407f68f,
     type: 2}
   m_PrefabInternal: {fileID: 344785880}
+--- !u!224 &344785882 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224000010077948940, guid: 30c52178f6393c844a85e0d4b407f68f,
+    type: 2}
+  m_PrefabInternal: {fileID: 344785880}
+--- !u!224 &344785883 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224000012289140286, guid: 30c52178f6393c844a85e0d4b407f68f,
+    type: 2}
+  m_PrefabInternal: {fileID: 344785880}
 --- !u!1 &456804360
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,6 +584,7 @@ GameObject:
   - 223: {fileID: 456804363}
   - 114: {fileID: 456804362}
   - 114: {fileID: 456804361}
+  - 114: {fileID: 456804365}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -658,6 +670,36 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &456804365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 456804360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f21d37d4131ee4b5db463a597dcb83a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  am: {fileID: 0}
+  sceneComponents:
+  - {fileID: 344785883}
+  - {fileID: 344785882}
+  - {fileID: 66965295}
+  - {fileID: 1137708478}
+  - {fileID: 1168266053}
+  - {fileID: 1733630837}
+  - {fileID: 1630208535}
+  - {fileID: 134236315}
+  waitTimes:
+  - 3
+  - 3
+  - 3
+  - 5
+  - 3
+  - 5
+  - 3
+  - 10
 --- !u!1 &497114770
 GameObject:
   m_ObjectHideFlags: 0
@@ -743,7 +785,7 @@ GameObject:
   - 222: {fileID: 1137708480}
   - 114: {fileID: 1137708479}
   m_Layer: 5
-  m_Name: Description
+  m_Name: App Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -819,7 +861,7 @@ GameObject:
   - 114: {fileID: 1168266055}
   - 114: {fileID: 1168266054}
   m_Layer: 5
-  m_Name: Name
+  m_Name: 481 Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1136,7 +1178,7 @@ GameObject:
   - 114: {fileID: 1630208537}
   - 114: {fileID: 1630208536}
   m_Layer: 5
-  m_Name: Name
+  m_Name: India Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1246,7 +1288,7 @@ GameObject:
   - 222: {fileID: 1733630839}
   - 114: {fileID: 1733630838}
   m_Layer: 5
-  m_Name: Description
+  m_Name: 481 Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
