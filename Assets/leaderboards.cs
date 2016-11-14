@@ -19,11 +19,11 @@ public class leaderboards : MonoBehaviour {
             if (mode == "global")
             {
                 leaderboardImage.sprite = globalSprite;
-                leaderBoardText.text = "Global Leaderboards";
+                leaderBoardText.text = "Global Leader boards";
             } else
             {
                 leaderboardImage.sprite = friendSprite;
-                leaderBoardText.text = "Friend Leaderboards";
+                leaderBoardText.text = "Friend Leader boards";
             }
         }
 	}
