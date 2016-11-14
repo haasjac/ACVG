@@ -20,7 +20,7 @@ public class buttonNavigation : MonoBehaviour {
     }
 
     public void touchProfileButton() {
-        // profile button
+		SceneManager.LoadScene("mainProfile");
     }
 
     public void touchAboutButton() {
