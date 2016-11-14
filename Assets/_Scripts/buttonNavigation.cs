@@ -1,14 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
 public class buttonNavigation : MonoBehaviour {
     public GameObject loginAlert;
 
 	// Use this for initialization
 	void Start () {
-        if (loginAlert)
-            loginAlert.SetActive(false);
 	}
 	
 	// Update is called once per frame
