@@ -10,25 +10,19 @@ public class myApi : MonoBehaviour {
 
     string baseURL = "http://acvg-uno-flask-env.xnuwix2zea.us-west-2.elasticbeanstalk.com";
     string url;
-    bool user = false;
 
     public Text text;
 
     IEnumerator waiter() {
-        yield return StartCoroutine(GETlevels());
-        text.text = "";
-        for (int i = 0; i < levels.Count; i++) {
-            text.text += "Level: " + (i+1) + " Difficulty: " + levels[i]["difficulty"] + " objects: " + levels[i]["objects"] + " beat: " + levels[i]["beat_level"] + "\n";
-        }
+        yield return StartCoroutine(POSTuser());
+        yield return StartCoroutine(GETuserId());
     }
 
-    public void makeUser() {
-        user = false;
-        StartCoroutine( waiter());
-        /*while (!user) {
-            print("waiting...");
-        }
-        print("done!");*/
+    public IEnumerator makeUser() {
+        yield return StartCoroutine(POSTuser());
+        yield return StartCoroutine(POSThighScoreChickenRoad(1, false));
+        yield return StartCoroutine(POSThighScoreSwipeIt(0));
+        yield return StartCoroutine(GETuserId());
     }
 
     public static Dictionary <string, string> swipeItInfo;
@@ -107,7 +101,7 @@ public class myApi : MonoBehaviour {
         yield return www;
         if (www.error == null) {
             var j = JSON.Parse(www.text);
-            print(j.ToString());
+            print("POSThighScoreSwipeIt Success");
         } else {
             print(www.error);
         }
@@ -123,7 +117,7 @@ public class myApi : MonoBehaviour {
         yield return www;
         if (www.error == null) {
             var j = JSON.Parse(www.text);
-            print(j.ToString());
+            print("POSThighScoreChickenRoad Success");
         } else {
             print(www.error);
         }
@@ -137,7 +131,7 @@ public class myApi : MonoBehaviour {
         yield return www;
         if (www.error == null) {
             var j = JSON.Parse(www.text);
-            print(j.ToString());
+            print("POSTuser Success");
         } else {
             print(www.error);
         }
@@ -150,6 +144,8 @@ public class myApi : MonoBehaviour {
         if (www.error == null) {
             var j = JSON.Parse(www.text);
             print(j.ToString());
+            swipeItInfo = new Dictionary<string, string>();
+            chickenRoadInfo = new Dictionary<string, string>();
             swipeItInfo["score"] = j["swipe it"]["score"];
             swipeItInfo["high_score_time"] = j["swipe it"]["high_score_time"];
             chickenRoadInfo["score"] = j["chicken road"]["level_id"];
