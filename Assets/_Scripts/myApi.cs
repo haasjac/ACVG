@@ -2,34 +2,55 @@
 using System.Collections;
 using SimpleJSON;
 using Facebook.Unity;
+using Facebook.MiniJSON;
+using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class myApi : MonoBehaviour {
 
-    string url = "http://acvg-uno-flask-env.xnuwix2zea.us-west-2.elasticbeanstalk.com";
+    string baseURL = "http://acvg-uno-flask-env.xnuwix2zea.us-west-2.elasticbeanstalk.com";
+    string url;
+    bool user = false;
+
+    public Text text;
+
+    IEnumerator waiter() {
+        yield return StartCoroutine(GETlevels());
+        text.text = "";
+        for (int i = 0; i < levels.Count; i++) {
+            text.text += "Level: " + (i+1) + " Difficulty: " + levels[i]["difficulty"] + " objects: " + levels[i]["objects"] + " beat: " + levels[i]["beat_level"] + "\n";
+        }
+    }
+
+    public void makeUser() {
+        user = false;
+        StartCoroutine( waiter());
+        /*while (!user) {
+            print("waiting...");
+        }
+        print("done!");*/
+    }
+
+    public static Dictionary <string, string> swipeItInfo;
+    public static Dictionary <string, string> chickenRoadInfo;
+    public static List <Dictionary<string, string> > levels;
+    public static List <Dictionary<string, string> > highScores;
 
     IEnumerator GETlevels() {
-        url += "/levels";
+        url = baseURL + "/levels";
         WWW www = new WWW(url);
         yield return www;
         if (www.error == null) {
             var j = JSON.Parse(www.text);
             print(j.ToString());
 
-            //Example Output
-            /*{
-               "<level_id>":{
-                  "difficulty":"easy",
-                  "objects":"chicken-goose-chicken"
-               }
-               "<level_id>":{
-                  "difficulty":"medium",
-                  "objects":"chicken-goose-chicken-goose"
-               }
-               "<level_id>":{
-                  "difficulty":"hard",
-                  "objects":"chicken-goose-chicken-goose-car"
-               }
-            }*/
+            levels = new List<Dictionary<string, string>>();
+            for (int i = 0; i < j.Count; i++) {
+                levels.Add(new Dictionary<string, string>());
+                levels[i]["difficulty"] = j[i]["difficulty"];
+                levels[i]["objects"] = j[i]["objects"];
+                levels[i]["beat_level"] = "0";
+            }
 
         } else {
             print(www.error);
@@ -37,76 +58,48 @@ public class myApi : MonoBehaviour {
     }
 
     IEnumerator GETlevelsId() {
-        url += "/levels?id=" + AccessToken.CurrentAccessToken.UserId;
+        url = baseURL + "/levels?id=" + AccessToken.CurrentAccessToken.UserId;
         WWW www = new WWW(url);
         yield return www;
         if (www.error == null) {
             var j = JSON.Parse(www.text);
             print(j.ToString());
 
-            // Example Output
-            /*{
-                "<level_id>":{
-                    "difficulty":"easy",
-                    "objects":"...",
-                    "beat_level":true
-                }
-                "<level_id>":{
-                    "difficulty":"medium",
-                    "objects":"chicken-goose-chicken-goose"
-      	            "beat_level":false
-                }
-                "<level_id>":{
-                    "difficulty":"hard",
-                    "objects":"chicken-goose-chicken-goose-car"
-                    "beat_level":false
-                }
-              }*/
+            levels = new List<Dictionary<string, string>>();
+            for (int i = 0; i < j.Count; i++) {
+                levels.Add(new Dictionary<string, string>());
+                levels[i]["difficulty"] = j[i]["difficulty"];
+                levels[i]["objects"] = j[i]["objects"];
+                levels[i]["beat_level"] = j[i]["objects"];
+            }
         } else {
             print(www.error);
         }
     }
 
     IEnumerator GEThighScoreSwipeIt() {
-        url += "/high_score/swipe_it";
+        url = baseURL + "/high_score/swipe_it";
         WWW www = new WWW(url);
         yield return www;
         if (www.error == null) {
             var j = JSON.Parse(www.text);
-            print(j.ToString());
-
-            // Example Output
-            /*
-            {
-               "<user_id>":{
-                  "score":104,
-                  "high_score_time":"2016-11-09 09:59:40"
-               }
-               "<user_id>":{
-                  "score":103,
-                  "high_score_time":"2016-11-09 09:59:40"
-               }
-               "<user_id>":{
-                  "score":101,
-                  "high_score_time":"2016-11-09 09:59:39"
-               }
-               "<user_id>":{
-                  "score":101,
-                  "high_score_time":"2016-11-09 09:59:40"
-               }
-               "<user_id>":{
-                  "score":100,
-                  "high_score_time":"2016-11-09 09:59:40"
-               }
+            print("j: " + j[0]["user_id"].ToString());
+            highScores = new List<Dictionary<string, string>>();
+            for (int i = 0; i < j.Count; i++) {
+                highScores.Add(new Dictionary<string, string>());
+                highScores[i]["user_id"] = j[i]["user_id"];
+                highScores[i]["score"] = j[i]["score"];
+                highScores[i]["high_score_time"] = j[i]["high_score_time"];
             }
-            */
+
+            print(highScores.ToString());
         } else {
             print(www.error);
         }
     }
 
     IEnumerator POSThighScoreSwipeIt(int score) {
-        url += "/high_score/swipe_it";
+        url = baseURL + "/high_score/swipe_it";
         WWWForm form = new WWWForm();
         form.AddField("id", AccessToken.CurrentAccessToken.UserId);
         form.AddField("score", score);
@@ -121,7 +114,7 @@ public class myApi : MonoBehaviour {
     }
 
     IEnumerator POSThighScoreChickenRoad(int level_id, bool beat_level) {
-        url += "/high_score/chicken_road";
+        url = baseURL + "/high_score/chicken_road";
         WWWForm form = new WWWForm();
         form.AddField("id", AccessToken.CurrentAccessToken.UserId);
         form.AddField("level_id", level_id);
@@ -137,7 +130,7 @@ public class myApi : MonoBehaviour {
     }
 
     IEnumerator POSTuser() {
-        url += "/user";
+        url = baseURL + "/user";
         WWWForm form = new WWWForm();
         form.AddField("id", AccessToken.CurrentAccessToken.UserId);
         WWW www = new WWW(url, form);
@@ -151,26 +144,16 @@ public class myApi : MonoBehaviour {
     }
 
     IEnumerator GETuserId() {
-        url += "/user?=" + AccessToken.CurrentAccessToken.UserId;
+        url = baseURL + "/user?=" + AccessToken.CurrentAccessToken.UserId;
         WWW www = new WWW(url);
         yield return www;
         if (www.error == null) {
             var j = JSON.Parse(www.text);
             print(j.ToString());
-
-            // Example Output
-            /*
-            {
-               "swipe it":{
-                  "score":102,
-                  "high_score_time": "2016-11-12 12:13:10"
-               },
-               "chicken road":{
-                  "level_id":1,
-                  "beat_level_time": "2016-11-12 12:13:10"
-               }
-            }
-            */
+            swipeItInfo["score"] = j["swipe it"]["score"];
+            swipeItInfo["high_score_time"] = j["swipe it"]["high_score_time"];
+            chickenRoadInfo["score"] = j["chicken road"]["level_id"];
+            chickenRoadInfo["beat_level_time"] = j["chicken road"]["beat_level_time"];
         } else {
             print(www.error);
         }
