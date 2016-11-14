@@ -8,10 +8,20 @@ public class crLevelSelect : MonoBehaviour {
         "easy", "medium", "hard"
     };
 
+	myInput input;
+	bool hackedLevels = false;
+	int swipeUpCount = 0;
 	public List<string> defaultLevels;
+	public AudioSource honkSource;
+	public AudioClip honk;
+	float lastSwipeUp;
 
     // Use this for initialization
 	void Start () {
+		input = GetComponent<myInput>();
+
+		PlayerPrefs.SetInt("hackedLevels", 0);
+
 		if (!PlayerPrefs.HasKey("playedEasyTutorial")) {
 			PlayerPrefs.SetInt("playedEasyTutorial", 0);
 		}
@@ -37,7 +47,24 @@ public class crLevelSelect : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		// hack to unlock all the levels (used for presentation)
+		if (!hackedLevels && input.touch == gesture.UP) {
+			float currentTime = Time.time;
 
+			if (currentTime - lastSwipeUp > 1f) {
+				swipeUpCount = 0;
+			}
+
+			lastSwipeUp = currentTime;
+			swipeUpCount++;
+
+			if (swipeUpCount >= 6) {
+				hackedLevels = true;
+				PlayerPrefs.SetInt("hackedLevels", 1);
+
+				honkSource.PlayOneShot(honk);
+			}
+		}
 	}
 
 	public void touchReturnToMenuButton() {
@@ -51,7 +78,7 @@ public class crLevelSelect : MonoBehaviour {
     public void touchLevelButton(int levelId) {
 		PlayerPrefs.SetString("tutorials", "none");
 
-		if (PlayerPrefs.GetInt("level" + levelId + "Unlocked") == 0) {
+		if (!hackedLevels && PlayerPrefs.GetInt("level" + levelId + "Unlocked") == 0) {
 			EasyTTSUtil.SpeechAdd("Level " + levelId + " is not unlocked. Pass level " + (levelId - 1) + " first.", 1f, 0.6f, 1f);
 			return;
 		}

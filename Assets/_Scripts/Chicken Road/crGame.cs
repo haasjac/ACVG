@@ -259,8 +259,10 @@ public class crGame : MonoBehaviour {
 		PlayerPrefs.SetInt("accuracy", accuracy);
 		PlayerPrefs.SetInt("score", score);
 
-		if (accuracy >= 60 && !isFreePlay && !isHowToPlay) {
-			unlockNextLevel(PlayerPrefs.GetString("levelTitle"));
+		if (PlayerPrefs.GetInt("hackedLevels") == 0) {
+			if (accuracy >= 60 && !isFreePlay && !isHowToPlay) {
+				unlockNextLevel(PlayerPrefs.GetString("levelTitle"));
+			}
 		}
 
 		engine.Stop();
