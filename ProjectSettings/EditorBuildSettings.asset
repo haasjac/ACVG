@@ -4,44 +4,4 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/_Scenes/_Main/mainMenu.unity
-  - enabled: 1
-    path: Assets/_Scenes/_Main/mainProfile.unity
-  - enabled: 1
-    path: Assets/_Scenes/_Main/mainSettings.unity
-  - enabled: 1
-    path: Assets/_Scenes/_Main/mainLogin.unity
-  - enabled: 1
-    path: Assets/_Scenes/_Main/mainGamesList.unity
-  - enabled: 1
-    path: Assets/_Scenes/_Main/mainCreateAccount.unity
-  - enabled: 1
-    path: Assets/_Scenes/_Main/mainAbout.unity
-  - enabled: 1
-    path: Assets/_Scenes/Chicken/crCreateCustomLevel.unity
-  - enabled: 1
-    path: Assets/_Scenes/Chicken/crGame.unity
-  - enabled: 1
-    path: Assets/_Scenes/Chicken/crGameover.unity
-  - enabled: 1
-    path: Assets/_Scenes/Chicken/crHowToPlay.unity
-  - enabled: 1
-    path: Assets/_Scenes/Chicken/crLevelSelect.unity
-  - enabled: 1
-    path: Assets/_Scenes/Chicken/crMenu.unity
-  - enabled: 1
-    path: Assets/_Scenes/FB_test.unity
-  - enabled: 1
-    path: Assets/_Scenes/Swipe it/game_menu.unity
-  - enabled: 1
-    path: Assets/_Scenes/Swipe it/gameover.unity
-  - enabled: 0
-    path: Assets/_Scenes/Swipe it/settings.unity
-  - enabled: 1
-    path: Assets/_Scenes/Swipe it/si_game.unity
-  - enabled: 1
-    path: Assets/_Scenes/Swipe it/si_tutorial.unity
-  - enabled: 1
-    path: Assets/_Scenes/Chicken/crLoading.unity
+  m_Scenes: []

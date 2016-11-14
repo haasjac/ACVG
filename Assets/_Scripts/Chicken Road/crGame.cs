@@ -398,7 +398,7 @@ public class crGame : MonoBehaviour {
 	}
 
 	void unlockNextLevel(string levelTitle) {
-		int id = (int)levelTitle.Substring(6) + 1;
+		int id = int.Parse(levelTitle.Substring(6)) + 1;
 		PlayerPrefs.SetInt("level" + id + "Unlocked", 1);
 	}
 }
