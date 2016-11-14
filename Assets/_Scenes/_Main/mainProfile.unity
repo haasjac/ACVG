@@ -101,7 +101,7 @@ GameObject:
   - 222: {fileID: 153024651}
   - 114: {fileID: 153024650}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: High Score Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -335,6 +335,16 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 30c52178f6393c844a85e0d4b407f68f, type: 2}
   m_IsPrefabParent: 0
+--- !u!224 &285589510 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224000010077948940, guid: 30c52178f6393c844a85e0d4b407f68f,
+    type: 2}
+  m_PrefabInternal: {fileID: 285589509}
+--- !u!224 &285589511 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224000012289140286, guid: 30c52178f6393c844a85e0d4b407f68f,
+    type: 2}
+  m_PrefabInternal: {fileID: 285589509}
 --- !u!1 &348536319
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,7 +424,7 @@ GameObject:
   - 222: {fileID: 393707650}
   - 114: {fileID: 393707649}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Swipe It Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -563,6 +573,7 @@ GameObject:
   - 223: {fileID: 765897897}
   - 114: {fileID: 765897896}
   - 114: {fileID: 765897895}
+  - 114: {fileID: 765897899}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -648,6 +659,40 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &765897899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 765897894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f21d37d4131ee4b5db463a597dcb83a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  am: {fileID: 0}
+  sceneComponents:
+  - {fileID: 285589511}
+  - {fileID: 285589510}
+  - {fileID: 1885814801}
+  - {fileID: 1806211233}
+  - {fileID: 393707648}
+  - {fileID: 1993303106}
+  - {fileID: 153024649}
+  - {fileID: 2024105872}
+  - {fileID: 848442610}
+  - {fileID: 1494404218}
+  waitTimes:
+  - 3
+  - 3
+  - 3
+  - 3
+  - 3
+  - 3
+  - 3
+  - 3
+  - 3
+  - 3
 --- !u!1 &848442609
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,7 +704,7 @@ GameObject:
   - 222: {fileID: 848442612}
   - 114: {fileID: 848442611}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Current Level Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -838,7 +883,7 @@ GameObject:
   - 222: {fileID: 1494404220}
   - 114: {fileID: 1494404219}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Current Level Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1190,7 +1235,7 @@ GameObject:
   - 114: {fileID: 1806211235}
   - 114: {fileID: 1806211234}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Logout Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1472,7 +1517,7 @@ GameObject:
   - 222: {fileID: 1993303108}
   - 114: {fileID: 1993303107}
   m_Layer: 5
-  m_Name: Text
+  m_Name: High Score Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1546,7 +1591,7 @@ GameObject:
   - 222: {fileID: 2024105874}
   - 114: {fileID: 2024105873}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Chicken Road Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
