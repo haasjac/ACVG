@@ -7,30 +7,14 @@ using SimpleJSON;
 
 public class FBscript : MonoBehaviour {
 
-    public GameObject DialogLoggedIn;
-    public GameObject DialogLoggedOut;
-    public GameObject DialogUsername;
-    public GameObject DialogProfilePic;
-    public Text logText;
-    public Text apiText;
+    public Text DialogUsername;
+    public Image DialogProfilePic;
+    public Text logButtonText;
+    public Text swipeItScore;
+    public Text chickenRoadScore;
+    public myApi api;
 
-    IEnumerator apiCall() {
-        string url = "http://acvg-uno-flask-env.xnuwix2zea.us-west-2.elasticbeanstalk.com/levels";
-        WWW www = new WWW(url);
-        yield return www;
-        if (www.error == null) {
-            var j = JSON.Parse(www.text);
-            apiText.text = j.ToString();
-        } else {
-            apiText.text = www.error;
-        }
-    }
-
-    public void testAPI() {
-        StartCoroutine(apiCall());
-    }
-
-    void Awake() {
+    void Start() {
         if (FB.IsInitialized) {
             SetInit();
         } else {
@@ -43,10 +27,9 @@ public class FBscript : MonoBehaviour {
 
         if (FB.IsLoggedIn) {
             Debug.Log("FB is logged in");
-            logText.text = "Log Out";
         } else {
             Debug.Log("FB is not logged in");
-            logText.text = "Log In";
+            
         }
 
         DealWithFBMenus(FB.IsLoggedIn);
@@ -81,7 +64,7 @@ public class FBscript : MonoBehaviour {
 
     void FBlogout() {
         FB.LogOut();
-        logText.text = "Log In";
+        DealWithFBMenus(FB.IsLoggedIn);
     }
 
     void AuthCallBack(IResult result) {
@@ -92,7 +75,6 @@ public class FBscript : MonoBehaviour {
             if (FB.IsLoggedIn) {
                 Debug.Log("FB is logged in");
                 print("userID: " + AccessToken.CurrentAccessToken.UserId);
-                logText.text = "Log Out";
             } else {
                 Debug.Log("FB is not logged in");
             }
@@ -105,26 +87,31 @@ public class FBscript : MonoBehaviour {
     void DealWithFBMenus(bool isLoggedIn) {
 
         if (isLoggedIn) {
-            DialogLoggedIn.SetActive(true);
-            DialogLoggedOut.SetActive(false);
 
             FB.API("/me?fields=first_name", HttpMethod.GET, DisplayUsername);
             FB.API("/me/picture?type=square&height=128&width=128", HttpMethod.GET, DisplayProfilePic);
+            logButtonText.text = "Log Out";
+            StartCoroutine(user());
 
         } else {
-            DialogLoggedIn.SetActive(false);
-            DialogLoggedOut.SetActive(true);
+            DialogUsername.text = "Welcome!";
+            DialogProfilePic.sprite = null;
+            logButtonText.text = "Log In";
         }
 
     }
 
-    void DisplayUsername(IResult result) {
+    IEnumerator user() {
+        yield return StartCoroutine(api.makeUser());
+        swipeItScore.text = myApi.swipeItInfo["score"];
+        chickenRoadScore.text = myApi.chickenRoadInfo["score"];
+    }
 
-        Text UserName = DialogUsername.GetComponent<Text>();
+    void DisplayUsername(IResult result) {
 
         if (result.Error == null) {
 
-            UserName.text = "Hi there, " + result.ResultDictionary["first_name"];
+            DialogUsername.text = "Welcome, " + result.ResultDictionary["first_name"] + "!";
 
         } else {
             Debug.Log(result.Error);
@@ -136,9 +123,7 @@ public class FBscript : MonoBehaviour {
 
         if (result.Texture != null) {
 
-            Image ProfilePic = DialogProfilePic.GetComponent<Image>();
-
-            ProfilePic.sprite = Sprite.Create(result.Texture, new Rect(0, 0, 128, 128), new Vector2());
+            DialogProfilePic.sprite = Sprite.Create(result.Texture, new Rect(0, 0, 128, 128), new Vector2());
 
         }
 

@@ -841,6 +841,7 @@ GameObject:
   - 222: {fileID: 1180175732}
   - 114: {fileID: 1180175731}
   - 114: {fileID: 1180175730}
+  - 114: {fileID: 1180175733}
   m_Layer: 5
   m_Name: Button (2)
   m_TagString: Untagged
@@ -906,8 +907,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 341207468}
-        m_MethodName: testAPI
+      - m_Target: {fileID: 1180175733}
+        m_MethodName: makeUser
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -952,6 +953,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1180175728}
+--- !u!114 &1180175733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1180175728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08b8fb8aeb01baf45ac30200e8dee464, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 476289021}
 --- !u!1 &1270642373
 GameObject:
   m_ObjectHideFlags: 0
