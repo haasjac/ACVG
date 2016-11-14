@@ -41,3 +41,7 @@ EditorBuildSettings:
     path: Assets/_Scenes/Swipe it/si_game.unity
   - enabled: 1
     path: Assets/_Scenes/Swipe it/si_tutorial.unity
+  - enabled: 1
+    path: Assets/_Scenes/Swipe it/si_choose_game.unity
+  - enabled: 1
+    path: Assets/_Scenes/Swipe it/si_leaderboards.unity
