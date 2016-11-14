@@ -47,4 +47,8 @@ public class crGameover : MonoBehaviour {
 	public void touchReturnToMenuButton() {
 		SceneManager.LoadScene("crMenu");
 	}
+
+	public void touchReturnToLevelSelectButton() {
+		SceneManager.LoadScene("crLevelSelect");
+	}
 }

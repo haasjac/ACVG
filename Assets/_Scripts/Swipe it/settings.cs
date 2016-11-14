@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class settings : MonoBehaviour {
-
+	/*
     enum state {
         buttonOn,
         buttonOff,
@@ -153,4 +153,5 @@ public class settings : MonoBehaviour {
             }	
         //}
 	}
+	*/
 }

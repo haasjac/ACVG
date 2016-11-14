@@ -1183,6 +1183,7 @@ GameObject:
   - 114: {fileID: 763918265}
   - 114: {fileID: 763918264}
   - 114: {fileID: 763918268}
+  - 114: {fileID: 763918269}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1300,6 +1301,50 @@ MonoBehaviour:
   - PVPVPV
   - CFPDEVGLPCRVDFPGEVGRCFRVPVFEFDGCPFDEVCCPDERPPDCVRDG
   - VPREFGDCDGFELPVLRLFLEDEGGCDGPVFLVDDPCPLGFRVEVEFLCGPGPVGDDFEFRRPVGDCGFELVRPDRREGFDPCPEFVCCCCP
+--- !u!114 &763918269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 763918263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f21d37d4131ee4b5db463a597dcb83a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  am: {fileID: 0}
+  sceneComponents:
+  - {fileID: 1663157285}
+  - {fileID: 836691364}
+  - {fileID: 870775856}
+  - {fileID: 224036037}
+  - {fileID: 1743858848}
+  - {fileID: 1552599868}
+  - {fileID: 94773337}
+  - {fileID: 294461843}
+  - {fileID: 1915671474}
+  - {fileID: 253941161}
+  - {fileID: 1379583152}
+  - {fileID: 2136392705}
+  - {fileID: 787309531}
+  - {fileID: 250157834}
+  - {fileID: 176265113}
+  waitTimes:
+  - 3
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
 --- !u!1 &787309530
 GameObject:
   m_ObjectHideFlags: 0

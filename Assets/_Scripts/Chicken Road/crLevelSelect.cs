@@ -22,12 +22,17 @@ public class crLevelSelect : MonoBehaviour {
 			PlayerPrefs.SetInt("playedHardTutorial", 0);
 		}
 
-
-		PlayerPrefs.SetInt("playedEasyTutorial", 0);
-
-		PlayerPrefs.SetInt("playedMediumTutorial", 0);
-
-		PlayerPrefs.SetInt("playedHardTutorial", 0);
+		if (!PlayerPrefs.HasKey("level1Unlocked")) {
+			PlayerPrefs.SetInt("level1Unlocked", 1);
+			PlayerPrefs.SetInt("level2Unlocked", 0);
+			PlayerPrefs.SetInt("level3Unlocked", 0);
+			PlayerPrefs.SetInt("level4Unlocked", 0);
+			PlayerPrefs.SetInt("level5Unlocked", 0);
+			PlayerPrefs.SetInt("level6Unlocked", 0);
+			PlayerPrefs.SetInt("level7Unlocked", 0);
+			PlayerPrefs.SetInt("level8Unlocked", 0);
+			PlayerPrefs.SetInt("level9Unlocked", 0);
+		}
 	}
 	
 	// Update is called once per frame
@@ -45,6 +50,11 @@ public class crLevelSelect : MonoBehaviour {
 
     public void touchLevelButton(int levelId) {
 		PlayerPrefs.SetString("tutorials", "none");
+
+		if (PlayerPrefs.GetInt("level" + levelId + "Unlocked") == 0) {
+			EasyTTSUtil.SpeechAdd("Level " + levelId + " is not unlocked. Pass level " + (levelId - 1) + " first.", 1f, 0.6f, 1f);
+			return;
+		}
 
 		switch(levelId) {
 		case 1:

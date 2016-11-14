@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class navigationBar : MonoBehaviour {
 
-	public Button logoutButton;
-
 	// Use this for initialization
 	void Start() {
 	
@@ -19,9 +17,5 @@ public class navigationBar : MonoBehaviour {
 
 	public void touchBackButton() {
 		SceneManager.LoadScene("mainMenu");
-	}
-
-	public void touchLogoutButton() {
-		
 	}
 }

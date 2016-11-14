@@ -865,11 +865,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   am: {fileID: 0}
-  title: {fileID: 74735955}
-  playAGame: {fileID: 1789696842}
-  myProfile: {fileID: 900212652}
-  settings: {fileID: 511702360}
-  about: {fileID: 484140129}
+  sceneComponents:
+  - {fileID: 74735954}
+  - {fileID: 1789696841}
+  - {fileID: 900212651}
+  - {fileID: 511702359}
+  - {fileID: 484140128}
+  waitTimes:
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
 --- !u!1 &1789696840
 GameObject:
   m_ObjectHideFlags: 0

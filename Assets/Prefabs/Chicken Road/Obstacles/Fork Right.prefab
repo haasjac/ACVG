@@ -533,4 +533,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inFront: 1
   commands: 03000000
-  sound: {fileID: 8300000, guid: 49f90d82c120947acada9976422bf212, type: 3}
+  sound: {fileID: 8300000, guid: 773b9f8fcafb449deb6fc25af626e534, type: 3}

@@ -1,15 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class mainNavigator : MonoBehaviour {
 	public AccessibilityMode am;
 
-	public Text title;
-	public Button playAGame;
-	public Button myProfile;
-	public Button settings;
-	public Button about;
+	public List<Component> sceneComponents;
+	public List<float> waitTimes;
 
 	// Use this for initialization
 	void Start () {
@@ -18,14 +16,13 @@ public class mainNavigator : MonoBehaviour {
 
 		global.S.accessibility = true;
 
-		Component[] sceneComponents = new Component[5];
-		sceneComponents [0] = title;
-		sceneComponents [1] = playAGame;
-		sceneComponents [2] = myProfile;
-		sceneComponents [3] = settings;
-		sceneComponents [4] = about;
+		NarratableObject[] sceneObjects = new NarratableObject[sceneComponents.Count];
+		for(int i = 0; i < sceneComponents.Count; i++) {
+			sceneObjects[i].component = sceneComponents[i];
+			sceneObjects[i].waitTime = waitTimes[i];
+		}
 
-		am.runAccessibilityMode (sceneComponents);
+		am.runAccessibilityMode (sceneObjects);
 	}
 	
 	// Update is called once per frame
