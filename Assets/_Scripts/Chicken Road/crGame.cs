@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using Global;
 
 public class crGame : MonoBehaviour {
 	public GameObject playerVehicle;
@@ -54,46 +55,34 @@ public class crGame : MonoBehaviour {
         commandList = new List<gesture>();
         playerVehicle = Instantiate(playerVehicle, startingPosition, transform.rotation) as GameObject;
 
-        if (PlayerPrefs.HasKey("loggedInUser")) {
-            usernameUI.GetComponent<Text>().text = PlayerPrefs.GetString("loggedInUser");
+        if (facebook.name != "") {
+            usernameUI.GetComponent<Text>().text = facebook.name;
         }
 
-        if (PlayerPrefs.HasKey("difficulty")) {
-			SetDifficulty(PlayerPrefs.GetString("difficulty"));
-        }
+        SetDifficulty(chickenRoad.difficulty);
+        modeUI.GetComponent<Text>().text = chickenRoad.levelTitle;
 
-        if (PlayerPrefs.HasKey("levelTitle")) {
-            modeUI.GetComponent<Text>().text = PlayerPrefs.GetString("levelTitle");
-        }
-
-		if (!PlayerPrefs.GetString("tutorials").Equals("none")) {
+		if (chickenRoad.tutorials != "none") {
 			showTutorial = true;
-			tutorials = PlayerPrefs.GetString("tutorials");
+			tutorials = chickenRoad.tutorials;
 		}
 
-		if (PlayerPrefs.GetInt("crHowToPlay") == 1) {
-			isHowToPlay = true;
-		}
+		isHowToPlay = chickenRoad.crHowToPlay;
 
-		if (PlayerPrefs.HasKey("levelObstacles")) {
-			levelObstacles = PlayerPrefs.GetString("levelObstacles");
+		levelObstacles = chickenRoad.levelObstacles;
 
-			if (levelObstacles.Equals("FREEPLAY")) {
-				isFreePlay = true;
-				AddRandomObstacle();
-			}
-			else {
-	            // build obstacle list
-				for (int i = 0; i < levelObstacles.Length; i++) {
-					convertToObstacle(levelObstacles[i]);
-				}
-			}
-
-			StartCoroutine(StartGame());
+		if (levelObstacles.Equals("FREEPLAY")) {
+			isFreePlay = true;
+			AddRandomObstacle();
 		}
 		else {
-			SceneManager.LoadScene("crMenu");
+	        // build obstacle list
+			for (int i = 0; i < levelObstacles.Length; i++) {
+				convertToObstacle(levelObstacles[i]);
+			}
 		}
+
+        StartCoroutine(StartGame());
 
     }
 
@@ -256,12 +245,12 @@ public class crGame : MonoBehaviour {
 			accuracy = 100;
 		}
 
-		PlayerPrefs.SetInt("accuracy", accuracy);
-		PlayerPrefs.SetInt("score", score);
+        chickenRoad.accuracy = accuracy;
+        chickenRoad.score = score;
 
-		if (PlayerPrefs.GetInt("hackedLevels") == 0) {
+		if (!chickenRoad.hacked) {
 			if (accuracy >= 60 && !isFreePlay && !isHowToPlay) {
-				unlockNextLevel(PlayerPrefs.GetString("levelTitle"));
+				unlockNextLevel(chickenRoad.levelTitle);
 			}
 		}
 
@@ -401,6 +390,10 @@ public class crGame : MonoBehaviour {
 
 	void unlockNextLevel(string levelTitle) {
 		int id = int.Parse(levelTitle.Substring(6)) + 1;
-		PlayerPrefs.SetInt("level" + id + "Unlocked", 1);
+        if (id > chickenRoad.highestLevelBeaten) {
+            chickenRoad.highestLevelBeaten = id;
+            myApi.S.StartCoroutine(myApi.S.postLevel(id, true));
+            functions.save();
+        }
 	}
 }

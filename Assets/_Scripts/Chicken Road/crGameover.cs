@@ -2,6 +2,7 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
+using Global;
 
 public class crGameover : MonoBehaviour {
 	public GameObject passFailUI;
@@ -10,10 +11,10 @@ public class crGameover : MonoBehaviour {
 
 	// Use this for initialization
 	void Start() {
-		int score = PlayerPrefs.GetInt("score");
-		int accuracy = PlayerPrefs.GetInt("accuracy");
+        int score = chickenRoad.score;
+		int accuracy = chickenRoad.accuracy;
 
-		if (!PlayerPrefs.GetString("levelTitle").Equals("Free Play")) {
+		if (chickenRoad.levelTitle != "Free Play") {
 			string results;
 
 			if (accuracy == 100) {

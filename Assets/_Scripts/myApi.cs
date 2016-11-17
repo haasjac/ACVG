@@ -1,28 +1,40 @@
 ﻿using UnityEngine;
 using System.Collections;
 using SimpleJSON;
-using Facebook.Unity;
-using Facebook.MiniJSON;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using Global;
 
 public class myApi : MonoBehaviour {
 
+    // Singleton
+    static myApi _s = null;
+
+    // Public Constructor
+    public static myApi S {
+        get {
+            if (_s == null)
+                _s = new myApi();
+            return _s;
+        }
+    }
+
     string baseURL = "http://acvg-uno-flask-env.xnuwix2zea.us-west-2.elasticbeanstalk.com";
     string url;
-
-    public Text text;
-
-    IEnumerator waiter() {
-        yield return StartCoroutine(POSTuser());
-        yield return StartCoroutine(GETuserId());
-    }
 
     public IEnumerator makeUser() {
         yield return StartCoroutine(POSTuser());
         yield return StartCoroutine(POSThighScoreChickenRoad(1, false));
         yield return StartCoroutine(POSThighScoreSwipeIt(0));
         yield return StartCoroutine(GETuserId());
+    }
+
+    public IEnumerator postScore(int score) {
+        yield return StartCoroutine(POSThighScoreSwipeIt(score));
+    }
+
+    public IEnumerator postLevel(int level, bool beaten) {
+        yield return StartCoroutine(POSThighScoreChickenRoad(level, beaten));
     }
 
     public static Dictionary <string, string> swipeItInfo;
@@ -52,7 +64,7 @@ public class myApi : MonoBehaviour {
     }
 
     IEnumerator GETlevelsId() {
-        url = baseURL + "/levels?id=" + AccessToken.CurrentAccessToken.UserId;
+        url = baseURL + "/levels?id=" + facebook.ID;
         WWW www = new WWW(url);
         yield return www;
         if (www.error == null) {
@@ -95,12 +107,11 @@ public class myApi : MonoBehaviour {
     IEnumerator POSThighScoreSwipeIt(int score) {
         url = baseURL + "/high_score/swipe_it";
         WWWForm form = new WWWForm();
-        form.AddField("id", AccessToken.CurrentAccessToken.UserId);
+        form.AddField("id", facebook.ID);
         form.AddField("score", score);
         WWW www = new WWW(url, form);
         yield return www;
         if (www.error == null) {
-            var j = JSON.Parse(www.text);
             print("POSThighScoreSwipeIt Success");
         } else {
             print(www.error);
@@ -110,13 +121,12 @@ public class myApi : MonoBehaviour {
     IEnumerator POSThighScoreChickenRoad(int level_id, bool beat_level) {
         url = baseURL + "/high_score/chicken_road";
         WWWForm form = new WWWForm();
-        form.AddField("id", AccessToken.CurrentAccessToken.UserId);
+        form.AddField("id", facebook.ID);
         form.AddField("level_id", level_id);
         form.AddField("beat_level", (beat_level ? 1 : 0));
         WWW www = new WWW(url, form);
         yield return www;
         if (www.error == null) {
-            var j = JSON.Parse(www.text);
             print("POSThighScoreChickenRoad Success");
         } else {
             print(www.error);
@@ -126,11 +136,10 @@ public class myApi : MonoBehaviour {
     IEnumerator POSTuser() {
         url = baseURL + "/user";
         WWWForm form = new WWWForm();
-        form.AddField("id", AccessToken.CurrentAccessToken.UserId);
+        form.AddField("id", facebook.ID);
         WWW www = new WWW(url, form);
         yield return www;
         if (www.error == null) {
-            var j = JSON.Parse(www.text);
             print("POSTuser Success");
         } else {
             print(www.error);
@@ -138,7 +147,7 @@ public class myApi : MonoBehaviour {
     }
 
     IEnumerator GETuserId() {
-        url = baseURL + "/user?=" + AccessToken.CurrentAccessToken.UserId;
+        url = baseURL + "/user?=" + facebook.ID;
         WWW www = new WWW(url);
         yield return www;
         if (www.error == null) {

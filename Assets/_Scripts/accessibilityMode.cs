@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Global;
 
 public struct NarratableObject {
     public Component component;
@@ -28,7 +29,7 @@ public class AccessibilityMode : myInput {
 
     private IEnumerator run(NarratableObject[] sceneObjects) {
         disableSceneComponents(sceneObjects);
-        while (global.S.accessibility) {
+        while (accessibility.getAccessibility()) {
             int currentIndex = 0;
             while (currentIndex < sceneObjects.Length) {
                 NarratableObject narratableObject = sceneObjects[currentIndex];

@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using Facebook.Unity;
-using SimpleJSON;
+using Global;
 
 public class FBscript : MonoBehaviour {
 
@@ -59,6 +59,7 @@ public class FBscript : MonoBehaviour {
         List<string> permissions = new List<string>();
         permissions.Add("public_profile");
 
+        Time.timeScale = 0;
         FB.LogInWithReadPermissions(permissions, AuthCallBack);
     }
 
@@ -69,12 +70,14 @@ public class FBscript : MonoBehaviour {
 
     void AuthCallBack(IResult result) {
 
+        Time.timeScale = 1;
         if (result.Error != null) {
             Debug.Log(result.Error);
         } else {
             if (FB.IsLoggedIn) {
                 Debug.Log("FB is logged in");
                 print("userID: " + AccessToken.CurrentAccessToken.UserId);
+                facebook.ID = AccessToken.CurrentAccessToken.UserId;
             } else {
                 Debug.Log("FB is not logged in");
             }
@@ -112,6 +115,8 @@ public class FBscript : MonoBehaviour {
         if (result.Error == null) {
 
             DialogUsername.text = "Welcome, " + result.ResultDictionary["first_name"] + "!";
+
+            facebook.name = result.ResultDictionary["first_name"].ToString();
 
         } else {
             Debug.Log(result.Error);

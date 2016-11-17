@@ -2,12 +2,13 @@
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
+using Global;
 
 public class crHowToPlay : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		PlayerPrefs.SetInt("crHowToPlay", 0);
+		chickenRoad.crHowToPlay = false;
 	}
 	
 	// Update is called once per frame
@@ -60,12 +61,12 @@ public class crHowToPlay : MonoBehaviour {
 			break;
 		}
 
-		PlayerPrefs.SetString("difficulty", "easy");
-		PlayerPrefs.SetString("levelTitle", levelTitle);
-		PlayerPrefs.SetString("levelObstacles", levelObstacles);
-		PlayerPrefs.SetString("tutorials", tutorials);
+		chickenRoad.difficulty = "easy";
+		chickenRoad.levelTitle = levelTitle;
+        chickenRoad.levelObstacles = levelObstacles;
+        chickenRoad.tutorials = tutorials;
 
-		PlayerPrefs.SetInt("crHowToPlay", 1);
+        chickenRoad.crHowToPlay = true;
 
 		SceneManager.LoadScene("crGame");
 	}

@@ -1,17 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Global;
 
 public class buttonSetGameMode : MonoBehaviour {
 
 	public void setSingle() {
-        swipeIt.S.mode = swipeIt.gameMode.single;
+        swipeIt.mode = swipeIt.gameMode.single;
     }
 
     public void setMulti() {
-        swipeIt.S.mode = swipeIt.gameMode.multi;
+        swipeIt.mode = swipeIt.gameMode.multi;
     }
 
     public void setTutorial() {
-        swipeIt.S.mode = swipeIt.gameMode.tutorial;
+        swipeIt.mode = swipeIt.gameMode.tutorial;
     }
 }

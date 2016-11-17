@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using Global;
 
 public class mainNavigator : MonoBehaviour {
 	public AccessibilityMode am;
@@ -12,11 +13,12 @@ public class mainNavigator : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		am = gameObject.AddComponent<AccessibilityMode> () as AccessibilityMode;
-		//am = GetComponent<AccessibilityMode>();
+        //am = GetComponent<AccessibilityMode>();
 
-		global.S.accessibility = true;
+        accessibility.setAccessibility(true);
 
-		NarratableObject[] sceneObjects = new NarratableObject[sceneComponents.Count];
+
+        NarratableObject[] sceneObjects = new NarratableObject[sceneComponents.Count];
 		for(int i = 0; i < sceneComponents.Count; i++) {
 			sceneObjects[i].component = sceneComponents[i];
 			sceneObjects[i].waitTime = waitTimes[i];

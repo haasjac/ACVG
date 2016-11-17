@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using Global;
 
 [System.Serializable]
 public class myAudio {
@@ -28,7 +29,7 @@ public class gameController : MonoBehaviour {
     public int goodScore = 1;
     public Text scoreText;
     public Text startText;
-    public myAudio audio;
+    public myAudio _audio;
     public float turnTime = 1.5f;
     public float waitTime = 1f;
     public float increaseAmount = 0.05f;
@@ -52,7 +53,7 @@ public class gameController : MonoBehaviour {
     // Use this for initialization
     void Start() {
         input = GetComponent<myInput>();
-        swipeIt.S.currentScore = 0;
+        swipeIt.currentScore = 0;
         startText.text = "";
         scoreText.text = "";
         StartCoroutine(countdown());
@@ -71,17 +72,17 @@ public class gameController : MonoBehaviour {
             checking_command = false;
             if (input.touch == command) {
                 if (perfect) {
-                    audio.rating.PlayOneShot(audio.perfect);
-                    swipeIt.S.currentScore += perfectScore;
+                    _audio.rating.PlayOneShot(_audio.perfect);
+                    swipeIt.currentScore += perfectScore;
                     Handheld.Vibrate();
                 } else {
-                    audio.rating.PlayOneShot(audio.good);
-                    swipeIt.S.currentScore += goodScore;
+                    _audio.rating.PlayOneShot(_audio.good);
+                    swipeIt.currentScore += goodScore;
                     Handheld.Vibrate();
                 }
             } else {
-                audio.rating.PlayOneShot(audio.bad);
-                if (swipeIt.S.mode != swipeIt.gameMode.tutorial)
+                _audio.rating.PlayOneShot(_audio.bad);
+                if (swipeIt.mode != swipeIt.gameMode.tutorial)
                     endGame = true;
                 Handheld.Vibrate();
                 Handheld.Vibrate();
@@ -92,7 +93,7 @@ public class gameController : MonoBehaviour {
     IEnumerator countdown() {
         int time = 3;
         while (time > 0) {
-            if (global.S.accessibility) {
+            if (accessibility.getAccessibility()) {
                 EasyTTSUtil.SpeechAdd(time.ToString());
             }
             scoreText.text = time.ToString();
@@ -111,21 +112,21 @@ public class gameController : MonoBehaviour {
         float r = -0.5f;
         int chance = 0;
         checking_command = false;
-        swipeIt.S.currentScore = 0;
+        swipeIt.currentScore = 0;
         scoreText.text = "";
         startText.text = "";
         Time.timeScale = 1 - increaseAmount;
-        audio.music.pitch = 1 - increaseAmount;
+        _audio.music.pitch = 1 - increaseAmount;
         StartCoroutine(setSpeed());
 
         // start game
-        audio.music.Play();
+        _audio.music.Play();
         yield return new WaitForSeconds(waitTime);
         
         // give commands until game ends
         while (!endGame) {
 
-            switch (swipeIt.S.mode) {
+            switch (swipeIt.mode) {
                 case swipeIt.gameMode.single:
                     // pick a random command except pass it
                     r = Random.Range(0, 5);
@@ -154,43 +155,43 @@ public class gameController : MonoBehaviour {
             switch (Mathf.FloorToInt(r)) {
                 case 0:
                     command = gesture.DOUBLE;
-                    chosenCommand = audio.doubleTap;
+                    chosenCommand = _audio.doubleTap;
                     chosenSprite = doubleTap;
                     break;
                 case 1:
                     command = gesture.DOWN;
-                    chosenCommand = audio.down;
+                    chosenCommand = _audio.down;
                     chosenSprite = arrowDown;
                     break;
                 case 2:
                     command = gesture.LEFT;
-                    chosenCommand = audio.left;
+                    chosenCommand = _audio.left;
                     chosenSprite = arrowLeft;
                     break;
                 case 3:
                     command = gesture.RIGHT;
-                    chosenCommand = audio.right;
+                    chosenCommand = _audio.right;
                     chosenSprite = arrowRight;
                     break;
                 case 4:
                     command = gesture.UP;
-                    chosenCommand = audio.up;
+                    chosenCommand = _audio.up;
                     chosenSprite = arrowUp;
                     break;
                 case 5:
                     command = gesture.NONE;
-                    chosenCommand = audio.passIt;
+                    chosenCommand = _audio.passIt;
                     chosenSprite = passIt;
                     break;
                 default:
                     command = gesture.UP;
-                    chosenCommand = audio.perfect;
+                    chosenCommand = _audio.perfect;
                     chosenSprite = arrowUp;
                     break;
             }
 
             // play the audio for the command
-            audio.command.PlayOneShot(chosenCommand);
+            _audio.command.PlayOneShot(chosenCommand);
             // 0.4 is average audio clip length. wait to try to sync audio with visual
             yield return new WaitForSecondsRealtime(0.4f);
             if (command == gesture.NONE) {
@@ -206,8 +207,8 @@ public class gameController : MonoBehaviour {
             yield return new WaitForSeconds(0.2f * turnTime);
             if (checking_command) {
                 checking_command = false;
-                audio.rating.PlayOneShot(audio.bad);
-                if (swipeIt.S.mode != swipeIt.gameMode.tutorial)
+                _audio.rating.PlayOneShot(_audio.bad);
+                if (swipeIt.mode != swipeIt.gameMode.tutorial)
                     endGame = true;
                 Handheld.Vibrate();
                 Handheld.Vibrate();
@@ -218,13 +219,13 @@ public class gameController : MonoBehaviour {
         }
 
         // play game over sound and stop music
-        audio.rating.PlayOneShot(audio.gameOver);
-        audio.music.Stop();
+        _audio.rating.PlayOneShot(_audio.gameOver);
+        _audio.music.Stop();
 
-        yield return new WaitForSeconds(audio.gameOver.length + 0.5f);
+        yield return new WaitForSeconds(_audio.gameOver.length + 0.5f);
 
-        if (swipeIt.S.mode == swipeIt.gameMode.tutorial)
-            swipeIt.S.mode = swipeIt.gameMode.single;
+        if (swipeIt.mode == swipeIt.gameMode.tutorial)
+            swipeIt.mode = swipeIt.gameMode.single;
 
         SceneManager.LoadScene("gameover");
     }
@@ -234,7 +235,7 @@ public class gameController : MonoBehaviour {
         while (!endGame) {
             //print("speed up " + Time.time);
             Time.timeScale += increaseAmount;
-            audio.music.pitch += increaseAmount / 2;
+            _audio.music.pitch += increaseAmount / 2;
             yield return new WaitForSecondsRealtime(4 * turnTime);
         }
     }

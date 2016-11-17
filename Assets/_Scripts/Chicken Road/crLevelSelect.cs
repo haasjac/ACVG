@@ -2,6 +2,7 @@
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
+using Global;
 
 public class crLevelSelect : MonoBehaviour {
     List<string> difficulty = new List<string>() {
@@ -9,7 +10,6 @@ public class crLevelSelect : MonoBehaviour {
     };
 
 	myInput input;
-	bool hackedLevels = false;
 	int swipeUpCount = 0;
 	public List<string> defaultLevels;
 	public AudioSource honkSource;
@@ -19,36 +19,12 @@ public class crLevelSelect : MonoBehaviour {
     // Use this for initialization
 	void Start () {
 		input = GetComponent<myInput>();
-
-		PlayerPrefs.SetInt("hackedLevels", 0);
-
-		if (!PlayerPrefs.HasKey("playedEasyTutorial")) {
-			PlayerPrefs.SetInt("playedEasyTutorial", 0);
-		}
-		if (!PlayerPrefs.HasKey("playedMediumTutorial")) {
-			PlayerPrefs.SetInt("playedMediumTutorial", 0);
-		}
-		if (!PlayerPrefs.HasKey("playedHardTutorial")) {
-			PlayerPrefs.SetInt("playedHardTutorial", 0);
-		}
-
-		if (!PlayerPrefs.HasKey("level1Unlocked")) {
-			PlayerPrefs.SetInt("level1Unlocked", 1);
-			PlayerPrefs.SetInt("level2Unlocked", 0);
-			PlayerPrefs.SetInt("level3Unlocked", 0);
-			PlayerPrefs.SetInt("level4Unlocked", 0);
-			PlayerPrefs.SetInt("level5Unlocked", 0);
-			PlayerPrefs.SetInt("level6Unlocked", 0);
-			PlayerPrefs.SetInt("level7Unlocked", 0);
-			PlayerPrefs.SetInt("level8Unlocked", 0);
-			PlayerPrefs.SetInt("level9Unlocked", 0);
-		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		// hack to unlock all the levels (used for presentation)
-		if (!hackedLevels && input.touch == gesture.UP) {
+		if (!chickenRoad.hacked && input.touch == gesture.UP) {
 			float currentTime = Time.time;
 
 			if (currentTime - lastSwipeUp > 1f) {
@@ -59,8 +35,7 @@ public class crLevelSelect : MonoBehaviour {
 			swipeUpCount++;
 
 			if (swipeUpCount >= 6) {
-				hackedLevels = true;
-				PlayerPrefs.SetInt("hackedLevels", 1);
+				chickenRoad.hacked = true;
 
 				honkSource.PlayOneShot(honk);
 			}
@@ -76,18 +51,18 @@ public class crLevelSelect : MonoBehaviour {
 	}
 
     public void touchLevelButton(int levelId) {
-		PlayerPrefs.SetString("tutorials", "none");
+		chickenRoad.tutorials = "none";
 
-		if (!hackedLevels && PlayerPrefs.GetInt("level" + levelId + "Unlocked") == 0) {
+		if (!chickenRoad.hacked && (levelId > chickenRoad.highestLevelBeaten + 1)) {
 			EasyTTSUtil.SpeechAdd("Level " + levelId + " is not unlocked. Pass level " + (levelId - 1) + " first.", 1f, 0.6f, 1f);
 			return;
 		}
 
 		switch(levelId) {
 		case 1:
-			if (PlayerPrefs.GetInt("playedEasyTutorial") != 1) {
-				PlayerPrefs.SetString("tutorials", "ICDG");
-				PlayerPrefs.SetInt("playedEasyTutorial", 1);
+			if (!chickenRoad.easyTutorialPlayed) {
+				chickenRoad.tutorials = "ICDG";
+                chickenRoad.easyTutorialPlayed = true;
 			}
 			
 			loadLevel(difficulty[0], "Level " + levelId, defaultLevels[levelId-1]);
@@ -99,9 +74,9 @@ public class crLevelSelect : MonoBehaviour {
 			loadLevel(difficulty[0], "Level " + levelId, defaultLevels[levelId-1]);
 			break;
 		case 4:
-			if (PlayerPrefs.GetInt("playedMediumTutorial") != 1) {
-				PlayerPrefs.SetString("tutorials", "FEL");
-				PlayerPrefs.SetInt("playedMediumTutorial", 1);
+			if (!chickenRoad.mediumTutorialPlayed) {
+				chickenRoad.tutorials = "FEL";
+                chickenRoad.mediumTutorialPlayed = true;
 			}
 
 			loadLevel(difficulty[1], "Level " + levelId, defaultLevels[levelId-1]);
@@ -113,9 +88,9 @@ public class crLevelSelect : MonoBehaviour {
 			loadLevel(difficulty[1], "Level " + levelId, defaultLevels[levelId-1]);
 			break;
 		case 7:
-			if (PlayerPrefs.GetInt("playedHardTutorial") != 1) {
-				PlayerPrefs.SetString("tutorials", "PV");
-				PlayerPrefs.SetInt("playedHardTutorial", 1);
+			if (!chickenRoad.hardTutorialPlayed) {
+				chickenRoad.tutorials = "PV";
+				chickenRoad.hardTutorialPlayed = true;
 			}
 
 			loadLevel(difficulty[2], "Level " + levelId, defaultLevels[levelId-1]);
@@ -133,9 +108,9 @@ public class crLevelSelect : MonoBehaviour {
     }
 
     void loadLevel(string difficulty, string levelTitle, string levelObstacles) {
-        PlayerPrefs.SetString("difficulty", difficulty);
-        PlayerPrefs.SetString("levelTitle", levelTitle);
-        PlayerPrefs.SetString("levelObstacles", levelObstacles);
+        chickenRoad.difficulty = difficulty;
+        chickenRoad.levelTitle = levelTitle;
+        chickenRoad.levelObstacles = levelObstacles;
 
         SceneManager.LoadScene("crGame");
     }
