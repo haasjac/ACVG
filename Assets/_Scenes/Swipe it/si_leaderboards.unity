@@ -2475,6 +2475,7 @@ GameObject:
   - 114: {fileID: 2138649447}
   - 114: {fileID: 2138649448}
   - 114: {fileID: 2138649449}
+  - 114: {fileID: 2138649450}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -2574,6 +2575,18 @@ MonoBehaviour:
   leaderBoardText: {fileID: 860848100}
   globalSprite: {fileID: 21300000, guid: aedb22d9a73b0634683292ae7cfaa626, type: 3}
   friendSprite: {fileID: 21300000, guid: 15e7bee0bd89e394bbd9656cbda42859, type: 3}
+  leaderboardNames:
+  - {fileID: 1892649189}
+  - {fileID: 1578557767}
+  - {fileID: 1244672071}
+  - {fileID: 2107921925}
+  - {fileID: 1735279503}
+  leaderboardScores:
+  - {fileID: 282621065}
+  - {fileID: 1411377782}
+  - {fileID: 928112446}
+  - {fileID: 1029288288}
+  - {fileID: 386017038}
 --- !u!114 &2138649448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2633,3 +2646,14 @@ MonoBehaviour:
   - 3
   - 3
   - 3
+--- !u!114 &2138649450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2138649442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08b8fb8aeb01baf45ac30200e8dee464, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

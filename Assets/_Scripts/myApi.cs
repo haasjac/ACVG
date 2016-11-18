@@ -7,16 +7,11 @@ using Global;
 
 public class myApi : MonoBehaviour {
 
-    // Singleton
-    static myApi _s = null;
+    public static myApi S;
 
-    // Public Constructor
-    public static myApi S {
-        get {
-            if (_s == null)
-                _s = new myApi();
-            return _s;
-        }
+    void Awake() {
+        if (S == null)
+            S = this;
     }
 
     string baseURL = "http://acvg-uno-flask-env.xnuwix2zea.us-west-2.elasticbeanstalk.com";
@@ -35,6 +30,10 @@ public class myApi : MonoBehaviour {
 
     public IEnumerator postLevel(int level, bool beaten) {
         yield return StartCoroutine(POSThighScoreChickenRoad(level, beaten));
+    }
+
+    public IEnumerator leaderboard() {
+        yield return StartCoroutine(GEThighScoreSwipeIt());
     }
 
     public static Dictionary <string, string> swipeItInfo;
@@ -89,16 +88,14 @@ public class myApi : MonoBehaviour {
         yield return www;
         if (www.error == null) {
             var j = JSON.Parse(www.text);
-            print("j: " + j[0]["user_id"].ToString());
             highScores = new List<Dictionary<string, string>>();
             for (int i = 0; i < j.Count; i++) {
                 highScores.Add(new Dictionary<string, string>());
+                //print(j[i]["user_id"]);
                 highScores[i]["user_id"] = j[i]["user_id"];
                 highScores[i]["score"] = j[i]["score"];
                 highScores[i]["high_score_time"] = j[i]["high_score_time"];
             }
-
-            print(highScores.ToString());
         } else {
             print(www.error);
         }

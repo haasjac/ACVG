@@ -1106,7 +1106,6 @@ GameObject:
   - 223: {fileID: 1345732926}
   - 114: {fileID: 1345732925}
   - 114: {fileID: 1345732924}
-  - 114: {fileID: 1345732928}
   - 114: {fileID: 1345732929}
   - 114: {fileID: 1345732930}
   m_Layer: 5
@@ -1192,26 +1191,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1345732928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1345732923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44361ba7b7b2645c7b6fc82147ca74da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttons:
-  - {fileID: 1327000442}
-  - {fileID: 2021097987}
-  - {fileID: 85861507}
-  audioSource: {fileID: 1932445884}
-  audioClips:
-  - {fileID: 8300000, guid: 73b9bcf3757da4fa8a7ad4a986324c9f, type: 3}
-  - {fileID: 8300000, guid: 46f46a24c3d7344a6a0a63d83040657f, type: 3}
-  - {fileID: 8300000, guid: ec4dabdf0bd2248678f6ad285a83b7f9, type: 3}
 --- !u!114 &1345732929
 MonoBehaviour:
   m_ObjectHideFlags: 0

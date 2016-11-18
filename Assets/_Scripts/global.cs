@@ -29,6 +29,8 @@ namespace Global {
 
         public static int singleHighScore;
         public static int multiHighScore;
+        public static List<string> leaderboardNames;
+        public static List<string> leaderboardScores;
 
         public static int getHighScore() {
             if (mode == gameMode.single || mode == gameMode.tutorial) {
@@ -52,6 +54,16 @@ namespace Global {
                 return true;
             } else {
                 return false;
+            }
+        }
+
+        public static IEnumerator updateLeaderboard() {
+            yield return myApi.S.StartCoroutine(myApi.S.leaderboard());
+            leaderboardNames = new List<string>();
+            leaderboardScores = new List<string>();
+            for (int i = 0; i < myApi.highScores.Count; i++) {
+                leaderboardNames.Add(myApi.highScores[i]["user_id"]);
+                leaderboardScores.Add(myApi.highScores[i]["score"]);
             }
         }
     }
