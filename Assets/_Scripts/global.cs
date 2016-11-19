@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Facebook.Unity;
 
 namespace Global {
 
@@ -29,8 +30,8 @@ namespace Global {
 
         public static int singleHighScore;
         public static int multiHighScore;
-        public static List<string> leaderboardNames;
-        public static List<string> leaderboardScores;
+        public static List <KeyValuePair<string, int>> leaderboardScores;
+        public static Dictionary< string, string > leaderboardNames;
 
         public static int getHighScore() {
             if (mode == gameMode.single || mode == gameMode.tutorial) {
@@ -57,13 +58,37 @@ namespace Global {
             }
         }
 
+        static void getName(string id) {
+            FB.API("/" + id + "?fields=id,first_name", HttpMethod.GET, callBack);
+        }
+
+        static void callBack(IResult result) {
+            if (result.Error == null) {
+                leaderboardNames[result.ResultDictionary["id"].ToString()] = result.ResultDictionary["first_name"].ToString();
+            } else {
+                Debug.Log(result.Error);
+            }
+            //MonoBehaviour.print(result.ResultDictionary["id"].ToString() + ": " + leaderboardNames[result.ResultDictionary["id"].ToString()]);
+        }
+
         public static IEnumerator updateLeaderboard() {
             yield return myApi.S.StartCoroutine(myApi.S.leaderboard());
-            leaderboardNames = new List<string>();
-            leaderboardScores = new List<string>();
+            leaderboardScores = new List<KeyValuePair<string, int>>();
+            leaderboardNames = new Dictionary<string, string>();
             for (int i = 0; i < myApi.highScores.Count; i++) {
-                leaderboardNames.Add(myApi.highScores[i]["user_id"]);
-                leaderboardScores.Add(myApi.highScores[i]["score"]);
+                int x = 0;
+                if (int.TryParse(myApi.highScores[i]["score"], out x)) {
+                    leaderboardScores.Add(new KeyValuePair<string, int>(myApi.highScores[i]["user_id"], x));
+                } else {
+                    leaderboardScores.Add(new KeyValuePair<string, int>(myApi.highScores[i]["user_id"], -1));
+                }
+                
+                getName(myApi.highScores[i]["user_id"]);
+            }
+            //sort leaderboard
+            leaderboardScores.Sort((z, y) => y.Value.CompareTo(z.Value));
+            for (int i = 0; i < leaderboardScores.Count; i++) {
+                MonoBehaviour.print(leaderboardScores[i].Key + ": " + leaderboardScores[i].Value);
             }
         }
     }
@@ -104,6 +129,8 @@ namespace Global {
             accessibility.setAccessibility(true);
             swipeIt.singleHighScore = 0;
             swipeIt.multiHighScore = 0;
+            swipeIt.leaderboardScores = new List<KeyValuePair<string, int>>();
+            swipeIt.leaderboardNames = new Dictionary<string, string>();
             facebook.ID = "";
             facebook.name = "";
             chickenRoad.highestLevelBeaten = 0;

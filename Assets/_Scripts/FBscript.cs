@@ -12,9 +12,13 @@ public class FBscript : MonoBehaviour {
     public Text logButtonText;
     public Text swipeItScore;
     public Text chickenRoadScore;
-    public myApi api;
 
     void Start() {
+        swipeItScore.text = swipeIt.singleHighScore.ToString();
+        chickenRoadScore.text = chickenRoad.highestLevelBeaten.ToString();
+        DialogUsername.text = "Welcome!";
+        DialogProfilePic.sprite = null;
+
         if (FB.IsInitialized) {
             SetInit();
         } else {
@@ -105,7 +109,9 @@ public class FBscript : MonoBehaviour {
     }
 
     IEnumerator user() {
-        yield return StartCoroutine(api.makeUser());
+        yield return StartCoroutine(myApi.S.makeUser());
+        swipeIt.singleHighScore = int.Parse(myApi.swipeItInfo["score"]);
+        chickenRoad.highestLevelBeaten = int.Parse(myApi.chickenRoadInfo["score"]);
         swipeItScore.text = myApi.swipeItInfo["score"];
         chickenRoadScore.text = myApi.chickenRoadInfo["score"];
     }

@@ -27,6 +27,11 @@ public class leaderboards : MonoBehaviour {
             leaderboardScores[i].text = "";
         }
 
+        /*for (int i = 0; i < swipeIt.leaderboardNames.Count; i++) {
+            leaderboardNames[i].text = swipeIt.leaderboardNames[swipeIt.leaderboardScores[i].Key];
+            leaderboardScores[i].text = swipeIt.leaderboardScores[i].Value.ToString();
+        }*/
+
         if (PlayerPrefs.HasKey("leaderboard_mode"))
         {
             string mode = PlayerPrefs.GetString("leaderboard_mode");
@@ -46,33 +51,14 @@ public class leaderboards : MonoBehaviour {
         
 	}
 
-    void getName(string id) {
-            FB.API("/" + id + "?fields=first_name", HttpMethod.GET, callBack);
-    }
-
     IEnumerator updateLeaderboard() {
         yield return StartCoroutine(swipeIt.updateLeaderboard());
+        print("Count: " + swipeIt.leaderboardNames.Count);
+        yield return new WaitForSeconds(3);
+        print("Count: " + swipeIt.leaderboardNames.Count);
         for (int i = 0; i < swipeIt.leaderboardNames.Count; i++) {
-            //getName(swipeIt.leaderboardNames[i]);
-            leaderboardNames[i].text = swipeIt.leaderboardNames[i];
-            leaderboardScores[i].text = swipeIt.leaderboardScores[i];
-        }
-    }
-
-    void callBack(IResult result) {
-        if (result.Error == null) {
-            userName = result.ResultDictionary["first_name"].ToString();
-        } else {
-            Debug.Log(result.Error);
-            userName = "India";
-        }
-        
-    }
-
-    void displayText() {
-        for (int i = 0; i < leaderboardNames.Count; i++) {
-            leaderboardNames[i].text = swipeIt.leaderboardNames[i];
-            leaderboardScores[i].text = swipeIt.leaderboardScores[i];
+            leaderboardNames[i].text = swipeIt.leaderboardNames[swipeIt.leaderboardScores[i].Key];
+            leaderboardScores[i].text = swipeIt.leaderboardScores[i].Value.ToString();
         }
     }
 

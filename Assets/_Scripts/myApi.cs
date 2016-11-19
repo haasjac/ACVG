@@ -10,8 +10,12 @@ public class myApi : MonoBehaviour {
     public static myApi S;
 
     void Awake() {
-        if (S == null)
+        if (S == null) {
             S = this;
+            DontDestroyOnLoad(this);
+        } else {
+            Destroy(this);
+        }
     }
 
     string baseURL = "http://acvg-uno-flask-env.xnuwix2zea.us-west-2.elasticbeanstalk.com";
