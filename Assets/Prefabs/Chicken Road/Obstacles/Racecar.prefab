@@ -873,7 +873,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inFront: 1
   commands: 0400000005000000
-  sound: {fileID: 8300000, guid: d7486b933a5fa4a75b48d5ceb180aa42, type: 3}
+  sound: {fileID: 8300000, guid: e7ebfbf6949b64955ae68a25423c1f2a, type: 3}
 --- !u!135 &135000014214652010
 SphereCollider:
   m_ObjectHideFlags: 1
