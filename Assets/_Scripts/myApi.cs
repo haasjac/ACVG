@@ -148,7 +148,8 @@ public class myApi : MonoBehaviour {
     }
 
     IEnumerator GETuserId() {
-        url = baseURL + "/user?=" + facebook.ID;
+        url = baseURL + "/user?id=" + facebook.ID;
+        print(facebook.ID);
         WWW www = new WWW(url);
         yield return www;
         if (www.error == null) {

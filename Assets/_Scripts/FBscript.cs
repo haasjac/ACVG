@@ -82,6 +82,7 @@ public class FBscript : MonoBehaviour {
                 Debug.Log("FB is logged in");
                 print("userID: " + AccessToken.CurrentAccessToken.UserId);
                 facebook.ID = AccessToken.CurrentAccessToken.UserId;
+                StartCoroutine(user());
             } else {
                 Debug.Log("FB is not logged in");
             }
@@ -98,12 +99,11 @@ public class FBscript : MonoBehaviour {
             FB.API("/me?fields=first_name", HttpMethod.GET, DisplayUsername);
             FB.API("/me/picture?type=square&height=128&width=128", HttpMethod.GET, DisplayProfilePic);
             logButtonText.text = "Log Out";
-            StartCoroutine(user());
 
         } else {
             DialogUsername.text = "Welcome!";
             DialogProfilePic.sprite = null;
-            logButtonText.text = "Log In";
+            logButtonText.text = "Log In With Facebook";
         }
 
     }
@@ -114,6 +114,7 @@ public class FBscript : MonoBehaviour {
         chickenRoad.highestLevelBeaten = int.Parse(myApi.chickenRoadInfo["score"]);
         swipeItScore.text = myApi.swipeItInfo["score"];
         chickenRoadScore.text = myApi.chickenRoadInfo["score"];
+        functions.save();
     }
 
     void DisplayUsername(IResult result) {
