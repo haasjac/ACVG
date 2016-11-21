@@ -47,6 +47,7 @@ public class crLevelSelect : MonoBehaviour {
 	}
 
 	public void touchFreePlayButton() {
+		chickenRoad.tutorials = "none";
 		loadLevel(difficulty[2], "Free Play", "FREEPLAY");
 	}
 

@@ -326,10 +326,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.15686275, g: 0, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 0, b: 0.15686275, a: 1}
+    m_NormalColor: {r: 0.078431375, g: 0, b: 0.49019608, a: 1}
+    m_HighlightedColor: {r: 0.15686275, g: 0, b: 1, a: 1}
     m_PressedColor: {r: 1, g: 0.98039216, b: 0.15686275, a: 1}
-    m_DisabledColor: {r: 1, g: 0, b: 0.15686275, a: 1}
+    m_DisabledColor: {r: 0.15686275, g: 0, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -403,7 +403,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41b0881bea009a64483666ac114f79b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loginAlert: {fileID: 0}
 --- !u!1 &658705402
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,10 +603,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.15686275, g: 0, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 0, b: 0.15686275, a: 1}
+    m_NormalColor: {r: 0.078431375, g: 0, b: 0.49019608, a: 1}
+    m_HighlightedColor: {r: 0.15686275, g: 0, b: 1, a: 1}
     m_PressedColor: {r: 1, g: 0.98039216, b: 0.15686275, a: 1}
-    m_DisabledColor: {r: 1, g: 0, b: 0.15686275, a: 1}
+    m_DisabledColor: {r: 0.15686275, g: 0, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -681,7 +680,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41b0881bea009a64483666ac114f79b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loginAlert: {fileID: 0}
 --- !u!1 &736939903
 GameObject:
   m_ObjectHideFlags: 0
@@ -813,10 +811,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.15686275, g: 0, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 0, b: 0.15686275, a: 1}
+    m_NormalColor: {r: 0.078431375, g: 0, b: 0.49019608, a: 1}
+    m_HighlightedColor: {r: 0.15686275, g: 0, b: 1, a: 1}
     m_PressedColor: {r: 1, g: 0.98039216, b: 0.15686275, a: 1}
-    m_DisabledColor: {r: 1, g: 0, b: 0.15686275, a: 1}
+    m_DisabledColor: {r: 0.15686275, g: 0, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -890,7 +888,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41b0881bea009a64483666ac114f79b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loginAlert: {fileID: 0}
 --- !u!1 &1183029655
 GameObject:
   m_ObjectHideFlags: 0
@@ -1084,15 +1081,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbfdeb74c43cc4cbabd9503811e83a66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttons:
-  - {fileID: 1044072868}
-  - {fileID: 650333015}
-  - {fileID: 707592269}
   audioSource: {fileID: 112160526}
-  audioClips:
-  - {fileID: 8300000, guid: 5c9b2efb73f4f4faf972ec01f46b5a01, type: 3}
-  - {fileID: 8300000, guid: 3eb5f29a25ff74e9ab3119019c5da5f4, type: 3}
-  - {fileID: 8300000, guid: f9e69270475614abcb023b8c75a2c87b, type: 3}
   newHighScore: {fileID: 8300000, guid: afb44fc7a980d4848866a520465bbd10, type: 3}
   scoreText: {fileID: 86699701}
 --- !u!114 &1865274756
