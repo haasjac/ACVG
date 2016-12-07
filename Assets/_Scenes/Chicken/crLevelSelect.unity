@@ -1329,8 +1329,6 @@ MonoBehaviour:
   am: {fileID: 0}
   sceneComponents:
   - {fileID: 1663157285}
-  - {fileID: 836691364}
-  - {fileID: 870775856}
   - {fileID: 224036037}
   - {fileID: 1743858848}
   - {fileID: 1552599868}
@@ -1343,6 +1341,8 @@ MonoBehaviour:
   - {fileID: 787309531}
   - {fileID: 250157834}
   - {fileID: 176265113}
+  - {fileID: 870775856}
+  - {fileID: 836691364}
   waitTimes:
   - 3
   - 3
