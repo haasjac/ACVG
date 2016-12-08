@@ -210,6 +210,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b2b59de247d428ea46304125db4ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noiseSource: {fileID: 0}
+  chicken: {fileID: 0}
+  ducks: {fileID: 0}
+  goose: {fileID: 0}
+  fence: {fileID: 0}
+  deer: {fileID: 0}
+  forkLeft: {fileID: 0}
+  forkRight: {fileID: 0}
+  parrot: {fileID: 0}
+  racecar: {fileID: 0}
 --- !u!114 &194269193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,16 +244,16 @@ MonoBehaviour:
   - {fileID: 734968111}
   - {fileID: 971974287}
   waitTimes:
-  - 3
-  - 2
-  - 2
-  - 2
-  - 2
-  - 2
-  - 2
-  - 2
-  - 2
-  - 3
+  - 12
+  - 4
+  - 4
+  - 4
+  - 4
+  - 4
+  - 4
+  - 4
+  - 4
+  - 4
   border: {fileID: 0}
 --- !u!1 &227782511
 GameObject:
