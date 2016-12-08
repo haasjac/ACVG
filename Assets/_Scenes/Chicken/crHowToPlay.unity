@@ -244,16 +244,16 @@ MonoBehaviour:
   - {fileID: 734968111}
   - {fileID: 971974287}
   waitTimes:
-  - 13
-  - 4
-  - 4
-  - 4
-  - 4
-  - 4
-  - 4
-  - 4
-  - 4
-  - 4
+  - 15
+  - 6
+  - 6
+  - 6
+  - 6
+  - 6
+  - 6
+  - 6
+  - 6
+  - 6
   border: {fileID: 0}
 --- !u!1 &227782511
 GameObject:

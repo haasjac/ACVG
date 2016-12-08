@@ -8,7 +8,7 @@ public class crHowToPlay : MonoBehaviour {
 	public AudioSource noiseSource;
 	public GameObject chicken, ducks, goose, fence, deer, forkLeft, forkRight, parrot, racecar;
 
-	Coroutine tutorialRoutine;
+	Coroutine tutorialRoutine = null;
 
 	// Use this for initialization
 	void Start () {
@@ -24,7 +24,7 @@ public class crHowToPlay : MonoBehaviour {
 		noiseSource.Stop();
 		EasyTTSUtil.StopSpeech();
 
-		if (tutorialRoutine) {
+		if (tutorialRoutine != null) {
 			StopCoroutine(tutorialRoutine);
 		}
 
