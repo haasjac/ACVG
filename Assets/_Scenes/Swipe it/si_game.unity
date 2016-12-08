@@ -610,6 +610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touch: 0
+  touchLength: 1.25
 --- !u!114 &659105296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -646,7 +647,7 @@ MonoBehaviour:
   arrowDown: {fileID: 21300000, guid: fafe9e43ffe5e4108af33d7b12f40353, type: 3}
   arrowLeft: {fileID: 21300000, guid: 02fa4cccefc814186a8583224f7026a2, type: 3}
   arrowRight: {fileID: 21300000, guid: abd840a4152a94c3fb7d80602a6527a5, type: 3}
-  doubleTap: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  doubleTap: {fileID: 21300000, guid: b22a2b92efe5cb145a6e0662cf65fd53, type: 3}
   passIt: {fileID: 21300000, guid: 82ef5610d6155e44f823a8be2adbc14f, type: 3}
   image: {fileID: 1460727852}
 --- !u!1 &1460727850

@@ -13,24 +13,31 @@ public class mainNavigator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		am = gameObject.AddComponent<AccessibilityMode> () as AccessibilityMode;
-        //am = GetComponent<AccessibilityMode>();
-        am.border = border;
-
-        accessibility.setAccessibility(true);
-
-
-        NarratableObject[] sceneObjects = new NarratableObject[sceneComponents.Count];
-		for(int i = 0; i < sceneComponents.Count; i++) {
-			sceneObjects[i].component = sceneComponents[i];
-			sceneObjects[i].waitTime = waitTimes[i];
+		if (!IsVoiceOverOn.isVoiceOverOn()) {
+			// empty
 		}
+		else {
+			am = gameObject.AddComponent<AccessibilityMode> () as AccessibilityMode;
+	        //am = GetComponent<AccessibilityMode>();
+	        am.border = border;
 
-		am.runAccessibilityMode (sceneObjects);
+			accessibility.setAccessibility(true);
+
+
+			NarratableObject[] sceneObjects = new NarratableObject[sceneComponents.Count];
+			for(int i = 0; i < sceneComponents.Count; i++) {
+				sceneObjects[i].component = sceneComponents[i];
+				sceneObjects[i].waitTime = waitTimes[i];
+			}
+
+			am.runAccessibilityMode(sceneObjects);
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		am.check ();
+		if (IsVoiceOverOn.isVoiceOverOn()) {
+			am.check ();
+		}
 	}
 }
