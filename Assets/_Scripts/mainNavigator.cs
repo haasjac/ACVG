@@ -9,11 +9,13 @@ public class mainNavigator : MonoBehaviour {
 
 	public List<Component> sceneComponents;
 	public List<float> waitTimes;
+    public Image border;
 
 	// Use this for initialization
 	void Start () {
 		am = gameObject.AddComponent<AccessibilityMode> () as AccessibilityMode;
         //am = GetComponent<AccessibilityMode>();
+        am.border = border;
 
         accessibility.setAccessibility(true);
 
