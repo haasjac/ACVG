@@ -11,6 +11,8 @@ public struct NarratableObject {
 
 public class AccessibilityMode : myInput {
 
+    public Image border;
+
     private const float VOLUME = 1f;
     private const float RATE = 0.6f;
     private const float PITCH = 1f;
