@@ -88,7 +88,7 @@ public class crGame : MonoBehaviour {
 		// how to quit
 		EasyTTSUtil.SpeechAdd("Long press at anytime to quit.", 1f, 0.6f, 1f);
 
-		yield return new WaitForSeconds(2f);
+		yield return new WaitForSeconds(1.5f);
 
         // play tutorial based on level/difficulty of introducing obstacle
 		if (showTutorial) {
@@ -147,7 +147,7 @@ public class crGame : MonoBehaviour {
 
 				EasyTTSUtil.SpeechAdd(commandText, 1f, 0.6f, 1f);
 
-				if (i == 'I') {
+				if (tutorials[i] == 'I') {
 					yield return new WaitForSeconds(10f);
 				}
 				else {
