@@ -8,6 +8,8 @@ public class crHowToPlay : MonoBehaviour {
 	public AudioSource noiseSource;
 	public GameObject chicken, ducks, goose, fence, deer, forkLeft, forkRight, parrot, racecar;
 
+	Coroutine tutorialRoutine;
+
 	// Use this for initialization
 	void Start () {
 		chickenRoad.crHowToPlay = false;
@@ -15,11 +17,16 @@ public class crHowToPlay : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
 
 	public void touchTutorialButton(int id) {
 		noiseSource.Stop();
+		EasyTTSUtil.StopSpeech();
+
+		if (tutorialRoutine) {
+			StopCoroutine(tutorialRoutine);
+		}
 
 		List<AudioClip> noises = new List<AudioClip>();
 		string commandText = "";
@@ -65,7 +72,7 @@ public class crHowToPlay : MonoBehaviour {
 				break;
 		}
 
-		StartCoroutine(playTutorial(noises, commandText));
+		tutorialRoutine = StartCoroutine(playTutorial(noises, commandText));
 	}
 
 	IEnumerator playTutorial(List<AudioClip> noises, string commandText) {
