@@ -221,8 +221,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.078431375, g: 0, b: 0.49019608, a: 1}
-    m_HighlightedColor: {r: 0.15686275, g: 0, b: 1, a: 1}
-    m_PressedColor: {r: 1, g: 0.98039216, b: 0.09803922, a: 1}
+    m_HighlightedColor: {r: 0.078431375, g: 0, b: 0.4901961, a: 1}
+    m_PressedColor: {r: 0.15686275, g: 0, b: 1, a: 1}
     m_DisabledColor: {r: 0.15686275, g: 0, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -564,8 +564,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.078431375, g: 0, b: 0.49019608, a: 1}
-    m_HighlightedColor: {r: 0.15686275, g: 0, b: 1, a: 1}
-    m_PressedColor: {r: 1, g: 0.98039216, b: 0.09803922, a: 1}
+    m_HighlightedColor: {r: 0.078431375, g: 0, b: 0.4901961, a: 1}
+    m_PressedColor: {r: 0.15686275, g: 0, b: 1, a: 1}
     m_DisabledColor: {r: 0.15686275, g: 0, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -771,8 +771,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.078431375, g: 0, b: 0.49019608, a: 1}
-    m_HighlightedColor: {r: 0.15686275, g: 0, b: 1, a: 1}
-    m_PressedColor: {r: 1, g: 0.98039216, b: 0.09803922, a: 1}
+    m_HighlightedColor: {r: 0.078431375, g: 0, b: 0.4901961, a: 1}
+    m_PressedColor: {r: 0.15686275, g: 0, b: 1, a: 1}
     m_DisabledColor: {r: 0.15686275, g: 0, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -991,8 +991,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.078431375, g: 0, b: 0.49019608, a: 1}
-    m_HighlightedColor: {r: 0.15686275, g: 0, b: 1, a: 1}
-    m_PressedColor: {r: 1, g: 0.98039216, b: 0.09803922, a: 1}
+    m_HighlightedColor: {r: 0.078431375, g: 0, b: 0.4901961, a: 1}
+    m_PressedColor: {r: 0.15686275, g: 0, b: 1, a: 1}
     m_DisabledColor: {r: 0.15686275, g: 0, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1208,6 +1208,7 @@ MonoBehaviour:
   - 3
   - 3
   - 3
+  border: {fileID: 0}
 --- !u!1 &2128657811
 GameObject:
   m_ObjectHideFlags: 0
