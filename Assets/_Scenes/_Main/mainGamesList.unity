@@ -227,8 +227,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Swipe it is an interactive audio game where you will translate sounds\r
-    to various gestures in rhythm with an increasingly fast beat!\n"
+  m_Text: In Swipe It, be quick and follow the commands. Play until you mess up or
+    play with friends in local multiplayer!
 --- !u!222 &239804810
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -436,8 +436,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\rChicken Road is a 3-D audio game where the user will listen to audio\r\nqueues
-    denoting the location of cumbersome chickens laced on your two\r lane road."
+  m_Text: In Chicken road, avoid farm obstacles on this crazy dirt road. Try to beat
+    all the levels!
 --- !u!222 &562005347
 CanvasRenderer:
   m_ObjectHideFlags: 0
