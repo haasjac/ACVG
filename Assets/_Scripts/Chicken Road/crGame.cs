@@ -34,7 +34,6 @@ public class crGame : MonoBehaviour {
 	string tutorials;
     int score = 0;
     int position = 0;
-	int doubleTapCount = 0;
 	int correctInputs = 0;
     List<GameObject> obstacles;
 	List<gesture> commandList;
@@ -46,7 +45,6 @@ public class crGame : MonoBehaviour {
 	bool isHowToPlay = false;
     float reactionTime;
     float cruiseTime;
-	float lastDoubleTapTime = 0f;
 
     // Use this for initialization
     void Start () {
@@ -88,7 +86,7 @@ public class crGame : MonoBehaviour {
 
 	IEnumerator StartGame() {
 		// how to quit
-		EasyTTSUtil.SpeechAdd("Double Tap 3 times to quit.", 1f, 0.6f, 1f);
+		EasyTTSUtil.SpeechAdd("Long press at anytime to quit.", 1f, 0.6f, 1f);
 
 		yield return new WaitForSeconds(2f);
 
@@ -123,19 +121,8 @@ public class crGame : MonoBehaviour {
 		if (input.touch != gesture.NONE) {
 			
 			// check to quit
-			if (input.touch == gesture.DOUBLE) {
-				float currentTime = Time.time;
-
-				if (currentTime - lastDoubleTapTime > 1f) {
-					doubleTapCount = 0;
-				}
-
-				lastDoubleTapTime = currentTime;
-				doubleTapCount++;
-
-				if (doubleTapCount >= 3) {
-					Gameover();
-				}
+			if (input.touch == gesture.HOLD) {
+				Gameover();
 			}
 
 			if (checkForCommand) {
