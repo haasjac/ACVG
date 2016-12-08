@@ -22,6 +22,9 @@ public class crLevelSelect : MonoBehaviour {
 	void Start () {
 		input = GetComponent<myInput>();
 
+		// temporary fix to eliminating the hack
+		chickenRoad.hacked = false;
+
 		// setting locked levels for visual people
 		string lockedText = "Locked - Level ";
 		ColorBlock temp = buttons[0].GetComponent<Button>().colors;
@@ -38,6 +41,7 @@ public class crLevelSelect : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		/*
 		// hack to unlock all the levels (used for presentation)
 		if (!chickenRoad.hacked && input.touch == gesture.UP) {
 			float currentTime = Time.time;
@@ -55,6 +59,7 @@ public class crLevelSelect : MonoBehaviour {
 				honkSource.PlayOneShot(honk);
 			}
 		}
+		*/
 	}
 
 	public void touchReturnToMenuButton() {

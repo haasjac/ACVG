@@ -93,11 +93,66 @@ public class crGame : MonoBehaviour {
         // play tutorial based on level/difficulty of introducing obstacle
 		if (showTutorial) {
 			for(int i = 0; i < tutorials.Length; i++) {
-				AudioClip tutorialClip = getTutorialClip(tutorials[i]);
+				List<AudioClip> noises = new List<AudioClip>();
+				string commandText = "";
 
-				tutorialSource.PlayOneShot(tutorialClip);
+				switch (i) {
+					case 'I':
+						commandText = "Welcome to Chicken Road! Your goal is to dodge the obstacles. You will hear a sound, and you must respond with the correct gesture. Beat a level by earning 60% or higher to unlock the next level. You can also try free play so the fun never ends!";
+						break;
+					case 'C':
+						noises.Add(chicken.GetComponent<obstacle>().getSound());
+						commandText = "Swipe left or right to dodge the chicken";
+						break;
+					case 'D':
+						noises.Add(ducks.GetComponent<obstacle>().getSound());
+						commandText = "Swipe down to avoid hitting the ducks";
+						break;
+					case 'G':
+						noises.Add(goose.GetComponent<obstacle>().getSound());
+						commandText = "Swipe up to escape the goose";
+						break;
+					case 'F':
+						noises.Add(fence.GetComponent<obstacle>().getSound());
+						commandText = "Swipe up to break through the fence";
+						break;
+					case 'E':
+						noises.Add(deer.GetComponent<obstacle>().getSound());
+						commandText = "Swipe down to avoid hitting the deer";
+						break;
+					case 'L':
+						noises.Add(forkLeft.GetComponent<obstacle>().getSound());
+						noises.Add(forkRight.GetComponent<obstacle>().getSound());
+						commandText = "Swipe with the command to correctly follow the fork";
+						break;
+					case 'P':
+						noises.Add(parrot.GetComponent<obstacle>().getSound());
+						commandText = "Double tap to get rid of the parrot";
+						break;
+					case 'V':
+						noises.Add(racecar.GetComponent<obstacle>().getSound());
+						commandText = "Swipe up or down to avoid hitting the racecar";
+						break;
+					default:
+						break;
+				}
 
-				yield return new WaitForSeconds(tutorialClip.length + 0.5f);
+				int currentNoise = 0;
+				while (currentNoise < noises.Count) {
+					tutorialSource.PlayOneShot(noises[currentNoise]);
+					yield return new WaitForSeconds(noises[currentNoise].length + 0.2f);
+
+					currentNoise++;
+				}
+
+				EasyTTSUtil.SpeechAdd(commandText, 1f, 0.6f, 1f);
+
+				if (i == 'I') {
+					yield return new WaitForSeconds(10f);
+				}
+				else {
+					yield return new WaitForSeconds(2f);
+				}
 			}
         }
 
