@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public enum gesture {NONE, DOUBLE, LEFT, RIGHT, UP, DOWN};
+public enum gesture {NONE, DOUBLE, LEFT, RIGHT, UP, DOWN, HOLD};
 
 public class myInput : MonoBehaviour {
 
@@ -21,12 +21,15 @@ public class myInput : MonoBehaviour {
 
     // private variables
     bool swipe;
+    bool hold;
     Vector2 startPos;
     float minDist = 100;
     gesture dir = gesture.NONE;
     myPhase phase = myPhase.NONE;
     input t = new input();
     float timeForDoubleTap = 0.150f;
+    public float touchLength = 1.25f;
+    float startTime;
 
 
 	// Update is called once per frame
@@ -40,15 +43,22 @@ public class myInput : MonoBehaviour {
             // init values when touch begins
             case myPhase.BEGAN:
                 swipe = false;
+                hold = true;
                 startPos = t.position;
+                startTime = Time.time;
                 dir = gesture.NONE;
                 break;
                 
             // check for possible type of touch while moving
             case myPhase.MOVED:
+                float time = Time.time - startTime;
+                if (hold && (time > touchLength)) {
+                    touch = gesture.HOLD;
+                }
                 gesture temp;
                 // check that its not a tap
                 if (Vector2.Distance(t.position, startPos) > minDist) {
+                    hold = false;
                     // determine what direction touch is in
                     if (Mathf.Abs(t.position.x - startPos.x) > Mathf.Abs(t.position.y - startPos.y)) {
                         if (t.position.x - startPos.x > 0) {
@@ -81,13 +91,17 @@ public class myInput : MonoBehaviour {
 
             // determine type of touch as touch ends
             case myPhase.ENDED:
-                if (swipe) {
+                
+                if (touch == gesture.HOLD) {
+                    touch = gesture.NONE;
+                } else if (swipe) {
                     touch = dir;
                 } else if (t.tapCount > 1) {
                     touch = gesture.DOUBLE;
                 } else {
                     touch = gesture.NONE;
                 }
+                print(touch.ToString());
                 break;
             case myPhase.NONE:
                 touch = gesture.NONE;
@@ -104,6 +118,9 @@ public class myInput : MonoBehaviour {
             switch (mt.phase) {
                 case TouchPhase.Began:
                     phase = myPhase.BEGAN;
+                    break;
+                case TouchPhase.Stationary:
+                    phase = myPhase.MOVED;
                     break;
                 case TouchPhase.Moved:
                     phase = myPhase.MOVED;

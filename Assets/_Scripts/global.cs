@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Facebook.Unity;
+using System.IO;
 
 namespace Global {
 
@@ -32,6 +33,7 @@ namespace Global {
         public static int multiHighScore;
         public static List <KeyValuePair<string, int>> leaderboardScores;
         public static Dictionary< string, string > leaderboardNames;
+        public static Dictionary<string, Texture2D> leaderboardPics;
 
         public static int getHighScore() {
             if (mode == gameMode.single || mode == gameMode.tutorial) {
@@ -59,12 +61,18 @@ namespace Global {
         }
 
         static void getName(string id) {
-            FB.API("/" + id + "?fields=id,first_name", HttpMethod.GET, callBack);
+            FB.API("/" + id + "?fields=id,first_name,picture", HttpMethod.GET, callBack);
         }
 
         static void callBack(IResult result) {
             if (result.Error == null) {
                 leaderboardNames[result.ResultDictionary["id"].ToString()] = result.ResultDictionary["first_name"].ToString();
+                //MonoBehaviour.print(result.ResultDictionary["picture"]);
+                //MonoBehaviour.print( result.ResultDictionary["picture"]);
+                leaderboardPics[result.ResultDictionary["id"].ToString()] = result.ResultDictionary["picture"] as Texture2D;
+                Texture2D myTexture = result.ResultDictionary["picture"] as Texture2D;
+                System.IO.File.WriteAllBytes("_picture.png", myTexture.EncodeToPNG());
+                
             } else {
                 Debug.Log(result.Error);
             }
@@ -75,6 +83,7 @@ namespace Global {
             yield return myApi.S.StartCoroutine(myApi.S.leaderboard());
             leaderboardScores = new List<KeyValuePair<string, int>>();
             leaderboardNames = new Dictionary<string, string>();
+            leaderboardPics = new Dictionary<string, Texture2D>();
             for (int i = 0; i < myApi.highScores.Count; i++) {
                 int x = 0;
                 if (int.TryParse(myApi.highScores[i]["score"], out x)) {
@@ -82,7 +91,7 @@ namespace Global {
                 } else {
                     leaderboardScores.Add(new KeyValuePair<string, int>(myApi.highScores[i]["user_id"], -1));
                 }
-                
+                //MonoBehaviour.print(i + ": " + myApi.highScores[i]["user_id"]);
                 getName(myApi.highScores[i]["user_id"]);
             }
             //sort leaderboard

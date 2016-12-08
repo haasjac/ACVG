@@ -15,6 +15,7 @@ public class leaderboards : MonoBehaviour {
 
     public List<Text> leaderboardNames = new List<Text>();
     public List<Text> leaderboardScores = new List<Text>();
+    public List<Image> leaderboardPics = new List<Image>();
 
     string userName;
 
@@ -25,6 +26,7 @@ public class leaderboards : MonoBehaviour {
         for (int i = 0; i < leaderboardNames.Count; i++) {
             leaderboardNames[i].text = "";
             leaderboardScores[i].text = "";
+            leaderboardPics[i].sprite = null;
         }
 
         /*for (int i = 0; i < swipeIt.leaderboardNames.Count; i++) {
@@ -58,7 +60,12 @@ public class leaderboards : MonoBehaviour {
         print("Count: " + swipeIt.leaderboardNames.Count);
         for (int i = 0; i < swipeIt.leaderboardNames.Count; i++) {
             leaderboardNames[i].text = swipeIt.leaderboardNames[swipeIt.leaderboardScores[i].Key];
+            //print(i + ": " + swipeIt.leaderboardNames[swipeIt.leaderboardScores[i].Key]);
             leaderboardScores[i].text = swipeIt.leaderboardScores[i].Value.ToString();
+            if (swipeIt.leaderboardPics[swipeIt.leaderboardScores[i].Key] = null) {
+                print("wat");
+            }
+            leaderboardPics[i].sprite = Sprite.Create(swipeIt.leaderboardPics[swipeIt.leaderboardScores[i].Key], new Rect(0, 0, 128, 128), new Vector2()); ;
         }
     }
 
