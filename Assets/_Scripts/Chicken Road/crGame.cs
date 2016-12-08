@@ -131,7 +131,7 @@ public class crGame : MonoBehaviour {
 						break;
 					case 'V':
 						noises.Add(racecar.GetComponent<obstacle>().getSound());
-						commandText = "Swipe up or down to avoid hitting the racecar";
+						commandText = "Swipe up or down to avoid hitting the race car";
 						break;
 					default:
 						break;

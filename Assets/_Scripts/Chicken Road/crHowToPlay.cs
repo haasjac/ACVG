@@ -19,6 +19,8 @@ public class crHowToPlay : MonoBehaviour {
 	}
 
 	public void touchTutorialButton(int id) {
+		noiseSource.Stop();
+
 		List<AudioClip> noises = new List<AudioClip>();
 		string commandText = "";
 
@@ -57,7 +59,7 @@ public class crHowToPlay : MonoBehaviour {
 				break;
 			case 8:
 				noises.Add(racecar.GetComponent<obstacle>().getSound());
-				commandText = "Swipe up or down to avoid hitting the racecar";
+				commandText = "Swipe up or down to avoid hitting the race car";
 				break;
 			default:
 				break;
