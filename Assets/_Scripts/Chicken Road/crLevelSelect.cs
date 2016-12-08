@@ -32,7 +32,9 @@ public class crLevelSelect : MonoBehaviour {
 
 		// 0 == free play, 1-9 == levels
 		// free play and level 1 unlocked by default
-		for(int i = chickenRoad.highestLevelBeaten + 1; i <= 9; i++) {
+
+		// locks levels
+		for(int i = chickenRoad.highestLevelBeaten + 2; i <= 9; i++) {
 			buttons[i].GetComponentInChildren<Text>().text = lockedText + i;
 			buttons[i].GetComponent<Image>().color = Color.red;
 			buttons[i].GetComponent<Button>().colors = temp;

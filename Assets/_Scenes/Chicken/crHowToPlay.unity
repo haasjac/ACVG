@@ -210,16 +210,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b2b59de247d428ea46304125db4ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noiseSource: {fileID: 0}
-  chicken: {fileID: 0}
-  ducks: {fileID: 0}
-  goose: {fileID: 0}
-  fence: {fileID: 0}
-  deer: {fileID: 0}
-  forkLeft: {fileID: 0}
-  forkRight: {fileID: 0}
-  parrot: {fileID: 0}
-  racecar: {fileID: 0}
+  noiseSource: {fileID: 637473999}
+  chicken: {fileID: 1000013629663794, guid: 298bff416148062449a206829f516ca1, type: 2}
+  ducks: {fileID: 1000013733025516, guid: 4585b9cb8a1dd4a0f83ae4eaab745b8d, type: 2}
+  goose: {fileID: 1000014088710586, guid: cac6948ee73764a059ec42cb89595671, type: 2}
+  fence: {fileID: 1000014234626206, guid: 86c02050ee4814007a25d2b742710f31, type: 2}
+  deer: {fileID: 1000011742481380, guid: 07970ea2efa3c46dd8ca9714b4c019d5, type: 2}
+  forkLeft: {fileID: 1000010669108150, guid: eba62e7b893304242b2bc0f2f91946a8, type: 2}
+  forkRight: {fileID: 1000010133040992, guid: 8e96b149c448c44aebe0b9da6e72e65b, type: 2}
+  parrot: {fileID: 1000012511934672, guid: 4d1171f2df5fc465ebe0b4f90d84c6c6, type: 2}
+  racecar: {fileID: 1000012082002168, guid: c513601091f394e3b948ca7239d40500, type: 2}
 --- !u!114 &194269193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,7 +244,7 @@ MonoBehaviour:
   - {fileID: 734968111}
   - {fileID: 971974287}
   waitTimes:
-  - 12
+  - 13
   - 4
   - 4
   - 4
@@ -791,6 +791,109 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 575317394}
+--- !u!1 &637473998
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 637474000}
+  - 82: {fileID: 637473999}
+  m_Layer: 0
+  m_Name: Audio Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &637473999
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 637473998}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!4 &637474000
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 637473998}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 164, y: 139.64867, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
 --- !u!1 &642582228
 GameObject:
   m_ObjectHideFlags: 0

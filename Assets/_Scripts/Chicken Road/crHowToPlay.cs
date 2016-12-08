@@ -78,11 +78,9 @@ public class crHowToPlay : MonoBehaviour {
 		yield return new WaitForSeconds(2f);
 	}
 
-/*
 	public void touchReturnToMenuButton() {
 		SceneManager.LoadScene("crMenu");
 	}
-*/
 
 /*
 		public void touchTutorialButton(int id) {

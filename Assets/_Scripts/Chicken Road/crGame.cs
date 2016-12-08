@@ -431,7 +431,8 @@ public class crGame : MonoBehaviour {
 	}
 
 	void unlockNextLevel(string levelTitle) {
-		int id = int.Parse(levelTitle.Substring(6)) + 1;
+		int id = int.Parse(levelTitle.Substring(6));
+
         if (id > chickenRoad.highestLevelBeaten) {
             chickenRoad.highestLevelBeaten = id;
             myApi.S.StartCoroutine(myApi.S.postLevel(id, true));
