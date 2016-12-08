@@ -2586,6 +2586,12 @@ MonoBehaviour:
   - {fileID: 928112446}
   - {fileID: 1029288288}
   - {fileID: 386017038}
+  leaderboardPics:
+  - {fileID: 471328956}
+  - {fileID: 1182342545}
+  - {fileID: 445776434}
+  - {fileID: 1203197304}
+  - {fileID: 1083180461}
 --- !u!114 &2138649448
 MonoBehaviour:
   m_ObjectHideFlags: 0
