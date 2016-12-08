@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.15686275, g: 0, b: 1, a: 0.19607843}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -227,8 +227,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Swipe it is an interactive audio game where you will translate sounds\r
-    to various gestures in rhythm with an increasingly fast beat!\n"
+  m_Text: In Swipe It, be quick and follow the commands. Play until you mess up or
+    play with friends in local multiplayer!
 --- !u!222 &239804810
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -292,10 +292,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_NormalColor: {r: 0.078431375, g: 0, b: 0.49019608, a: 1}
+    m_HighlightedColor: {r: 0.15686275, g: 0, b: 1, a: 1}
+    m_PressedColor: {r: 1, g: 0.98039216, b: 0.09803922, a: 1}
+    m_DisabledColor: {r: 0.15686275, g: 0, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -337,7 +337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.15686275, g: 0, b: 1, a: 0.5882353}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -369,7 +369,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41b0881bea009a64483666ac114f79b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loginAlert: {fileID: 0}
 --- !u!1 &562005344
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,8 +436,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\rChicken Road is a 3-D audio game where the user will listen to audio\r\nqueues
-    denoting the location of cumbersome chickens laced on your two\r lane road."
+  m_Text: In Chicken road, avoid farm obstacles on this crazy dirt road. Try to beat
+    all the levels!
 --- !u!222 &562005347
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -685,18 +684,18 @@ MonoBehaviour:
   am: {fileID: 0}
   sceneComponents:
   - {fileID: 689830542}
-  - {fileID: 689830541}
   - {fileID: 1514094306}
   - {fileID: 239804808}
   - {fileID: 304733385}
   - {fileID: 562005345}
+  - {fileID: 689830541}
   waitTimes:
   - 3
   - 3
-  - 3
   - 6
   - 3
   - 6
+  - 3
 --- !u!1 &1180184878
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,10 +901,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_NormalColor: {r: 0.078431375, g: 0, b: 0.49019608, a: 1}
+    m_HighlightedColor: {r: 0.15686275, g: 0, b: 1, a: 1}
+    m_PressedColor: {r: 1, g: 0.98039216, b: 0.09803922, a: 1}
+    m_DisabledColor: {r: 0.15686275, g: 0, b: 1, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -947,7 +946,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.15686275, g: 0, b: 1, a: 0.5882353}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -979,7 +978,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41b0881bea009a64483666ac114f79b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loginAlert: {fileID: 0}
 --- !u!1 &1515676093
 GameObject:
   m_ObjectHideFlags: 0
@@ -1178,7 +1176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.15686275, g: 0, b: 1, a: 0.19607843}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

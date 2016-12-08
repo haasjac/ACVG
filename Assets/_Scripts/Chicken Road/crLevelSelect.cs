@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using Global;
@@ -12,6 +13,7 @@ public class crLevelSelect : MonoBehaviour {
 	myInput input;
 	int swipeUpCount = 0;
 	public List<string> defaultLevels;
+	public List<GameObject> buttons;
 	public AudioSource honkSource;
 	public AudioClip honk;
 	float lastSwipeUp;
@@ -19,6 +21,19 @@ public class crLevelSelect : MonoBehaviour {
     // Use this for initialization
 	void Start () {
 		input = GetComponent<myInput>();
+
+		// setting locked levels for visual people
+		string lockedText = "Locked - Level ";
+		ColorBlock temp = buttons[0].GetComponent<Button>().colors;
+		temp.colorMultiplier = 5f;
+
+		// 0 == free play, 1-9 == levels
+		// free play and level 1 unlocked by default
+		for(int i = chickenRoad.highestLevelBeaten + 2; i <= 9; i++) {
+			buttons[i].GetComponentInChildren<Text>().text = lockedText + i;
+			buttons[i].GetComponent<Image>().color = Color.red;
+			buttons[i].GetComponent<Button>().colors = temp;
+		}
 	}
 	
 	// Update is called once per frame
@@ -47,6 +62,7 @@ public class crLevelSelect : MonoBehaviour {
 	}
 
 	public void touchFreePlayButton() {
+		chickenRoad.tutorials = "none";
 		loadLevel(difficulty[2], "Free Play", "FREEPLAY");
 	}
 
