@@ -96,7 +96,7 @@ public class crGame : MonoBehaviour {
 				List<AudioClip> noises = new List<AudioClip>();
 				string commandText = "";
 
-				switch (i) {
+				switch (tutorials[i]) {
 					case 'I':
 						commandText = "Welcome to Chicken Road! Your goal is to dodge the obstacles. You will hear a sound, and you must respond with the correct gesture. Beat a level by earning 60% or higher to unlock the next level. You can also try free play so the fun never ends!";
 						break;
