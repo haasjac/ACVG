@@ -28,7 +28,7 @@ public class myInput : MonoBehaviour {
     myPhase phase = myPhase.NONE;
     input t = new input();
     float timeForDoubleTap = 0.150f;
-    public float touchLength = 2;
+    public float touchLength = 1.25f;
     float startTime;
 
 
