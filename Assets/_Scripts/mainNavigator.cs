@@ -13,10 +13,7 @@ public class mainNavigator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if (!IsVoiceOverOn.isVoiceOverOn()) {
-			// empty
-		}
-		else {
+		//if (IsVoiceOverOn.isVoiceOverOn()) {
 			am = gameObject.AddComponent<AccessibilityMode> () as AccessibilityMode;
 	        //am = GetComponent<AccessibilityMode>();
 	        am.border = border;
@@ -31,7 +28,7 @@ public class mainNavigator : MonoBehaviour {
 			}
 
 			am.runAccessibilityMode(sceneObjects);
-		}
+		//}
 	}
 	
 	// Update is called once per frame

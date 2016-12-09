@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,35 +11,42 @@ public struct NarratableObject {
 
 public class AccessibilityMode : myInput {
 
-    public Image border;
-
     private const float VOLUME = 1f;
     private const float RATE = 0.6f;
     private const float PITCH = 1f;
 
+    public Image border;
+
     private Component currentComponent = null;
-    private string currentType = "";
     private bool swipeLeft = false;
     private bool swipeRight = false;
+    private bool loop = false;
 
-    // Call this function in Start()
-    // Order elements of sceneComponents array in order you want
-    // them to be read aloud by Accessibility Mode
     public void runAccessibilityMode(NarratableObject[] sceneObjects) {
         StartCoroutine(run(sceneObjects));
     }
 
     private IEnumerator run(NarratableObject[] sceneObjects) {
+        while (!IsVoiceOverOn.isVoiceOverOn()) {
+            yield return null;
+        }
+
         disableSceneComponents(sceneObjects);
-        while (accessibility.getAccessibility()) {
+        while (true) {
+            if (!IsVoiceOverOn.isVoiceOverOn()) {
+                enableSceneComponents(sceneObjects);
+            }
+
+            while (!IsVoiceOverOn.isVoiceOverOn()) {
+                yield return null;
+            }
+
             int currentIndex = 0;
             while (currentIndex < sceneObjects.Length) {
                 NarratableObject narratableObject = sceneObjects[currentIndex];
 
                 currentComponent = narratableObject.component;
                 float waitTime = narratableObject.waitTime;
-
-                currentType = currentComponent.GetType().ToString();
 
                 Text description = currentComponent.GetComponentInChildren<Text>();
 
@@ -52,19 +59,20 @@ public class AccessibilityMode : myInput {
                 }
 
                 float t = 0.0f;
-                while (t <= waitTime && (!swipeLeft && !swipeRight)) {
+                while (t <= waitTime && (!swipeLeft && !swipeRight) && IsVoiceOverOn.isVoiceOverOn()) {
                     t += Time.deltaTime;    
                     yield return null;
                 }
 
-                disableComponent(narratableObject.component);
+                if (loop || (swipeLeft || swipeRight)) {
+                    disableComponent(narratableObject.component);
+                }
 
                 currentIndex = updateIndex(currentIndex, sceneObjects.Length);
             }
         }
     }
 
-    // Call this function in update()
     public void check() {
         if (touch == gesture.RIGHT) {
             EasyTTSUtil.StopSpeech();
@@ -75,9 +83,18 @@ public class AccessibilityMode : myInput {
             EasyTTSUtil.StopSpeech();
             swipeLeft = true;
         }
-        
+
         if (touch == gesture.DOUBLE) {
-        	pressButton();
+            EasyTTSUtil.StopSpeech();
+            pressButton();
+        }
+
+        if (touch == gesture.UP) {
+            loop = false; 
+        }
+
+        if (touch == gesture.DOWN) {
+            loop = true; 
         }
     }
 
@@ -87,7 +104,7 @@ public class AccessibilityMode : myInput {
             if (currentIndex < 0) {
                 currentIndex = max - 1; 
             }
-        } else {
+        } else if (swipeRight || loop) {
             ++currentIndex;
         }
 
@@ -97,6 +114,12 @@ public class AccessibilityMode : myInput {
         return currentIndex;
     }
 
+    private void enableSceneComponents(NarratableObject[] sceneComponents) {
+        foreach (NarratableObject narratableObject in sceneComponents) {
+            enableComponent(narratableObject.component);
+        }
+    }
+
     private void disableSceneComponents(NarratableObject[] sceneComponents) {
         foreach (NarratableObject narratableObject in sceneComponents) {
             disableComponent(narratableObject.component);
@@ -104,19 +127,29 @@ public class AccessibilityMode : myInput {
     }
 
     private void enableComponent(Component component) {
-        isComponentInteractable(component, true); 
+        isComponetEnabled(component, true); 
     }
 
     private void disableComponent(Component component) {
-        isComponentInteractable(component, false);
+        isComponetEnabled(component, false);
     }
 
-    private void isComponentInteractable(Component component, bool interactable) {
+    private void isComponetEnabled(Component component, bool interactable) {
         Selectable selectable = component.GetComponentInChildren<Selectable>();
         if (selectable != null) {
             selectable.interactable = interactable;
+            Text text = component.GetComponentInChildren<Text>();
+            if (text.text == "Go Back") {
+                border.enabled = interactable;
+                border.transform.SetParent(text.transform, false);
+                border.rectTransform.sizeDelta = new Vector2(20, 20);
+            }
         } else {
-            Debug.Log("Accessibility Mode given a non-selectable object.");
+            border.enabled = interactable;
+            if (interactable) {
+                border.transform.SetParent(component.transform, false);
+                border.rectTransform.sizeDelta = new Vector2(20, 20);
+            }
         }
     }
 
