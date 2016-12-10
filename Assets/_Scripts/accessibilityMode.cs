@@ -43,6 +43,10 @@ public class AccessibilityMode : myInput {
 
             int currentIndex = 0;
             while (currentIndex < sceneObjects.Length) {
+                if (!IsVoiceOverOn.isVoiceOverOn()) {
+                    break; 
+                }
+
                 NarratableObject narratableObject = sceneObjects[currentIndex];
 
                 currentComponent = narratableObject.component;
@@ -64,7 +68,7 @@ public class AccessibilityMode : myInput {
                     yield return null;
                 }
 
-                if (loop || (swipeLeft || swipeRight)) {
+                if (loop || (swipeLeft || swipeRight) || !IsVoiceOverOn.isVoiceOverOn()) {
                     disableComponent(narratableObject.component);
                 }
 
