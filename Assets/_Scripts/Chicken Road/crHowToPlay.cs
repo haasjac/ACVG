@@ -33,7 +33,7 @@ public class crHowToPlay : MonoBehaviour {
 
 		switch(id) {
 			case 0:
-				commandText = "Welcome to Chicken Road! Your goal is to dodge the obstacles. You will hear a sound, and you must respond with the correct gesture. Beat a level by earning 60% or higher to unlock the next level. You can also try free play so the fun never ends!";
+				commandText = "Welcome to Chicken Road! Your goal is to dodge the obstacles. You will hear a sound, and you must respond with the correct gesture. Beat a level by dodging 60% or more obstacles. You can also try free play so the fun never ends!";
 				break;
 			case 1:
 				noises.Add(chicken.GetComponent<obstacle>().getSound());

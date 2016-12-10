@@ -27,7 +27,9 @@ public class crGame : MonoBehaviour {
 	public AudioSource engine;
 	public AudioSource obstacleSound;
 	public AudioSource carSound;
+	public AudioSource answerSource;
 	public AudioClip badSound;
+	public AudioClip correctSound;
 
     myInput input;
     string levelObstacles;
@@ -98,7 +100,7 @@ public class crGame : MonoBehaviour {
 
 				switch (tutorials[i]) {
 					case 'I':
-						commandText = "Welcome to Chicken Road! Your goal is to dodge the obstacles. You will hear a sound, and you must respond with the correct gesture. Beat a level by earning 60% or higher to unlock the next level. You can also try free play so the fun never ends!";
+						commandText = "Welcome to Chicken Road! Your goal is to dodge the obstacles. You will hear a sound, and you must respond with the correct gesture. Beat a level by dodging 60% or more of the obstacles. You can also try free play so the fun never ends!";
 						break;
 					case 'C':
 						noises.Add(chicken.GetComponent<obstacle>().getSound());
@@ -174,6 +176,7 @@ public class crGame : MonoBehaviour {
 	void Update () {
         // wait for command and input, otherwise do nothing
 		if (input.touch != gesture.NONE) {
+			obstacleSound.Stop();
 			
 			// check to quit
 			if (input.touch == gesture.HOLD) {
@@ -190,30 +193,33 @@ public class crGame : MonoBehaviour {
 
 					correctInputs++;
 
+
 					switch(input.touch) {
 						case gesture.UP:
-							carSound.PlayOneShot(playerVehicle.GetComponent<playerVehicle>().SpeedUp());
+							playerVehicle.GetComponent<playerVehicle>().SpeedUp();
 							break;
 						case gesture.DOWN:
-							carSound.PlayOneShot(playerVehicle.GetComponent<playerVehicle>().SlowDown());
+							playerVehicle.GetComponent<playerVehicle>().SlowDown();
 							break;
 						case gesture.LEFT:
-							carSound.PlayOneShot(playerVehicle.GetComponent<playerVehicle>().Swerve("left"));
+							playerVehicle.GetComponent<playerVehicle>().Swerve("left");
 							break;
 						case gesture.RIGHT:
-							carSound.PlayOneShot(playerVehicle.GetComponent<playerVehicle>().Swerve("right"));
+							playerVehicle.GetComponent<playerVehicle>().Swerve("right");
 							break;
 						case gesture.DOUBLE:
-							carSound.PlayOneShot(playerVehicle.GetComponent<playerVehicle>().Honk());
+							playerVehicle.GetComponent<playerVehicle>().Honk();
 							break;
 						default:
 							// ???
 							break;
 					}
+						
+					answerSource.PlayOneShot(correctSound);
 				}
 				else {
 					// mistake made, hit obstacle
-					carSound.PlayOneShot(badSound);
+					answerSource.PlayOneShot(badSound);
 				}
 
 				Destroy(displayedObstacle);
@@ -255,7 +261,7 @@ public class crGame : MonoBehaviour {
             if (checkForCommand) {
                 checkForCommand = false;
                 Destroy(displayedObstacle);
-				carSound.PlayOneShot(badSound);
+				answerSource.PlayOneShot(badSound);
             }
 
             position++;
