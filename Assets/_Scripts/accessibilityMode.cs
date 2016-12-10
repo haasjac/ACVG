@@ -45,6 +45,8 @@ public class AccessibilityMode : myInput {
             while (currentIndex < sceneObjects.Length) {
                 if (!IsVoiceOverOn.isVoiceOverOn()) {
                     break; 
+                } else {
+                    disableSceneComponents(sceneObjects);
                 }
 
                 NarratableObject narratableObject = sceneObjects[currentIndex];
@@ -144,7 +146,7 @@ public class AccessibilityMode : myInput {
             selectable.interactable = interactable;
             Text text = component.GetComponentInChildren<Text>();
             if (text.text == "Go Back") {
-                border.enabled = interactable;
+                border.enabled = IsVoiceOverOn.isVoiceOverOn();
                 border.transform.SetParent(text.transform, false);
                 border.rectTransform.sizeDelta = new Vector2(20, 20);
             }
