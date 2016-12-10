@@ -29,8 +29,8 @@ public class leaderboards : MonoBehaviour {
         }
 
         for (int i = 0; i < swipeIt.leaderboardScores.Count; i++) {
-            leaderboardNames[i].text = swipeIt.leaderboardNames[swipeIt.leaderboardScores[i].Key];
-            leaderboardScores[i].text = swipeIt.leaderboardScores[i].Value.ToString();
+            leaderboardNames[i].text = swipeIt.leaderboardScores[i].name;
+            leaderboardScores[i].text = swipeIt.leaderboardScores[i].score.ToString();
         }
 
         if (PlayerPrefs.HasKey("leaderboard_mode"))
@@ -55,9 +55,9 @@ public class leaderboards : MonoBehaviour {
     IEnumerator updateLeaderboard() {
         yield return StartCoroutine(swipeIt.updateLeaderboard());
         yield return new WaitForSeconds(3);
-        for (int i = 0; i < swipeIt.leaderboardNames.Count; i++) {
-            leaderboardNames[i].text = swipeIt.leaderboardNames[swipeIt.leaderboardScores[i].Key];
-            leaderboardScores[i].text = swipeIt.leaderboardScores[i].Value.ToString();
+        for (int i = 0; i < swipeIt.leaderboardScores.Count; i++) {
+            leaderboardNames[i].text = swipeIt.leaderboardScores[i].name;
+            leaderboardScores[i].text = swipeIt.leaderboardScores[i].score.ToString();
         }
         functions.save();
     }
