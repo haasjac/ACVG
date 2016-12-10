@@ -146,7 +146,11 @@ public class AccessibilityMode : myInput {
             selectable.interactable = interactable;
             Text text = component.GetComponentInChildren<Text>();
             if (text.text == "Go Back") {
-                border.enabled = IsVoiceOverOn.isVoiceOverOn();
+                if (IsVoiceOverOn.isVoiceOverOn() && interactable) {
+                    border.enabled = true; 
+                } else {
+                    border.enabled = false; 
+                }
                 border.transform.SetParent(text.transform, false);
                 border.rectTransform.sizeDelta = new Vector2(20, 20);
             }
