@@ -792,9 +792,9 @@ MonoBehaviour:
   waitTimes:
   - 3
   - 3
-  - 6
+  - 8
   - 3
-  - 6
+  - 8
   - 3
   border: {fileID: 1475077201}
 --- !u!1 &1180184878
