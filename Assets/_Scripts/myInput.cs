@@ -101,7 +101,6 @@ public class myInput : MonoBehaviour {
                 } else {
                     touch = gesture.NONE;
                 }
-                print(touch.ToString());
                 break;
             case myPhase.NONE:
                 touch = gesture.NONE;
