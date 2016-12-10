@@ -126,7 +126,7 @@ namespace Global {
             PlayerPrefs.SetInt("easyTutorialPlayed", (chickenRoad.easyTutorialPlayed ? 1 : 0));
             PlayerPrefs.SetInt("mediumTutorialPlayed", (chickenRoad.mediumTutorialPlayed ? 1 : 0));
             PlayerPrefs.SetInt("hardTutorialPlayed", (chickenRoad.hardTutorialPlayed ? 1 : 0));
-            try {
+            /*try {
                 for (int i = 0; i < swipeIt.leaderboardScores.Count; i++) {
                     MonoBehaviour.print("saved");
                     PlayerPrefs.SetString("leaderboardID" + i, swipeIt.leaderboardScores[i].Key);
@@ -135,7 +135,7 @@ namespace Global {
                 }
             } catch (System.InvalidCastException e) {
                 MonoBehaviour.print(e);
-            }
+            }*/
             PlayerPrefs.Save();
         }
 
@@ -184,12 +184,12 @@ namespace Global {
                 facebook.name = PlayerPrefs.GetString("facebookName");
             }
 
-            for (int i = 0; i < 5; i++) {
+            /*for (int i = 0; i < 5; i++) {
                 if (PlayerPrefs.HasKey("leaderboardID" + i) && PlayerPrefs.HasKey("leaderboardScores" + i) && PlayerPrefs.HasKey("leaderboardNames" + i)) {
                     swipeIt.leaderboardScores.Add (new KeyValuePair<string, int> (PlayerPrefs.GetString("leaderboardID" + i), PlayerPrefs.GetInt("leaderboardScores" + i)));
                     swipeIt.leaderboardNames.Add(PlayerPrefs.GetString("leaderboardID" + i), PlayerPrefs.GetString("leaderboardNames" + i));
                 }
-            }
+            }*/
         }
     }
 }
