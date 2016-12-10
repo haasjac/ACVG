@@ -24,7 +24,6 @@ public class FBscript : MonoBehaviour {
         } else {
             FB.Init(SetInit, OnHideUnity);
         }
-        
     }
 
     void SetInit() {
@@ -69,6 +68,19 @@ public class FBscript : MonoBehaviour {
 
     void FBlogout() {
         FB.LogOut();
+        if (PlayerPrefs.HasKey("loggedOutSwipeIt")) {
+            swipeIt.singleHighScore = PlayerPrefs.GetInt("loggedOutSwipeIt");
+        } else {
+            swipeIt.singleHighScore = 0;
+        }
+        if (PlayerPrefs.HasKey("loggedOutChickenRoad")) {
+            chickenRoad.highestLevelBeaten = PlayerPrefs.GetInt("loggedOutChickenRoad");
+        } else {
+            chickenRoad.highestLevelBeaten = 0;
+        }
+        swipeItScore.text = swipeIt.singleHighScore.ToString();
+        chickenRoadScore.text = chickenRoad.highestLevelBeaten.ToString();
+        functions.save();
         DealWithFBMenus(FB.IsLoggedIn);
     }
 
@@ -82,6 +94,8 @@ public class FBscript : MonoBehaviour {
                 Debug.Log("FB is logged in");
                 print("userID: " + AccessToken.CurrentAccessToken.UserId);
                 facebook.ID = AccessToken.CurrentAccessToken.UserId;
+                PlayerPrefs.SetInt("loggedOutSwipeIt", swipeIt.singleHighScore);
+                PlayerPrefs.SetInt("loggedOutChickenRoad", chickenRoad.highestLevelBeaten);
                 StartCoroutine(user());
             } else {
                 Debug.Log("FB is not logged in");
@@ -97,9 +111,8 @@ public class FBscript : MonoBehaviour {
         if (isLoggedIn) {
 
             FB.API("/me?fields=first_name", HttpMethod.GET, DisplayUsername);
-            FB.API("/me?fields=picture", HttpMethod.GET, DisplayProfilePic);
+            FB.API("/me/picture?type=square&height=128&width=128", HttpMethod.GET, DisplayProfilePic);
             logButtonText.text = "Log Out";
-            ///picture?type=square&height=128&width=128
 
         } else {
             DialogUsername.text = "Welcome!";
@@ -136,7 +149,7 @@ public class FBscript : MonoBehaviour {
 
         if (result.Texture != null) {
             DialogProfilePic.sprite = Sprite.Create(result.Texture, new Rect(0, 0, 128, 128), new Vector2());
-
+            //System.IO.File.WriteAllBytes("_picture.png", result.Texture.EncodeToPNG());
         }
 
     }

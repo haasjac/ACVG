@@ -61,22 +61,20 @@ namespace Global {
         }
 
         static void getName(string id) {
-            FB.API("/" + id + "?fields=id,first_name,picture", HttpMethod.GET, callBack);
+            FB.API("/" + id + "?fields=id,first_name", HttpMethod.GET, callBack);
+        }
+
+        static void you(IGraphResult result) {
+            MonoBehaviour.print(result.Texture.name);
+            
         }
 
         static void callBack(IResult result) {
             if (result.Error == null) {
-                leaderboardNames[result.ResultDictionary["id"].ToString()] = result.ResultDictionary["first_name"].ToString();
-                //MonoBehaviour.print(result.ResultDictionary["picture"]);
-                //MonoBehaviour.print( result.ResultDictionary["picture"]);
-                leaderboardPics[result.ResultDictionary["id"].ToString()] = result.ResultDictionary["picture"] as Texture2D;
-                Texture2D myTexture = result.ResultDictionary["picture"] as Texture2D;
-                System.IO.File.WriteAllBytes("_picture.png", myTexture.EncodeToPNG());
-                
+                leaderboardNames[result.ResultDictionary["id"].ToString()] = result.ResultDictionary["first_name"].ToString();                
             } else {
                 Debug.Log(result.Error);
             }
-            //MonoBehaviour.print(result.ResultDictionary["id"].ToString() + ": " + leaderboardNames[result.ResultDictionary["id"].ToString()]);
         }
 
         public static IEnumerator updateLeaderboard() {
@@ -91,14 +89,10 @@ namespace Global {
                 } else {
                     leaderboardScores.Add(new KeyValuePair<string, int>(myApi.highScores[i]["user_id"], -1));
                 }
-                //MonoBehaviour.print(i + ": " + myApi.highScores[i]["user_id"]);
                 getName(myApi.highScores[i]["user_id"]);
             }
             //sort leaderboard
             leaderboardScores.Sort((z, y) => y.Value.CompareTo(z.Value));
-            for (int i = 0; i < leaderboardScores.Count; i++) {
-                MonoBehaviour.print(leaderboardScores[i].Key + ": " + leaderboardScores[i].Value);
-            }
         }
     }
 
@@ -130,6 +124,12 @@ namespace Global {
             PlayerPrefs.SetInt("easyTutorialPlayed", (chickenRoad.easyTutorialPlayed ? 1 : 0));
             PlayerPrefs.SetInt("mediumTutorialPlayed", (chickenRoad.mediumTutorialPlayed ? 1 : 0));
             PlayerPrefs.SetInt("hardTutorialPlayed", (chickenRoad.hardTutorialPlayed ? 1 : 0));
+            for (int i = 0; i < swipeIt.leaderboardScores.Count; i++) {
+                MonoBehaviour.print("saved");
+                PlayerPrefs.SetString("leaderboardID" + i, swipeIt.leaderboardScores[i].Key);
+                PlayerPrefs.SetInt("leaderboardScores" + i, swipeIt.leaderboardScores[i].Value);
+                PlayerPrefs.SetString("leaderboardNames" + i, swipeIt.leaderboardNames[swipeIt.leaderboardScores[i].Key]); 
+            }
             PlayerPrefs.Save();
         }
 
@@ -176,6 +176,13 @@ namespace Global {
             }
             if (PlayerPrefs.HasKey("facebookName")) {
                 facebook.name = PlayerPrefs.GetString("facebookName");
+            }
+
+            for (int i = 0; i < 5; i++) {
+                if (PlayerPrefs.HasKey("leaderboardID" + i)) {
+                    swipeIt.leaderboardScores.Add (new KeyValuePair<string, int> (PlayerPrefs.GetString("leaderboardID" + i), PlayerPrefs.GetInt("leaderboardScores" + i)));
+                    swipeIt.leaderboardNames.Add(PlayerPrefs.GetString("leaderboardID" + i), PlayerPrefs.GetString("leaderboardNames" + i));
+                }
             }
         }
     }
