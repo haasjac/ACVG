@@ -49,7 +49,9 @@ namespace Global {
             if ((mode == gameMode.single || mode == gameMode.tutorial) && currentScore > singleHighScore) {
                 singleHighScore = currentScore;
                 functions.save();
-                myApi.S.StartCoroutine(myApi.S.postScore(singleHighScore));
+                if (FB.IsLoggedIn) {
+                    myApi.S.StartCoroutine(myApi.S.postScore(singleHighScore));
+                }
                 return true;
             } else if (mode == gameMode.multi && currentScore > multiHighScore) {
                 multiHighScore = currentScore;
@@ -124,11 +126,15 @@ namespace Global {
             PlayerPrefs.SetInt("easyTutorialPlayed", (chickenRoad.easyTutorialPlayed ? 1 : 0));
             PlayerPrefs.SetInt("mediumTutorialPlayed", (chickenRoad.mediumTutorialPlayed ? 1 : 0));
             PlayerPrefs.SetInt("hardTutorialPlayed", (chickenRoad.hardTutorialPlayed ? 1 : 0));
-            for (int i = 0; i < swipeIt.leaderboardScores.Count; i++) {
-                MonoBehaviour.print("saved");
-                PlayerPrefs.SetString("leaderboardID" + i, swipeIt.leaderboardScores[i].Key);
-                PlayerPrefs.SetInt("leaderboardScores" + i, swipeIt.leaderboardScores[i].Value);
-                PlayerPrefs.SetString("leaderboardNames" + i, swipeIt.leaderboardNames[swipeIt.leaderboardScores[i].Key]); 
+            try {
+                for (int i = 0; i < swipeIt.leaderboardScores.Count; i++) {
+                    MonoBehaviour.print("saved");
+                    PlayerPrefs.SetString("leaderboardID" + i, swipeIt.leaderboardScores[i].Key);
+                    PlayerPrefs.SetInt("leaderboardScores" + i, swipeIt.leaderboardScores[i].Value);
+                    PlayerPrefs.SetString("leaderboardNames" + i, swipeIt.leaderboardNames[swipeIt.leaderboardScores[i].Key]);
+                }
+            } catch (System.InvalidCastException e) {
+                MonoBehaviour.print(e);
             }
             PlayerPrefs.Save();
         }
