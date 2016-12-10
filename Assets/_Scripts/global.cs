@@ -61,22 +61,20 @@ namespace Global {
         }
 
         static void getName(string id) {
-            FB.API("/" + id + "?fields=id,first_name,picture", HttpMethod.GET, callBack);
+            FB.API("/" + id + "?fields=id,first_name", HttpMethod.GET, callBack);
+        }
+
+        static void you(IGraphResult result) {
+            MonoBehaviour.print(result.Texture.name);
+            
         }
 
         static void callBack(IResult result) {
             if (result.Error == null) {
-                leaderboardNames[result.ResultDictionary["id"].ToString()] = result.ResultDictionary["first_name"].ToString();
-                //MonoBehaviour.print(result.ResultDictionary["picture"]);
-                //MonoBehaviour.print( result.ResultDictionary["picture"]);
-                leaderboardPics[result.ResultDictionary["id"].ToString()] = result.ResultDictionary["picture"] as Texture2D;
-                Texture2D myTexture = result.ResultDictionary["picture"] as Texture2D;
-                System.IO.File.WriteAllBytes("_picture.png", myTexture.EncodeToPNG());
-                
+                leaderboardNames[result.ResultDictionary["id"].ToString()] = result.ResultDictionary["first_name"].ToString();                
             } else {
                 Debug.Log(result.Error);
             }
-            //MonoBehaviour.print(result.ResultDictionary["id"].ToString() + ": " + leaderboardNames[result.ResultDictionary["id"].ToString()]);
         }
 
         public static IEnumerator updateLeaderboard() {
@@ -91,14 +89,10 @@ namespace Global {
                 } else {
                     leaderboardScores.Add(new KeyValuePair<string, int>(myApi.highScores[i]["user_id"], -1));
                 }
-                //MonoBehaviour.print(i + ": " + myApi.highScores[i]["user_id"]);
                 getName(myApi.highScores[i]["user_id"]);
             }
             //sort leaderboard
             leaderboardScores.Sort((z, y) => y.Value.CompareTo(z.Value));
-            for (int i = 0; i < leaderboardScores.Count; i++) {
-                MonoBehaviour.print(leaderboardScores[i].Key + ": " + leaderboardScores[i].Value);
-            }
         }
     }
 

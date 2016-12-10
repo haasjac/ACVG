@@ -24,7 +24,6 @@ public class FBscript : MonoBehaviour {
         } else {
             FB.Init(SetInit, OnHideUnity);
         }
-        
     }
 
     void SetInit() {
@@ -97,9 +96,8 @@ public class FBscript : MonoBehaviour {
         if (isLoggedIn) {
 
             FB.API("/me?fields=first_name", HttpMethod.GET, DisplayUsername);
-            FB.API("/me?fields=picture", HttpMethod.GET, DisplayProfilePic);
+            FB.API("/me/picture?type=square&height=128&width=128", HttpMethod.GET, DisplayProfilePic);
             logButtonText.text = "Log Out";
-            ///picture?type=square&height=128&width=128
 
         } else {
             DialogUsername.text = "Welcome!";
@@ -136,7 +134,7 @@ public class FBscript : MonoBehaviour {
 
         if (result.Texture != null) {
             DialogProfilePic.sprite = Sprite.Create(result.Texture, new Rect(0, 0, 128, 128), new Vector2());
-
+            //System.IO.File.WriteAllBytes("_picture.png", result.Texture.EncodeToPNG());
         }
 
     }
