@@ -34,7 +34,7 @@ public class buttonNavigation : MonoBehaviour {
 			SceneManager.LoadScene("si_leaderboard");
 		}
 		else {
-			EasyTTSUtil.Stop();
+			EasyTTSUtil.StopSpeech();
 			EasyTTSUtil.SpeechAdd("You must be logged in to view the leaderboard.", 1f, 0.6f, 1f);
 		}
 	}
