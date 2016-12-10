@@ -75,6 +75,7 @@ public class crLevelSelect : MonoBehaviour {
 
     public void touchLevelButton(int levelId) {
 		chickenRoad.tutorials = "none";
+		EasyTTSUtil.Stop();
 
 		if (!chickenRoad.hacked && (levelId > chickenRoad.highestLevelBeaten + 1)) {
 			EasyTTSUtil.SpeechAdd("Level " + levelId + " is not unlocked. Pass level " + (levelId - 1) + " first.", 1f, 0.6f, 1f);
