@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using Global;
+using Facebook.Unity;
 
 public class buttonNavigation : MonoBehaviour {
 	// Use this for initialization
@@ -26,4 +28,14 @@ public class buttonNavigation : MonoBehaviour {
     public void touchAboutButton() {
         SceneManager.LoadScene("mainAbout");
     }
+
+	public void touchGlobalLeaderboardButton() {
+		if (FB.IsLoggedIn) {
+			SceneManager.LoadScene("si_leaderboard");
+		}
+		else {
+			EasyTTSUtil.Stop();
+			EasyTTSUtil.SpeechAdd("You must be logged in to view the leaderboard.", 1f, 0.6f, 1f);
+		}
+	}
 }
