@@ -682,11 +682,11 @@ MonoBehaviour:
   waitTimes:
   - 3
   - 3
-  - 5
+  - 8
   - 3
-  - 5
+  - 6
   - 3
-  - 10
+  - 13
   - 3
   border: {fileID: 1461239419}
 --- !u!1 &497114770
@@ -813,22 +813,22 @@ Prefab:
     - target: {fileID: 224000011263806088, guid: efa6aa8780f8a4a4fb43fd47d2cd7760,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 384
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224000011263806088, guid: efa6aa8780f8a4a4fb43fd47d2cd7760,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 512
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224000011263806088, guid: efa6aa8780f8a4a4fb43fd47d2cd7760,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 788
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 224000011263806088, guid: efa6aa8780f8a4a4fb43fd47d2cd7760,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 1044
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 224000011263806088, guid: efa6aa8780f8a4a4fb43fd47d2cd7760,
         type: 2}
