@@ -68,6 +68,19 @@ public class FBscript : MonoBehaviour {
 
     void FBlogout() {
         FB.LogOut();
+        if (PlayerPrefs.HasKey("loggedOutSwipeIt")) {
+            swipeIt.singleHighScore = PlayerPrefs.GetInt("loggedOutSwipeIt");
+        } else {
+            swipeIt.singleHighScore = 0;
+        }
+        if (PlayerPrefs.HasKey("loggedOutChickenRoad")) {
+            chickenRoad.highestLevelBeaten = PlayerPrefs.GetInt("loggedOutChickenRoad");
+        } else {
+            chickenRoad.highestLevelBeaten = 0;
+        }
+        swipeItScore.text = swipeIt.singleHighScore.ToString();
+        chickenRoadScore.text = chickenRoad.highestLevelBeaten.ToString();
+        functions.save();
         DealWithFBMenus(FB.IsLoggedIn);
     }
 
@@ -81,6 +94,8 @@ public class FBscript : MonoBehaviour {
                 Debug.Log("FB is logged in");
                 print("userID: " + AccessToken.CurrentAccessToken.UserId);
                 facebook.ID = AccessToken.CurrentAccessToken.UserId;
+                PlayerPrefs.SetInt("loggedOutSwipeIt", swipeIt.singleHighScore);
+                PlayerPrefs.SetInt("loggedOutChickenRoad", chickenRoad.highestLevelBeaten);
                 StartCoroutine(user());
             } else {
                 Debug.Log("FB is not logged in");

@@ -23,8 +23,8 @@ public class myApi : MonoBehaviour {
 
     public IEnumerator makeUser() {
         yield return StartCoroutine(POSTuser());
-        yield return StartCoroutine(POSThighScoreChickenRoad(chickenRoad.highestLevelBeaten, true));
-        yield return StartCoroutine(POSThighScoreSwipeIt(swipeIt.singleHighScore));
+        yield return StartCoroutine(POSThighScoreChickenRoad(0, true));
+        yield return StartCoroutine(POSThighScoreSwipeIt(0));
         yield return StartCoroutine(GETuserId());
     }
 
