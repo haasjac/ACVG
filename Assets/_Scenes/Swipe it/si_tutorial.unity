@@ -668,9 +668,9 @@ MonoBehaviour:
   - {fileID: 96237439}
   - {fileID: 1990907476}
   waitTimes:
-  - 4
-  - 2
-  - 2
+  - 5
+  - 3
+  - 3
   border: {fileID: 1812261408}
 --- !u!1001 &1812261407
 Prefab:
