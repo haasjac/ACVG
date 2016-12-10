@@ -4,6 +4,19 @@ using System.Collections.Generic;
 using Facebook.Unity;
 using System.IO;
 
+public class leaderboardEntry {
+
+    public leaderboardEntry(string i, int s, string n) {
+        id = i;
+        score = s;
+        name = n;
+    }
+
+    public string id;
+    public int score;
+    public string name;
+}
+
 namespace Global {
 
     public static class accessibility {
@@ -31,9 +44,8 @@ namespace Global {
 
         public static int singleHighScore;
         public static int multiHighScore;
-        public static List <KeyValuePair<string, int>> leaderboardScores;
-        public static Dictionary< string, string > leaderboardNames;
-        public static Dictionary<string, Texture2D> leaderboardPics;
+        public static List <leaderboardEntry> leaderboardScores;
+        //public static Dictionary< string, string > leaderboardNames;
 
         public static int getHighScore() {
             if (mode == gameMode.single || mode == gameMode.tutorial) {
@@ -73,7 +85,7 @@ namespace Global {
 
         static void callBack(IResult result) {
             if (result.Error == null) {
-                leaderboardNames[result.ResultDictionary["id"].ToString()] = result.ResultDictionary["first_name"].ToString();                
+                leaderboardScores.Find(x => x.id == result.ResultDictionary["id"].ToString()).name = result.ResultDictionary["first_name"].ToString();                
             } else {
                 Debug.Log(result.Error);
             }
@@ -81,20 +93,19 @@ namespace Global {
 
         public static IEnumerator updateLeaderboard() {
             yield return myApi.S.StartCoroutine(myApi.S.leaderboard());
-            leaderboardScores = new List<KeyValuePair<string, int>>();
-            leaderboardNames = new Dictionary<string, string>();
-            leaderboardPics = new Dictionary<string, Texture2D>();
+            leaderboardScores = new List<leaderboardEntry>();
+            //leaderboardNames = new Dictionary<string, string>();
             for (int i = 0; i < myApi.highScores.Count; i++) {
                 int x = 0;
                 if (int.TryParse(myApi.highScores[i]["score"], out x)) {
-                    leaderboardScores.Add(new KeyValuePair<string, int>(myApi.highScores[i]["user_id"], x));
+                    leaderboardScores.Add(new leaderboardEntry(myApi.highScores[i]["user_id"], x, ""));
                 } else {
-                    leaderboardScores.Add(new KeyValuePair<string, int>(myApi.highScores[i]["user_id"], -1));
+                    leaderboardScores.Add(new leaderboardEntry(myApi.highScores[i]["user_id"], -1, ""));
                 }
                 getName(myApi.highScores[i]["user_id"]);
             }
             //sort leaderboard
-            leaderboardScores.Sort((z, y) => y.Value.CompareTo(z.Value));
+            leaderboardScores.Sort((z, y) => y.score.CompareTo(z.score));
         }
     }
 
@@ -126,16 +137,16 @@ namespace Global {
             PlayerPrefs.SetInt("easyTutorialPlayed", (chickenRoad.easyTutorialPlayed ? 1 : 0));
             PlayerPrefs.SetInt("mediumTutorialPlayed", (chickenRoad.mediumTutorialPlayed ? 1 : 0));
             PlayerPrefs.SetInt("hardTutorialPlayed", (chickenRoad.hardTutorialPlayed ? 1 : 0));
-            /*try {
+            try {
                 for (int i = 0; i < swipeIt.leaderboardScores.Count; i++) {
                     MonoBehaviour.print("saved");
-                    PlayerPrefs.SetString("leaderboardID" + i, swipeIt.leaderboardScores[i].Key);
-                    PlayerPrefs.SetInt("leaderboardScores" + i, swipeIt.leaderboardScores[i].Value);
-                    PlayerPrefs.SetString("leaderboardNames" + i, swipeIt.leaderboardNames[swipeIt.leaderboardScores[i].Key]);
+                    PlayerPrefs.SetString("leaderboardID" + i, swipeIt.leaderboardScores[i].id);
+                    PlayerPrefs.SetInt("leaderboardScores" + i, swipeIt.leaderboardScores[i].score);
+                    PlayerPrefs.SetString("leaderboardNames" + i, swipeIt.leaderboardScores[i].name);
                 }
             } catch (System.InvalidCastException e) {
                 MonoBehaviour.print(e);
-            }*/
+            }
             PlayerPrefs.Save();
         }
 
@@ -144,8 +155,7 @@ namespace Global {
             accessibility.setAccessibility(true);
             swipeIt.singleHighScore = 0;
             swipeIt.multiHighScore = 0;
-            swipeIt.leaderboardScores = new List<KeyValuePair<string, int>>();
-            swipeIt.leaderboardNames = new Dictionary<string, string>();
+            swipeIt.leaderboardScores = new List<leaderboardEntry>();
             facebook.ID = "";
             facebook.name = "";
             chickenRoad.highestLevelBeaten = 0;
@@ -184,12 +194,11 @@ namespace Global {
                 facebook.name = PlayerPrefs.GetString("facebookName");
             }
 
-            /*for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 5; i++) {
                 if (PlayerPrefs.HasKey("leaderboardID" + i) && PlayerPrefs.HasKey("leaderboardScores" + i) && PlayerPrefs.HasKey("leaderboardNames" + i)) {
-                    swipeIt.leaderboardScores.Add (new KeyValuePair<string, int> (PlayerPrefs.GetString("leaderboardID" + i), PlayerPrefs.GetInt("leaderboardScores" + i)));
-                    swipeIt.leaderboardNames.Add(PlayerPrefs.GetString("leaderboardID" + i), PlayerPrefs.GetString("leaderboardNames" + i));
+                    swipeIt.leaderboardScores.Add(new leaderboardEntry(PlayerPrefs.GetString("leaderboardID" + i), PlayerPrefs.GetInt("leaderboardScores" + i), PlayerPrefs.GetString("leaderboardNames" + i)));
                 }
-            }*/
+            }
         }
     }
 }
