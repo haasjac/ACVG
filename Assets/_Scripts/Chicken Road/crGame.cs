@@ -103,35 +103,51 @@ public class crGame : MonoBehaviour {
 						commandText = "Welcome to Chicken Road! Your goal is to dodge the obstacles. You will hear a sound, and you must respond with the correct gesture. Beat a level by dodging 60% or more of the obstacles. You can also try free play so the fun never ends!";
 						break;
 					case 'C':
+						EasyTTSUtil.SpeechAdd("Chicken sound", 1f, 0.6f, 1f);
+						yield return new WaitForSeconds(1f);
 						noises.Add(chicken.GetComponent<obstacle>().getSound());
 						commandText = "Swipe left or right to dodge the chicken";
 						break;
 					case 'D':
+						EasyTTSUtil.SpeechAdd("Duck sound", 1f, 0.6f, 1f);
+						yield return new WaitForSeconds(1f);
 						noises.Add(ducks.GetComponent<obstacle>().getSound());
 						commandText = "Swipe down to avoid hitting the ducks";
 						break;
 					case 'G':
+						EasyTTSUtil.SpeechAdd("Goose sound", 1f, 0.6f, 1f);
+						yield return new WaitForSeconds(1f);
 						noises.Add(goose.GetComponent<obstacle>().getSound());
 						commandText = "Swipe up to escape the goose";
 						break;
 					case 'F':
+						EasyTTSUtil.SpeechAdd("Fence sound", 1f, 0.6f, 1f);
+						yield return new WaitForSeconds(1f);
 						noises.Add(fence.GetComponent<obstacle>().getSound());
 						commandText = "Swipe up to break through the fence";
 						break;
 					case 'E':
+						EasyTTSUtil.SpeechAdd("Deer sound", 1f, 0.6f, 1f);
+						yield return new WaitForSeconds(1f);
 						noises.Add(deer.GetComponent<obstacle>().getSound());
 						commandText = "Swipe down to avoid hitting the deer";
 						break;
 					case 'L':
+						EasyTTSUtil.SpeechAdd("Fork sound", 1f, 0.6f, 1f);
+						yield return new WaitForSeconds(1f);
 						noises.Add(forkLeft.GetComponent<obstacle>().getSound());
 						noises.Add(forkRight.GetComponent<obstacle>().getSound());
 						commandText = "Swipe with the command to correctly follow the fork";
 						break;
 					case 'P':
+						EasyTTSUtil.SpeechAdd("Parrot sound", 1f, 0.6f, 1f);
+						yield return new WaitForSeconds(1f);
 						noises.Add(parrot.GetComponent<obstacle>().getSound());
 						commandText = "Double tap to get rid of the parrot";
 						break;
 					case 'V':
+						EasyTTSUtil.SpeechAdd("Race car sound", 1f, 0.6f, 1f);
+						yield return new WaitForSeconds(1f);
 						noises.Add(racecar.GetComponent<obstacle>().getSound());
 						commandText = "Swipe up or down to avoid hitting the race car";
 						break;
@@ -150,10 +166,10 @@ public class crGame : MonoBehaviour {
 				EasyTTSUtil.SpeechAdd(commandText, 1f, 0.6f, 1f);
 
 				if (tutorials[i] == 'I') {
-					yield return new WaitForSeconds(10f);
+					yield return new WaitForSeconds(13f);
 				}
 				else {
-					yield return new WaitForSeconds(2f);
+					yield return new WaitForSeconds(3f);
 				}
 			}
         }
