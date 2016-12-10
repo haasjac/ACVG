@@ -21,15 +21,16 @@ public class leaderboards : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {    
+	void Start () {
+
+        for (int i = 0; i < leaderboardNames.Count; i++) {
+            leaderboardNames[i].text = "";
+            leaderboardScores[i].text = "";
+        }
 
         for (int i = 0; i < swipeIt.leaderboardScores.Count; i++) {
             leaderboardNames[i].text = swipeIt.leaderboardNames[swipeIt.leaderboardScores[i].Key];
             leaderboardScores[i].text = swipeIt.leaderboardScores[i].Value.ToString();
-        }
-        for (int i = swipeIt.leaderboardScores.Count; i < leaderboardNames.Count; i++) {
-            leaderboardNames[i].text = "";
-            leaderboardScores[i].text = "";
         }
 
         if (PlayerPrefs.HasKey("leaderboard_mode"))
