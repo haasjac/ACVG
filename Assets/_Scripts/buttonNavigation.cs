@@ -31,7 +31,7 @@ public class buttonNavigation : MonoBehaviour {
 
 	public void touchGlobalLeaderboardButton() {
 		if (FB.IsLoggedIn) {
-			SceneManager.LoadScene("si_leaderboard");
+			SceneManager.LoadScene("si_leaderboards");
 		}
 		else {
 			EasyTTSUtil.StopSpeech();
